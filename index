@@ -1652,7 +1652,7 @@ VALUES (
 
     <hr />
     <div class="note">
-        <strong>✅ All files have been displayed.</strong> Copy each block and save it with the correct file path. After placing your logo in <code>frontend/public/logo.png</code>, follow the instructions in the README to set up and run the application.
+        <strong> All files have been displayed.</strong> Copy each block and save it with the correct file path. After placing your logo in <code>frontend/public/logo.png</code>, follow the instructions in the README to set up and run the application.
     </div>
 </body>
 </html>
