@@ -3,62 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Member's Lounge Staff Manager – Complete Codebase</title>
+    <title>Member's Lounge Staff Manager – Complete Source Code</title>
     <style>
-        body {
-            background: #1e1e1e;
-            color: #d4d4d4;
-            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-            padding: 20px;
-            line-height: 1.5;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        h1, h2, h3 {
+        body {
+            background: #0a0a0a;
+            color: #e0e0e0;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
             color: #d4af37;
-            border-bottom: 1px solid #444;
-            padding-bottom: 5px;
+            border-bottom: 2px solid #d4af37;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+        h2 {
+            color: #d4af37;
+            margin: 30px 0 10px;
+            font-size: 1.8em;
         }
         .file-header {
-            background: #2d2d2d;
-            padding: 10px;
-            margin: 30px 0 10px 0;
+            background: #1e1e1e;
+            padding: 10px 15px;
+            margin: 30px 0 5px 0;
             border-left: 5px solid #d4af37;
             font-weight: bold;
-            color: #fff;
-            font-size: 1.2em;
+            color: #ffffff;
+            font-size: 1.3em;
+            border-radius: 0 5px 5px 0;
         }
         pre {
             background: #1e1e1e;
-            border: 1px solid #444;
+            border: 1px solid #333;
             padding: 15px;
             overflow-x: auto;
             white-space: pre-wrap;
             word-wrap: break-word;
             margin: 0 0 30px 0;
             color: #d4d4d4;
+            border-radius: 5px;
+            font-size: 14px;
             tab-size: 2;
         }
         .note {
-            background: #2d2d2d;
-            padding: 15px;
-            border-radius: 5px;
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 8px;
             margin: 20px 0;
-            color: #ffa07a;
+            border: 1px solid #d4af37;
+            color: #f0f0f0;
+        }
+        .note strong {
+            color: #d4af37;
         }
         hr {
+            border: 1px solid #333;
+            margin: 40px 0;
+        }
+        .structure {
+            background: #1e1e1e;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
             border: 1px solid #444;
         }
     </style>
 </head>
 <body>
-    <h1>🏛️ Member's Lounge Staff Manager – Complete Codebase</h1>
-    <p>This HTML document contains all files required for the Member's Lounge Staff Manager application. Each file is presented with its relative path and full code. Copy the code for each file and create the corresponding file in your project folder.</p>
-    
-    <div class="note">
-        <strong>📁 Folder Structure:</strong> Create the following folder hierarchy on your computer before copying files. Place your Member's Lounge logo as <code>frontend/public/logo.png</code>.
-    </div>
-    
-    <h2>Project Structure</h2>
-    <pre>
+    <div class="container">
+        <h1>Member's Lounge Staff Manager – Complete Source Code</h1>
+        
+        <div class="note">
+            <strong>How to use this file:</strong> 
+            <ul style="margin-top:10px; margin-left:20px;">
+                <li>Each section below contains a file path (e.g., <code>frontend/package.json</code>) and the full source code.</li>
+                <li>Copy the code from each box and create the corresponding file in your project folder.</li>
+                <li>Place your Member's Lounge logo as <code>frontend/public/logo.png</code>.</li>
+                <li>After creating all files, upload the folder to GitHub and deploy to Vercel.</li>
+            </ul>
+        </div>
+
+        <h2>Project Structure</h2>
+        <div class="structure">
+<pre>
 members-lounge-staff-app/
 ├── README.md
 ├── frontend/
@@ -110,13 +148,14 @@ members-lounge-staff-app/
 └── database/
     ├── schema.sql
     └── seed.sql
-    </pre>
+</pre>
+        </div>
 
-    <hr />
+        <hr />
 
-    <!-- ==================== README.md ==================== -->
-    <div class="file-header">📄 README.md</div>
-    <pre>
+        <!-- ==================== README.md ==================== -->
+        <div class="file-header">README.md</div>
+        <pre>
 # Member's Lounge Staff Manager
 
 A private web application for staff scheduling at the Member's Lounge.
@@ -164,11 +203,11 @@ A private web application for staff scheduling at the Member's Lounge.
 
 ## License
 Private – for Member's Lounge use only.
-    </pre>
+        </pre>
 
-    <!-- ==================== frontend/package.json ==================== -->
-    <div class="file-header">📄 frontend/package.json</div>
-    <pre>
+        <!-- ==================== frontend/package.json ==================== -->
+        <div class="file-header">frontend/package.json</div>
+        <pre>
 {
   "name": "members-lounge-frontend",
   "private": true,
@@ -196,11 +235,11 @@ Private – for Member's Lounge use only.
     "vite": "^4.0.0"
   }
 }
-    </pre>
+        </pre>
 
-    <!-- ==================== frontend/tsconfig.json ==================== -->
-    <div class="file-header">📄 frontend/tsconfig.json</div>
-    <pre>
+        <!-- ==================== frontend/tsconfig.json ==================== -->
+        <div class="file-header">frontend/tsconfig.json</div>
+        <pre>
 {
   "compilerOptions": {
     "target": "ES2020",
@@ -222,11 +261,11 @@ Private – for Member's Lounge use only.
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
-    </pre>
+        </pre>
 
-    <!-- ==================== frontend/tsconfig.node.json ==================== -->
-    <div class="file-header">📄 frontend/tsconfig.node.json</div>
-    <pre>
+        <!-- ==================== frontend/tsconfig.node.json ==================== -->
+        <div class="file-header">frontend/tsconfig.node.json</div>
+        <pre>
 {
   "compilerOptions": {
     "composite": true,
@@ -237,22 +276,22 @@ Private – for Member's Lounge use only.
   },
   "include": ["vite.config.ts"]
 }
-    </pre>
+        </pre>
 
-    <!-- ==================== frontend/vite.config.ts ==================== -->
-    <div class="file-header">📄 frontend/vite.config.ts</div>
-    <pre>
+        <!-- ==================== frontend/vite.config.ts ==================== -->
+        <div class="file-header">frontend/vite.config.ts</div>
+        <pre>
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
 });
-    </pre>
+        </pre>
 
-    <!-- ==================== frontend/index.html ==================== -->
-    <div class="file-header">📄 frontend/index.html</div>
-    <pre>
+        <!-- ==================== frontend/index.html ==================== -->
+        <div class="file-header">frontend/index.html</div>
+        <pre>
 &lt;!DOCTYPE html&gt;
 &lt;html lang="en"&gt;
   &lt;head&gt;
@@ -266,11 +305,11 @@ export default defineConfig({
     &lt;script type="module" src="/src/main.tsx"&gt;&lt;/script&gt;
   &lt;/body&gt;
 &lt;/html&gt;
-    </pre>
+        </pre>
 
-    <!-- ==================== frontend/src/main.tsx ==================== -->
-    <div class="file-header">📄 frontend/src/main.tsx</div>
-    <pre>
+        <!-- ==================== frontend/src/main.tsx ==================== -->
+        <div class="file-header">frontend/src/main.tsx</div>
+        <pre>
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ThemeProvider } from '@mui/material/styles';
@@ -286,17 +325,17 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     &lt;/ThemeProvider&gt;
   &lt;/React.StrictMode&gt;
 );
-    </pre>
+        </pre>
 
-    <!-- ==================== frontend/src/vite-env.d.ts ==================== -->
-    <div class="file-header">📄 frontend/src/vite-env.d.ts</div>
-    <pre>
+        <!-- ==================== frontend/src/vite-env.d.ts ==================== -->
+        <div class="file-header">frontend/src/vite-env.d.ts</div>
+        <pre>
 /// &lt;reference types="vite/client" /&gt;
-    </pre>
+        </pre>
 
-    <!-- ==================== frontend/src/theme/theme.ts ==================== -->
-    <div class="file-header">📄 frontend/src/theme/theme.ts</div>
-    <pre>
+        <!-- ==================== frontend/src/theme/theme.ts ==================== -->
+        <div class="file-header">frontend/src/theme/theme.ts</div>
+        <pre>
 import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
@@ -344,11 +383,11 @@ const theme = createTheme({
 });
 
 export default theme;
-    </pre>
+        </pre>
 
-    <!-- ==================== frontend/src/contexts/AuthContext.tsx ==================== -->
-    <div class="file-header">📄 frontend/src/contexts/AuthContext.tsx</div>
-    <pre>
+        <!-- ==================== frontend/src/contexts/AuthContext.tsx ==================== -->
+        <div class="file-header">frontend/src/contexts/AuthContext.tsx</div>
+        <pre>
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import api from '../services/api';
 
@@ -416,11 +455,11 @@ export const useAuth = () =&gt; {
   if (!context) throw new Error('useAuth must be used within AuthProvider');
   return context;
 };
-    </pre>
+        </pre>
 
-    <!-- ==================== frontend/src/services/api.ts ==================== -->
-    <div class="file-header">📄 frontend/src/services/api.ts</div>
-    <pre>
+        <!-- ==================== frontend/src/services/api.ts ==================== -->
+        <div class="file-header">frontend/src/services/api.ts</div>
+        <pre>
 import axios from 'axios';
 
 const api = axios.create({
@@ -436,11 +475,11 @@ api.interceptors.request.use((config) =&gt; {
 });
 
 export default api;
-    </pre>
+        </pre>
 
-    <!-- ==================== frontend/src/components/ProtectedRoute.tsx ==================== -->
-    <div class="file-header">📄 frontend/src/components/ProtectedRoute.tsx</div>
-    <pre>
+        <!-- ==================== frontend/src/components/ProtectedRoute.tsx ==================== -->
+        <div class="file-header">frontend/src/components/ProtectedRoute.tsx</div>
+        <pre>
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
@@ -468,11 +507,11 @@ const ProtectedRoute: React.FC&lt;ProtectedRouteProps&gt; = ({ children, adminOn
 };
 
 export default ProtectedRoute;
-    </pre>
+        </pre>
 
-    <!-- ==================== frontend/src/App.tsx ==================== -->
-    <div class="file-header">📄 frontend/src/App.tsx</div>
-    <pre>
+        <!-- ==================== frontend/src/App.tsx ==================== -->
+        <div class="file-header">frontend/src/App.tsx</div>
+        <pre>
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -558,11 +597,11 @@ function App() {
 }
 
 export default App;
-    </pre>
+        </pre>
 
-    <!-- ==================== frontend/src/pages/Login.tsx ==================== -->
-    <div class="file-header">📄 frontend/src/pages/Login.tsx</div>
-    <pre>
+        <!-- ==================== frontend/src/pages/Login.tsx ==================== -->
+        <div class="file-header">frontend/src/pages/Login.tsx</div>
+        <pre>
 import React, { useState } from 'react';
 import { Container, Box, TextField, Button, Typography, Paper, Alert } from '@mui/material';
 import { useNavigate, Link } from 'react-router-dom';
@@ -609,11 +648,11 @@ const Login: React.FC = () =&gt; {
 };
 
 export default Login;
-    </pre>
+        </pre>
 
-    <!-- ==================== frontend/src/pages/Register.tsx ==================== -->
-    <div class="file-header">📄 frontend/src/pages/Register.tsx</div>
-    <pre>
+        <!-- ==================== frontend/src/pages/Register.tsx ==================== -->
+        <div class="file-header">frontend/src/pages/Register.tsx</div>
+        <pre>
 import React, { useState } from 'react';
 import { Container, Box, TextField, Button, Typography, Paper, Alert, FormControl, FormLabel, FormGroup, FormControlLabel, Checkbox } from '@mui/material';
 import { useNavigate, Link } from 'react-router-dom';
@@ -693,11 +732,11 @@ const Register: React.FC = () =&gt; {
 };
 
 export default Register;
-    </pre>
+        </pre>
 
-    <!-- ==================== frontend/src/pages/Dashboard.tsx ==================== -->
-    <div class="file-header">📄 frontend/src/pages/Dashboard.tsx</div>
-    <pre>
+        <!-- ==================== frontend/src/pages/Dashboard.tsx ==================== -->
+        <div class="file-header">frontend/src/pages/Dashboard.tsx</div>
+        <pre>
 import React from 'react';
 import { Container, Typography, Box, Button, Paper, Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
@@ -745,11 +784,11 @@ const Dashboard: React.FC = () =&gt; {
 };
 
 export default Dashboard;
-    </pre>
+        </pre>
 
-    <!-- ==================== frontend/src/pages/Events.tsx ==================== -->
-    <div class="file-header">📄 frontend/src/pages/Events.tsx</div>
-    <pre>
+        <!-- ==================== frontend/src/pages/Events.tsx ==================== -->
+        <div class="file-header">frontend/src/pages/Events.tsx</div>
+        <pre>
 import React, { useEffect, useState } from 'react';
 import { Container, Typography, List, ListItem, ListItemText, Switch, CircularProgress, Box, Alert } from '@mui/material';
 import api from '../services/api';
@@ -828,11 +867,11 @@ const Events: React.FC = () =&gt; {
 };
 
 export default Events;
-    </pre>
+        </pre>
 
-    <!-- ==================== frontend/src/pages/MyAssignments.tsx ==================== -->
-    <div class="file-header">📄 frontend/src/pages/MyAssignments.tsx</div>
-    <pre>
+        <!-- ==================== frontend/src/pages/MyAssignments.tsx ==================== -->
+        <div class="file-header">frontend/src/pages/MyAssignments.tsx</div>
+        <pre>
 import React, { useEffect, useState } from 'react';
 import { Container, Typography, List, ListItem, ListItemText, CircularProgress, Alert } from '@mui/material';
 import api from '../services/api';
@@ -881,11 +920,11 @@ const MyAssignments: React.FC = () =&gt; {
 };
 
 export default MyAssignments;
-    </pre>
+        </pre>
 
-    <!-- ==================== frontend/src/pages/admin/AdminDashboard.tsx ==================== -->
-    <div class="file-header">📄 frontend/src/pages/admin/AdminDashboard.tsx</div>
-    <pre>
+        <!-- ==================== frontend/src/pages/admin/AdminDashboard.tsx ==================== -->
+        <div class="file-header">frontend/src/pages/admin/AdminDashboard.tsx</div>
+        <pre>
 import React from 'react';
 import { Container, Typography, Grid, Paper, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
@@ -925,11 +964,11 @@ const AdminDashboard: React.FC = () =&gt; {
 };
 
 export default AdminDashboard;
-    </pre>
+        </pre>
 
-    <!-- ==================== frontend/src/pages/admin/StaffManagement.tsx ==================== -->
-    <div class="file-header">📄 frontend/src/pages/admin/StaffManagement.tsx</div>
-    <pre>
+        <!-- ==================== frontend/src/pages/admin/StaffManagement.tsx ==================== -->
+        <div class="file-header">frontend/src/pages/admin/StaffManagement.tsx</div>
+        <pre>
 import React, { useEffect, useState } from 'react';
 import { Container, Typography, Table, TableHead, TableRow, TableCell, TableBody, Paper, CircularProgress, Alert } from '@mui/material';
 import api from '../../services/api';
@@ -990,11 +1029,11 @@ const StaffManagement: React.FC = () =&gt; {
 };
 
 export default StaffManagement;
-    </pre>
+        </pre>
 
-    <!-- ==================== frontend/src/pages/admin/EventManagement.tsx ==================== -->
-    <div class="file-header">📄 frontend/src/pages/admin/EventManagement.tsx</div>
-    <pre>
+        <!-- ==================== frontend/src/pages/admin/EventManagement.tsx ==================== -->
+        <div class="file-header">frontend/src/pages/admin/EventManagement.tsx</div>
+        <pre>
 import React, { useEffect, useState } from 'react';
 import { Container, Typography, List, ListItem, ListItemText, Button, Paper, CircularProgress, Alert } from '@mui/material';
 import { Link } from 'react-router-dom';
@@ -1044,11 +1083,11 @@ const EventManagement: React.FC = () =&gt; {
 };
 
 export default EventManagement;
-    </pre>
+        </pre>
 
-    <!-- ==================== frontend/src/pages/admin/AssignmentHub.tsx ==================== -->
-    <div class="file-header">📄 frontend/src/pages/admin/AssignmentHub.tsx</div>
-    <pre>
+        <!-- ==================== frontend/src/pages/admin/AssignmentHub.tsx ==================== -->
+        <div class="file-header">frontend/src/pages/admin/AssignmentHub.tsx</div>
+        <pre>
 import React from 'react';
 import { Container, Typography } from '@mui/material';
 import { useParams } from 'react-router-dom';
@@ -1065,11 +1104,11 @@ const AssignmentHub: React.FC = () =&gt; {
 };
 
 export default AssignmentHub;
-    </pre>
+        </pre>
 
-    <!-- ==================== backend/package.json ==================== -->
-    <div class="file-header">📄 backend/package.json</div>
-    <pre>
+        <!-- ==================== backend/package.json ==================== -->
+        <div class="file-header">backend/package.json</div>
+        <pre>
 {
   "name": "members-lounge-backend",
   "version": "1.0.0",
@@ -1100,11 +1139,11 @@ export default AssignmentHub;
     "typescript": "^5.1.3"
   }
 }
-    </pre>
+        </pre>
 
-    <!-- ==================== backend/tsconfig.json ==================== -->
-    <div class="file-header">📄 backend/tsconfig.json</div>
-    <pre>
+        <!-- ==================== backend/tsconfig.json ==================== -->
+        <div class="file-header">backend/tsconfig.json</div>
+        <pre>
 {
   "compilerOptions": {
     "target": "ES2020",
@@ -1119,20 +1158,20 @@ export default AssignmentHub;
   "include": ["src/**/*"],
   "exclude": ["node_modules"]
 }
-    </pre>
+        </pre>
 
-    <!-- ==================== backend/.env.example ==================== -->
-    <div class="file-header">📄 backend/.env.example</div>
-    <pre>
+        <!-- ==================== backend/.env.example ==================== -->
+        <div class="file-header">backend/.env.example</div>
+        <pre>
 PORT=5000
 DATABASE_URL=postgresql://user:password@localhost:5432/members_lounge
 JWT_SECRET=your_super_secret_key_change_me
 FRONTEND_URL=http://localhost:5173
-    </pre>
+        </pre>
 
-    <!-- ==================== backend/src/index.ts ==================== -->
-    <div class="file-header">📄 backend/src/index.ts</div>
-    <pre>
+        <!-- ==================== backend/src/index.ts ==================== -->
+        <div class="file-header">backend/src/index.ts</div>
+        <pre>
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -1156,11 +1195,11 @@ app.use('/api/assignments', assignmentRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-    </pre>
+        </pre>
 
-    <!-- ==================== backend/src/db.ts ==================== -->
-    <div class="file-header">📄 backend/src/db.ts</div>
-    <pre>
+        <!-- ==================== backend/src/db.ts ==================== -->
+        <div class="file-header">backend/src/db.ts</div>
+        <pre>
 import { Pool } from 'pg';
 import dotenv from 'dotenv';
 
@@ -1171,11 +1210,11 @@ export const pool = new Pool({
 });
 
 export const query = (text: string, params?: any[]) => pool.query(text, params);
-    </pre>
+        </pre>
 
-    <!-- ==================== backend/src/middleware/auth.ts ==================== -->
-    <div class="file-header">📄 backend/src/middleware/auth.ts</div>
-    <pre>
+        <!-- ==================== backend/src/middleware/auth.ts ==================== -->
+        <div class="file-header">backend/src/middleware/auth.ts</div>
+        <pre>
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
@@ -1203,11 +1242,11 @@ export const requireAdmin = (req: AuthRequest, res: Response, next: NextFunction
   }
   next();
 };
-    </pre>
+        </pre>
 
-    <!-- ==================== backend/src/routes/auth.ts ==================== -->
-    <div class="file-header">📄 backend/src/routes/auth.ts</div>
-    <pre>
+        <!-- ==================== backend/src/routes/auth.ts ==================== -->
+        <div class="file-header">backend/src/routes/auth.ts</div>
+        <pre>
 import { Router } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
@@ -1272,11 +1311,11 @@ router.get('/me', authenticate, async (req: AuthRequest, res) => {
 });
 
 export default router;
-    </pre>
+        </pre>
 
-    <!-- ==================== backend/src/routes/users.ts ==================== -->
-    <div class="file-header">📄 backend/src/routes/users.ts</div>
-    <pre>
+        <!-- ==================== backend/src/routes/users.ts ==================== -->
+        <div class="file-header">backend/src/routes/users.ts</div>
+        <pre>
 import { Router } from 'express';
 import { query } from '../db';
 import { authenticate, requireAdmin, AuthRequest } from '../middleware/auth';
@@ -1332,11 +1371,11 @@ router.patch('/:id/toggle-active', authenticate, requireAdmin, async (req, res) 
 });
 
 export default router;
-    </pre>
+        </pre>
 
-    <!-- ==================== backend/src/routes/events.ts ==================== -->
-    <div class="file-header">📄 backend/src/routes/events.ts</div>
-    <pre>
+        <!-- ==================== backend/src/routes/events.ts ==================== -->
+        <div class="file-header">backend/src/routes/events.ts</div>
+        <pre>
 import { Router } from 'express';
 import { query } from '../db';
 import { authenticate, requireAdmin } from '../middleware/auth';
@@ -1395,11 +1434,11 @@ router.delete('/:id', authenticate, requireAdmin, async (req, res) => {
 });
 
 export default router;
-    </pre>
+        </pre>
 
-    <!-- ==================== backend/src/routes/availability.ts ==================== -->
-    <div class="file-header">📄 backend/src/routes/availability.ts</div>
-    <pre>
+        <!-- ==================== backend/src/routes/availability.ts ==================== -->
+        <div class="file-header">backend/src/routes/availability.ts</div>
+        <pre>
 import { Router } from 'express';
 import { query } from '../db';
 import { authenticate, AuthRequest } from '../middleware/auth';
@@ -1457,11 +1496,11 @@ router.post('/bulk', authenticate, async (req: AuthRequest, res) => {
 });
 
 export default router;
-    </pre>
+        </pre>
 
-    <!-- ==================== backend/src/routes/assignments.ts ==================== -->
-    <div class="file-header">📄 backend/src/routes/assignments.ts</div>
-    <pre>
+        <!-- ==================== backend/src/routes/assignments.ts ==================== -->
+        <div class="file-header">backend/src/routes/assignments.ts</div>
+        <pre>
 import { Router } from 'express';
 import { query } from '../db';
 import { authenticate, requireAdmin, AuthRequest } from '../middleware/auth';
@@ -1534,11 +1573,11 @@ router.delete('/:id', authenticate, requireAdmin, async (req, res) => {
 });
 
 export default router;
-    </pre>
+        </pre>
 
-    <!-- ==================== database/schema.sql ==================== -->
-    <div class="file-header">📄 database/schema.sql</div>
-    <pre>
+        <!-- ==================== database/schema.sql ==================== -->
+        <div class="file-header">database/schema.sql</div>
+        <pre>
 -- Users table
 CREATE TABLE users (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -1586,11 +1625,11 @@ CREATE INDEX idx_availability_user ON availability(user_id);
 CREATE INDEX idx_availability_event ON availability(event_id);
 CREATE INDEX idx_assignments_event ON assignments(event_id);
 CREATE INDEX idx_assignments_user ON assignments(user_id);
-    </pre>
+        </pre>
 
-    <!-- ==================== database/seed.sql ==================== -->
-    <div class="file-header">📄 database/seed.sql</div>
-    <pre>
+        <!-- ==================== database/seed.sql ==================== -->
+        <div class="file-header">database/seed.sql</div>
+        <pre>
 -- Insert the 44 events
 INSERT INTO events (date, venue_name) VALUES
 ('2026-03-28', 'Sala Reggio Ballroom'),
@@ -1648,11 +1687,21 @@ VALUES (
   ARRAY[]::TEXT[],
   true
 );
-    </pre>
+        </pre>
 
-    <hr />
-    <div class="note">
-        <strong>✅ All files have been displayed.</strong> Copy each block and save it with the correct file path. After placing your logo in <code>frontend/public/logo.png</code>, follow the instructions in the README to set up and run the application.
+        <hr />
+        <div class="note">
+            <strong>All files have been displayed.</strong><br>
+            <ol style="margin-top:10px;">
+                <li>Create the folder structure on your computer as shown above.</li>
+                <li>Copy each code block into the corresponding file.</li>
+                <li>Place your Member's Lounge logo in <code>frontend/public/logo.png</code>.</li>
+                <li>Push the entire folder to a new GitHub repository.</li>
+                <li>Deploy the frontend on Vercel (point to the <code>frontend</code> folder).</li>
+                <li>For the backend, you'll need to deploy separately (Render, etc.) and set up PostgreSQL.</li>
+            </ol>
+            <p>If you need further assistance, just ask!</p>
+        </div>
     </div>
 </body>
 </html>
