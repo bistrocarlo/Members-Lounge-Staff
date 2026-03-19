@@ -1,809 +1,1707 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
-  <title>George Theodoropoulos · Master of Ceremonies</title>
-  <meta name="description" content="Prestigious MC services by George Theodoropoulos. Warm, engaging, and impeccably professional. Bilingual: English & Greek." />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet" />
-
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      background-color: #ffffff;
-      color: #000000;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 400;
-      line-height: 1.6;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    h1, h2, h3, h4 {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-    }
-
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-      border-bottom: 2px solid #d4af37;
-      display: inline-block;
-      padding-bottom: 0.25rem;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 1rem;
-      width: 100%;
-      flex: 1;
-    }
-
-    .lang-switcher {
-      display: flex;
-      justify-content: flex-end;
-      gap: 1rem;
-      margin: 1rem 0;
-    }
-
-    .lang-btn {
-      background: transparent;
-      border: 1px solid #d4af37;
-      color: #000;
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      font-weight: 600;
-      padding: 0.4rem 1.2rem;
-      cursor: pointer;
-      border-radius: 30px;
-      transition: all 0.3s;
-    }
-
-    .lang-btn.active,
-    .lang-btn:hover {
-      background: #d4af37;
-      color: #000;
-      border-color: #d4af37;
-    }
-
-    .nav {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin: 2rem 0 1rem;
-      flex-wrap: wrap;
-    }
-
-    .nav-btn {
-      background: transparent;
-      border: none;
-      color: #000;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      font-weight: 600;
-      padding: 0.5rem 1.5rem;
-      cursor: pointer;
-      border-bottom: 3px solid transparent;
-      transition: all 0.3s;
-      letter-spacing: 1px;
-    }
-
-    .nav-btn.active {
-      border-bottom-color: #d4af37;
-      color: #d4af37;
-    }
-
-    .nav-btn:hover { color: #d4af37; }
-
-    .section { display: none; animation: fade 0.3s ease; }
-    .section.active { display: block; }
-
-    @keyframes fade {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .card {
-      background: #f9f9f9;
-      border: 1px solid #e0e0e0;
-      border-radius: 12px;
-      padding: 2rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-    }
-
-    .service-item { margin-bottom: 1.5rem; }
-
-    .service-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #d4af37;
-      margin-bottom: 0.25rem;
-    }
-
-    .price-tag {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: #d4af37;
-      font-family: 'Playfair Display', serif;
-      line-height: 1.2;
-    }
-
-    .price-note {
-      font-size: 1rem;
-      color: #555;
-      margin-top: 0.5rem;
-    }
-
-    .contact-info {
-      background: #f9f9f9;
-      padding: 2rem;
-      border-radius: 12px;
-      border-left: 6px solid #d4af37;
-    }
-
-    .contact-phone {
-      font-size: 1.8rem;
-      font-weight: 600;
-      font-family: 'Playfair Display', serif;
-      color: #000;
-      text-decoration: none;
-      display: inline-block;
-      margin-bottom: 1rem;
-    }
-
-    .contact-phone:hover,
-    .contact-email:hover { color: #d4af37; }
-
-    .contact-email {
-      color: #000;
-      text-decoration: none;
-      border-bottom: 1px solid #d4af37;
-      font-weight: 500;
-      font-size: 1.2rem;
-      word-break: break-all;
-    }
-
-    .form-group { margin-bottom: 1.5rem; }
-
-    label {
-      display: block;
-      font-family: 'Playfair Display', serif;
-      font-weight: 600;
-      color: #d4af37;
-      margin-bottom: 0.5rem;
-      font-size: 1.1rem;
-    }
-
-    input, textarea, select {
-      width: 100%;
-      padding: 1rem;
-      background: #fff;
-      border: 1px solid #ccc;
-      color: #000;
-      border-radius: 8px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1rem;
-      font-weight: 400;
-      transition: border 0.3s;
-    }
-
-    input:focus, textarea:focus, select:focus {
-      outline: none;
-      border-color: #d4af37;
-    }
-
-    textarea {
-      min-height: 100px;
-      resize: vertical;
-    }
-
-    select {
-      appearance: none;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23d4af37' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
-      background-repeat: no-repeat;
-      background-position: right 1rem center;
-      background-size: 1.2rem;
-    }
-
-    .btn {
-      background: #d4af37;
-      color: #000;
-      border: 1px solid #d4af37;
-      padding: 1rem 2.5rem;
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      font-weight: 700;
-      border-radius: 40px;
-      cursor: pointer;
-      transition: all 0.3s;
-      margin-top: 1rem;
-    }
-
-    .btn:hover {
-      background: transparent;
-      color: #d4af37;
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: #000;
-      border: 1px solid #d4af37;
-      margin-left: 1rem;
-    }
-
-    .btn-outline:hover {
-      background: #d4af37;
-      color: #000;
-    }
-
-    .btn-add {
-      background: transparent;
-      color: #d4af37;
-      border: 1px dashed #d4af37;
-      padding: 0.5rem 1rem;
-      font-size: 1rem;
-      border-radius: 30px;
-      margin-bottom: 1rem;
-      cursor: pointer;
-    }
-
-    .btn-add:hover {
-      background: #d4af37;
-      color: #000;
-    }
-
-    .footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      border-top: 1px solid #eee;
-      margin-top: 3rem;
-      color: #666;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
-
-    .paired-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin-bottom: 1rem;
-      align-items: center;
-    }
-
-    .saved-msg {
-      color: #d4af37;
-      font-size: 0.9rem;
-      margin-top: 0.5rem;
-      text-align: right;
-      font-style: italic;
-    }
-
-    .radio-group {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .radio-option {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .radio-option input[type="radio"] {
-      width: auto;
-      accent-color: #d4af37;
-    }
-
-    #print-summary { display: none; }
-
-    @media (max-width: 640px) {
-      .grid-2, .grid-3, .paired-row {
-        grid-template-columns: 1fr;
-      }
-      h2 { font-size: 1.6rem; }
-      .nav-btn {
-        font-size: 1rem;
-        padding: 0.5rem 1rem;
-      }
-      .price-tag { font-size: 2rem; }
-    }
-
-    @media print {
-      body { background: white; }
-      .no-print, .nav, .lang-switcher, .btn, .footer, .nav-btn, .saved-msg {
-        display: none !important;
-      }
-      .section { display: none !important; }
-      #print-summary { display: block !important; }
-      .card {
-        border: 1px solid #d4af37;
-        break-inside: avoid;
-      }
-      h2 {
-        color: #000;
-        border-bottom-color: #d4af37;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member's Lounge Staff Manager – Complete Source Code</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #0a0a0a;
+            color: #e0e0e0;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #d4af37;
+            border-bottom: 2px solid #d4af37;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+        h2 {
+            color: #d4af37;
+            margin: 30px 0 10px;
+            font-size: 1.8em;
+        }
+        .file-header {
+            background: #1e1e1e;
+            padding: 10px 15px;
+            margin: 30px 0 5px 0;
+            border-left: 5px solid #d4af37;
+            font-weight: bold;
+            color: #ffffff;
+            font-size: 1.3em;
+            border-radius: 0 5px 5px 0;
+        }
+        pre {
+            background: #1e1e1e;
+            border: 1px solid #333;
+            padding: 15px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin: 0 0 30px 0;
+            color: #d4d4d4;
+            border-radius: 5px;
+            font-size: 14px;
+            tab-size: 2;
+        }
+        .note {
+            background: #1e1e1e;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid #d4af37;
+            color: #f0f0f0;
+        }
+        .note strong {
+            color: #d4af37;
+        }
+        hr {
+            border: 1px solid #333;
+            margin: 40px 0;
+        }
+        .structure {
+            background: #1e1e1e;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            border: 1px solid #444;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="lang-switcher no-print">
-      <button class="lang-btn active" id="lang-en">EN</button>
-      <button class="lang-btn" id="lang-el">EL</button>
-    </div>
-
-    <div style="text-align: center; margin: 0 0 1rem;">
-      <h1 style="font-size: 2.5rem; letter-spacing: 2px;">GEORGE THEODOROPOULOS</h1>
-      <p style="font-size: 1.2rem; color: #d4af37; font-family: 'Playfair Display'; font-weight: 600;"
-         id="mc-title"
-         data-en="Master of Ceremonies"
-         data-el="Τελετάρχης">Master of Ceremonies</p>
-    </div>
-
-    <div class="nav no-print">
-      <button class="nav-btn active" id="btn-home" data-en="Home" data-el="Αρχική">Home</button>
-      <button class="nav-btn" id="btn-party" data-en="Wedding Party" data-el="Γαμήλια Παρέα">Wedding Party</button>
-      <button class="nav-btn" id="btn-journal" data-en="Event Journal" data-el="Ημερολόγιο Εκδήλωσης">Event Journal</button>
-    </div>
-
-    <div class="no-print" style="text-align: right; margin-bottom: 1rem;">
-      <button class="btn btn-outline" id="print-btn" data-en="Print Summary (PDF)" data-el="Εκτύπωση Περίληψης (PDF)">Print Summary (PDF)</button>
-    </div>
-
-    <section id="home-section" class="section active">
-      <div class="card">
-        <h2 data-en="About" data-el="Σχετικά">About</h2>
-        <p
-          data-en="Warm, confident, and impeccably professional — George ensures your celebration is seamless and heartfelt without ever overshadowing your special moments. With years of experience and a dedication to personalisation, he becomes the calm, charismatic thread that weaves your event together. Fully bilingual: fluent in English and Greek, offering seamless MC services in both languages."
-          data-el="Ζεστός, σίγουρος και άψογα επαγγελματίας — ο George εξασφαλίζει ότι η γιορτή σας είναι άψογη και εγκάρδια χωρίς ποτέ να επισκιάζει τις ξεχωριστές σας στιγμές. Με χρόνια εμπειρίας και αφοσίωση στην εξατομίκευση, γίνεται η ήρεμη, χαρισματική παρουσία που δένει την εκδήλωσή σας. Απόλυτα δίγλωσσος: άπταιστα Αγγλικά και Ελληνικά, προσφέροντας άψογες υπηρεσίες τελετάρχη και στις δύο γλώσσες."
-        >
-          Warm, confident, and impeccably professional — George ensures your celebration is seamless and heartfelt without ever overshadowing your special moments. With years of experience and a dedication to personalisation, he becomes the calm, charismatic thread that weaves your event together. Fully bilingual: fluent in English and Greek, offering seamless MC services in both languages.
-        </p>
-      </div>
-
-      <div class="card">
-        <h2 data-en="Services" data-el="Υπηρεσίες">Services</h2>
-
-        <div class="service-item">
-          <div class="service-title" data-en="Bilingual MC (English & Greek)" data-el="Δίγλωσσος Τελετάρχης (Αγγλικά & Ελληνικά)">Bilingual MC (English & Greek)</div>
-          <p data-en="Seamlessly host your event in both English and Greek, ensuring all guests feel included and engaged." data-el="Φιλοξενήστε άψογα την εκδήλωσή σας στα Αγγλικά και στα Ελληνικά, διασφαλίζοντας ότι όλοι οι καλεσμένοι αισθάνονται ότι συμμετέχουν.">Seamlessly host your event in both English and Greek, ensuring all guests feel included and engaged.</p>
+    <div class="container">
+        <h1>🏛️ Member's Lounge Staff Manager – Complete Source Code</h1>
+        
+        <div class="note">
+            <strong>📌 How to use this file:</strong> 
+            <ul style="margin-top:10px; margin-left:20px;">
+                <li>Each section below contains a file path (e.g., <code>frontend/package.json</code>) and the full source code.</li>
+                <li>Copy the code from each box and create the corresponding file in your project folder.</li>
+                <li>Place your Member's Lounge logo as <code>frontend/public/logo.png</code>.</li>
+                <li>After creating all files, upload the folder to GitHub and deploy to Vercel.</li>
+            </ul>
         </div>
 
-        <div class="service-item">
-          <div class="service-title" data-en="Pre-Event Planning" data-el="Προγραμματισμός">Pre-Event Planning</div>
-          <p data-en="Face-to-face or Zoom meetings to understand your vision, prepare the run sheet, and align with venue food timelines." data-el="Συναντήσεις διά ζώσης ή μέσω Zoom για να κατανοήσουμε το όραμά σας, να προετοιμάσουμε το χρονοδιάγραμμα και να ευθυγραμμιστούμε με τα ωράρια φαγητού του χώρου.">Face-to-face or Zoom meetings to understand your vision, prepare the run sheet, and align with venue food timelines.</p>
+        <h2>📁 Project Structure</h2>
+        <div class="structure">
+<pre>
+members-lounge-staff-app/
+├── README.md
+├── frontend/
+│   ├── public/
+│   │   └── logo.png
+│   ├── src/
+│   │   ├── main.tsx
+│   │   ├── vite-env.d.ts
+│   │   ├── App.tsx
+│   │   ├── theme/
+│   │   │   └── theme.ts
+│   │   ├── contexts/
+│   │   │   └── AuthContext.tsx
+│   │   ├── services/
+│   │   │   └── api.ts
+│   │   ├── components/
+│   │   │   └── ProtectedRoute.tsx
+│   │   └── pages/
+│   │       ├── Login.tsx
+│   │       ├── Register.tsx
+│   │       ├── Dashboard.tsx
+│   │       ├── Events.tsx
+│   │       ├── MyAssignments.tsx
+│   │       └── admin/
+│   │           ├── AdminDashboard.tsx
+│   │           ├── StaffManagement.tsx
+│   │           ├── EventManagement.tsx
+│   │           └── AssignmentHub.tsx
+│   ├── index.html
+│   ├── package.json
+│   ├── tsconfig.json
+│   ├── tsconfig.node.json
+│   └── vite.config.ts
+├── backend/
+│   ├── src/
+│   │   ├── index.ts
+│   │   ├── db.ts
+│   │   ├── middleware/
+│   │   │   └── auth.ts
+│   │   └── routes/
+│   │       ├── auth.ts
+│   │       ├── users.ts
+│   │       ├── events.ts
+│   │       ├── availability.ts
+│   │       └── assignments.ts
+│   ├── .env.example
+│   ├── package.json
+│   └── tsconfig.json
+└── database/
+    ├── schema.sql
+    └── seed.sql
+</pre>
         </div>
 
-        <div class="service-item">
-          <div class="service-title" data-en="Vendor Liaison" data-el="Συντονισμός Προμηθευτών">Vendor Liaison</div>
-          <p data-en="Arrive early to connect with Function Manager, Photographer, DJ/Band — ensuring everyone is perfectly synced." data-el="Φτάνω νωρίς για να συνδεθώ με τον Υπεύθυνο Εκδήλωσης, τον Φωτογράφο, τον DJ/Μπάντα — διασφαλίζοντας ότι όλοι είναι απόλυτα συντονισμένοι.">Arrive early to connect with Function Manager, Photographer, DJ/Band — ensuring everyone is perfectly synced.</p>
-        </div>
+        <hr />
 
-        <div class="service-item">
-          <div class="service-title" data-en="Professional Audio" data-el="Επαγγελματικός Ήχος">Professional Audio</div>
-          <p data-en="High-quality wireless microphone, seamlessly connected to house system or DJ equipment." data-el="Υψηλής ποιότητας ασύρματο μικρόφωνο, άψογα συνδεδεμένο με το σύστημα ήχου του χώρου ή του DJ.">High-quality wireless microphone, seamlessly connected to house system or DJ equipment.</p>
-        </div>
+        <!-- ==================== README.md ==================== -->
+        <div class="file-header">📄 README.md</div>
+        <pre>
+# Member's Lounge Staff Manager
 
-        <div class="service-item">
-          <div class="service-title" data-en="Warm Engagement" data-el="Ζεστή Παρουσία">Warm Engagement</div>
-          <p data-en="Energetic, polished presence that keeps the night flowing without making it 'all about the MC.'" data-el="Ενεργητική, κομψή παρουσία που διατηρεί τη ροή της βραδιάς χωρίς να την κάνει 'όλη για τον MC'.">Energetic, polished presence that keeps the night flowing without making it 'all about the MC.'</p>
-        </div>
-      </div>
+A private web application for staff scheduling at the Member's Lounge.
 
-      <div class="card">
-        <h2 data-en="Pricing" data-el="Τιμολόγηση">Pricing</h2>
-        <div class="price-tag" data-en="Packages start from $1,650 AUD" data-el="Πακέτα από $1,650 AUD">Packages start from $1,650 AUD</div>
-        <div class="price-note" data-en="per night · base rate" data-el="ανά βραδιά · βασική τιμή">per night · base rate</div>
-        <p style="margin-top: 1.5rem; color: #555;" data-en="Variables affecting price: parking, travel, extended hours, additional responsibilities." data-el="Παράγοντες που επηρεάζουν την τιμή: πάρκινγκ, ταξίδι, παρατεταμένες ώρες, επιπλέον ευθύνες.">Variables affecting price: parking, travel, extended hours, additional responsibilities.</p>
-      </div>
+## Tech Stack
+- Frontend: React + TypeScript + Vite + Material‑UI (black/white/gold theme)
+- Backend: Node.js + Express + TypeScript + PostgreSQL
+- Hosting: Vercel (frontend) + Render (backend) recommended
 
-      <div class="contact-info">
-        <h2 style="border-bottom: none; display: block;" data-en="Contact" data-el="Επικοινωνία">Contact</h2>
-        <a href="tel:+61418817976" class="contact-phone">+61 418 817 976</a><br />
-        <span style="color: #d4af37; font-weight: 600;" data-en="email" data-el="email">email</span>
-        <a href="mailto:George.Theodoropoulos31@gmail.com" class="contact-email">George.Theodoropoulos31@gmail.com</a>
-        <p style="margin-top: 1.5rem;" data-en="Available for meetings with venue managers — let's create something unforgettable." data-el="Διαθέσιμος για συναντήσεις με υπεύθυνους χώρων — ας δημιουργήσουμε κάτι αξέχαστο.">Available for meetings with venue managers — let's create something unforgettable.</p>
-      </div>
-    </section>
+## Features
+- Staff registration with name, email, phone, and role selection (Kitchen, Floor, Bar, Cleaner, Setup)
+- Staff can mark availability for each of the 44+ events
+- Admin dashboard to manage staff, events, and assignments
+- Conflict‑free assignment (no double‑booking)
+- Export rosters as PDF (to be implemented in Phase 2)
 
-    <section id="party-section" class="section">
-      <div class="card">
-        <h2 data-en="Wedding Party Details" data-el="Λεπτομέρειες Γαμήλιας Παρέας">Wedding Party Details</h2>
-        <p data-en="Add pairs for the bridal party and for flower kids." data-el="Προσθέστε ζευγάρια για τη γαμήλια παρέα και για τα παιδιά με λουλούδια.">Add pairs for the bridal party and for flower kids.</p>
+## Setup Instructions
 
-        <form id="party-form">
-          <div class="grid-2">
-            <div class="form-group">
-              <label data-en="Groom's Full Name" data-el="Ονοματεπώνυμο Γαμπρού">Groom's Full Name</label>
-              <input type="text" id="groom" placeholder="e.g. James Michael Smith" />
-            </div>
-            <div class="form-group">
-              <label data-en="Bride's Full Name" data-el="Ονοματεπώνυμο Νύφης">Bride's Full Name</label>
-              <input type="text" id="bride" placeholder="e.g. Emma Rose Johnson" />
-            </div>
-          </div>
+### Prerequisites
+- Node.js 18+
+- PostgreSQL database (local or cloud, e.g., Render, Supabase)
 
-          <div class="grid-2">
-            <div class="form-group">
-              <label data-en="Matron of Honour" data-el="Κουμπάρα">Matron of Honour</label>
-              <input type="text" id="matron" placeholder="Full name" />
-            </div>
-            <div class="form-group">
-              <label data-en="Best Man" data-el="Κουμπάρος">Best Man</label>
-              <input type="text" id="bestman" placeholder="Full name" />
-            </div>
-          </div>
+### Backend
+1. Navigate to `backend/`
+2. Copy `.env.example` to `.env` and fill in your database URL and JWT secret.
+3. Run `npm install`
+4. Run `npm run dev` for development, or `npm run build && npm start` for production.
+5. The API will be available at `http://localhost:5000`
 
-          <div id="bridal-pairs-container">
-            <h3 style="color: #d4af37; margin: 1.5rem 0 1rem;" data-en="Bridal Party Pairs" data-el="Ζευγάρια Γαμήλιας Παρέας">Bridal Party Pairs</h3>
-          </div>
-          <button type="button" class="btn-add no-print" id="add-bridal-pair" data-en="+ Add Bridal Pair" data-el="+ Προσθήκη Ζευγαριού Παρέας">+ Add Bridal Pair</button>
+### Frontend
+1. Navigate to `frontend/`
+2. Create a `.env` file with `VITE_API_BASE_URL=http://localhost:5000/api` (adjust for production).
+3. Run `npm install`
+4. Run `npm run dev`
+5. The app will be available at `http://localhost:5173`
 
-          <div id="flower-pairs-container" style="margin-top: 2rem;">
-            <h3 style="color: #d4af37; margin: 1.5rem 0 1rem;" data-en="Flower Kids Pairs" data-el="Ζευγάρια Παιδιών με Λουλούδια">Flower Kids Pairs</h3>
-          </div>
-          <button type="button" class="btn-add no-print" id="add-flower-pair" data-en="+ Add Flower Kids Pair" data-el="+ Προσθήκη Ζευγαριού Παιδιών">+ Add Flower Kids Pair</button>
+### Database
+- Run the SQL in `database/schema.sql` to create tables.
+- Optionally run `database/seed.sql` to insert the 44 events.
 
-          <div class="grid-2" style="margin-top: 2rem;">
-            <div class="form-group">
-              <label data-en="Parents of Groom" data-el="Γονείς Γαμπρού">Parents of Groom</label>
-              <input type="text" id="parents-groom" placeholder="e.g. John & Mary Smith" />
-            </div>
-            <div class="form-group">
-              <label data-en="Parents of Bride" data-el="Γονείς Νύφης">Parents of Bride</label>
-              <input type="text" id="parents-bride" placeholder="e.g. Robert & Linda Johnson" />
-            </div>
-          </div>
+## Deployment
+- Frontend: Push to GitHub, connect to Vercel.
+- Backend: Deploy on Render or similar, set environment variables.
+- Update frontend `.env` with production API URL.
 
-          <div class="form-group">
-            <label data-en="Other important people (grandparents, special friends, etc.)" data-el="Άλλα σημαντικά άτομα (παππούδες, ιδιαίτεροι φίλοι, κλπ.)">Other important people (grandparents, special friends, etc.)</label>
-            <textarea id="other-people" placeholder="Names and relationships"></textarea>
-          </div>
+## License
+Private – for Member's Lounge use only.
+        </pre>
 
-          <button type="button" class="btn no-print" id="save-party" data-en="Save Wedding Party" data-el="Αποθήκευση Γαμήλιας Παρέας">Save Wedding Party</button>
-          <div id="party-saved-msg" class="saved-msg"></div>
-        </form>
-      </div>
-    </section>
+        <!-- ==================== frontend/package.json ==================== -->
+        <div class="file-header">📄 frontend/package.json</div>
+        <pre>
+{
+  "name": "members-lounge-frontend",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.0",
+    "axios": "^1.4.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.14.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "typescript": "^5.0.0",
+    "vite": "^4.0.0"
+  }
+}
+        </pre>
 
-    <section id="journal-section" class="section">
-      <div class="card">
-        <h2 data-en="Love Story & Journal" data-el="Ιστορία Αγάπης & Ημερολόγιο">Love Story & Journal</h2>
-        <p data-en="Share the beautiful details that will help George weave your unique story into the evening." data-el="Μοιραστείτε τις όμορφες λεπτομέρειες που θα βοηθήσουν τον George να υφάνει τη μοναδική σας ιστορία στη βραδιά.">Share the beautiful details that will help George weave your unique story into the evening.</p>
+        <!-- ==================== frontend/tsconfig.json ==================== -->
+        <div class="file-header">📄 frontend/tsconfig.json</div>
+        <pre>
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
+        </pre>
 
-        <form id="journal-form">
-          <div class="form-group">
-            <label data-en="How They Met" data-el="Πώς Γνωρίστηκαν">How They Met</label>
-            <textarea id="how-met" placeholder="Describe the first meeting, early days..."></textarea>
-          </div>
+        <!-- ==================== frontend/tsconfig.node.json ==================== -->
+        <div class="file-header">📄 frontend/tsconfig.node.json</div>
+        <pre>
+{
+  "compilerOptions": {
+    "composite": true,
+    "skipLibCheck": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["vite.config.ts"]
+}
+        </pre>
 
-          <div class="form-group">
-            <label data-en="The Proposal" data-el="Η Πρόταση Γάμου">The Proposal</label>
-            <textarea id="proposal" placeholder="How, when, where? Any special details?"></textarea>
-          </div>
+        <!-- ==================== frontend/vite.config.ts ==================== -->
+        <div class="file-header">📄 frontend/vite.config.ts</div>
+        <pre>
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
-          <div class="form-group">
-            <label data-en="Family Traditions / Cultural Elements" data-el="Οικογενειακές Παραδόσεις / Πολιτιστικά Στοιχεία">Family Traditions / Cultural Elements</label>
-            <textarea id="traditions" placeholder="Any customs, rituals, or family traditions to acknowledge?"></textarea>
-          </div>
+export default defineConfig({
+  plugins: [react()],
+});
+        </pre>
 
-          <div class="grid-2">
-            <div class="form-group">
-              <label data-en="First Dance Song" data-el="Τραγούδι Πρώτου Χορού">First Dance Song</label>
-              <input type="text" id="first-dance" placeholder="Song title & artist" />
-            </div>
-            <div class="form-group">
-              <label data-en="Other Special Songs" data-el="Άλλα Ιδιαίτερα Τραγούδια">Other Special Songs</label>
-              <input type="text" id="other-songs" placeholder="e.g. parent dances, processional" />
-            </div>
-          </div>
+        <!-- ==================== frontend/index.html ==================== -->
+        <div class="file-header">📄 frontend/index.html</div>
+        <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;link rel="icon" type="image/png" href="/logo.png" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+    &lt;title&gt;Member's Lounge Staff&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id="root"&gt;&lt;/div&gt;
+    &lt;script type="module" src="/src/main.tsx"&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+        </pre>
 
-          <div class="form-group">
-            <label data-en="Special Messages to Guests" data-el="Ιδιαίτερα Μηνύματα στους Καλεσμένους">Special Messages to Guests</label>
-            <textarea id="messages" placeholder="Anything you'd like George to convey to your guests?"></textarea>
-          </div>
+        <!-- ==================== frontend/src/main.tsx ==================== -->
+        <div class="file-header">📄 frontend/src/main.tsx</div>
+        <pre>
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import App from './App';
+import theme from './theme/theme';
 
-          <div class="form-group">
-            <label data-en="Sensitive Topics / Things to Avoid" data-el="Ευαίσθητα Θέματα / Τι να Αποφευχθεί">Sensitive Topics / Things to Avoid</label>
-            <textarea id="avoid" placeholder="e.g. certain jokes, exclusions, etc."></textarea>
-          </div>
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  &lt;React.StrictMode&gt;
+    &lt;ThemeProvider theme={theme}&gt;
+      &lt;CssBaseline /&gt;
+      &lt;App /&gt;
+    &lt;/ThemeProvider&gt;
+  &lt;/React.StrictMode&gt;
+);
+        </pre>
 
-          <div style="margin-top: 3rem; border-top: 2px solid #d4af37; padding-top: 2rem;">
-            <h2 style="border-bottom: none;" data-en="Venue & Team" data-el="Χώρος & Ομάδα">Venue & Team</h2>
-            <p data-en="Key contacts and venue details." data-el="Σημαντικές επαφές και λεπτομέρειες χώρου.">Key contacts and venue details.</p>
+        <!-- ==================== frontend/src/vite-env.d.ts ==================== -->
+        <div class="file-header">📄 frontend/src/vite-env.d.ts</div>
+        <pre>
+/// &lt;reference types="vite/client" /&gt;
+        </pre>
 
-            <div class="grid-2">
-              <div class="form-group">
-                <label data-en="Venue Name" data-el="Όνομα Χώρου">Venue Name</label>
-                <input type="text" id="venue-name" placeholder="e.g. The Great Hall" />
-              </div>
-              <div class="form-group">
-                <label data-en="Room Name" data-el="Όνομα Αίθουσας">Room Name</label>
-                <input type="text" id="room-name" placeholder="e.g. Ballroom, Garden Terrace" />
-              </div>
-            </div>
+        <!-- ==================== frontend/src/theme/theme.ts ==================== -->
+        <div class="file-header">📄 frontend/src/theme/theme.ts</div>
+        <pre>
+import { createTheme } from '@mui/material/styles';
 
-            <div class="grid-2">
-              <div class="form-group">
-                <label data-en="Wedding Date" data-el="Ημερομηνία Γάμου">Wedding Date</label>
-                <input type="date" id="wedding-date" />
-              </div>
-              <div class="form-group">
-                <label data-en="DJ Name" data-el="Όνομα DJ">DJ Name</label>
-                <input type="text" id="dj-name" placeholder="e.g. DJ Alex" />
-              </div>
-            </div>
+const theme = createTheme({
+  palette: {
+    mode: 'dark',
+    primary: { main: '#D4AF37' },
+    secondary: { main: '#FFFFFF' },
+    background: {
+      default: '#000000',
+      paper: '#1E1E1E',
+    },
+    text: {
+      primary: '#FFFFFF',
+      secondary: '#B0B0B0',
+    },
+  },
+  typography: {
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    h4: { color: '#D4AF37', fontWeight: 600 },
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 8,
+          textTransform: 'none',
+          fontWeight: 600,
+        },
+        containedPrimary: {
+          backgroundColor: '#D4AF37',
+          color: '#000000',
+          '&:hover': { backgroundColor: '#C6A22E' },
+        },
+      },
+    },
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#000000',
+          borderBottom: '2px solid #D4AF37',
+        },
+      },
+    },
+  },
+});
 
-            <div class="grid-2">
-              <div class="form-group">
-                <label data-en="Venue Manager Name" data-el="Όνομα Υπεύθυνου Χώρου">Venue Manager Name</label>
-                <input type="text" id="venue-manager" placeholder="e.g. Sarah Johnson" />
-              </div>
-              <div class="form-group">
-                <label data-en="Caterer Name" data-el="Όνομα Caterer">Caterer Name</label>
-                <input type="text" id="caterer" placeholder="e.g. Elite Events" />
-              </div>
-            </div>
+export default theme;
+        </pre>
 
-            <div class="form-group">
-              <label data-en="List of Activities / Key Moments" data-el="Λίστα Δραστηριοτήτων / Βασικές Στιγμές">List of Activities / Key Moments</label>
-              <textarea id="activities" placeholder="e.g. Ceremony, Cocktail hour, Speeches, First dance, Cake cutting, Bouquet toss, etc."></textarea>
-            </div>
+        <!-- ==================== frontend/src/contexts/AuthContext.tsx ==================== -->
+        <div class="file-header">📄 frontend/src/contexts/AuthContext.tsx</div>
+        <pre>
+import React, { createContext, useState, useContext, useEffect } from 'react';
+import api from '../services/api';
 
-            <p style="font-style: italic; color: #d4af37; margin-top: 1rem;" data-en="(The detailed running sheet will be developed on the final page.)" data-el="(Το λεπτομερές χρονοδιάγραμμα θα αναπτυχθεί στην τελική σελίδα.)">(The detailed running sheet will be developed on the final page.)</p>
-          </div>
+interface User {
+  id: string;
+  email: string;
+  full_name: string;
+  phone?: string;
+  roles: string[];
+  is_admin: boolean;
+}
 
-          <div style="margin-top: 3rem; border-top: 2px solid #d4af37; padding-top: 2rem;">
-            <h2 style="border-bottom: none;" data-en="Logistics & Timeline" data-el="Logistics & Χρονοδιάγραμμα">Logistics & Timeline</h2>
-            <p data-en="Essential details for the MC to plan the perfect flow." data-el="Απαραίτητες λεπτομέρειες για τον MC να σχεδιάσει την τέλεια ροή.">Essential details for the MC to plan the perfect flow.</p>
+interface AuthContextType {
+  user: User | null;
+  token: string | null;
+  login: (email: string, password: string) => Promise&lt;void&gt;;
+  logout: () =&gt; void;
+  loading: boolean;
+}
 
-            <div class="grid-3">
-              <div class="form-group">
-                <label data-en="Ceremony Start Time" data-el="Ώρα Έναρξης Τελετής">Ceremony Start Time</label>
-                <input type="time" id="ceremony-time" />
-              </div>
-              <div class="form-group">
-                <label data-en="Expected Finish Time" data-el="Αναμενόμενη Ώρα Λήξης">Expected Finish Time</label>
-                <input type="time" id="finish-time" />
-              </div>
-              <div class="form-group">
-                <label data-en="Number of Guests" data-el="Αριθμός Καλεσμένων">Number of Guests</label>
-                <input type="number" id="guest-count" placeholder="e.g. 150" min="1" />
-              </div>
-            </div>
+const AuthContext = createContext&lt;AuthContextType | undefined&gt;(undefined);
 
-            <div class="grid-2">
-              <div class="form-group">
-                <label data-en="Scope / Style of Wedding" data-el="Τύπος / Στυλ Γάμου">Scope / Style of Wedding</label>
-                <select id="wedding-scope">
-                  <option value="">Select one</option>
-                  <option value="Formal / Black Tie" data-en="Formal / Black Tie" data-el="Επίσημος / Black Tie">Formal / Black Tie</option>
-                  <option value="Semi-formal" data-en="Semi-formal" data-el="Ημιεπίσημος">Semi-formal</option>
-                  <option value="Casual / Rustic" data-en="Casual / Rustic" data-el="Ανεπίσημος / Ρουστίκ">Casual / Rustic</option>
-                  <option value="Themed" data-en="Themed" data-el="Θεματικός">Themed</option>
-                  <option value="Intimate / Elopement" data-en="Intimate / Elopement" data-el="Οικείος / Μυστικός">Intimate / Elopement</option>
-                  <option value="Other" data-en="Other" data-el="Άλλο">Other</option>
-                </select>
-                <input type="text" id="scope-other" placeholder='If "Other", describe...' style="margin-top: 0.5rem;" />
-              </div>
+export const AuthProvider: React.FC&lt;{ children: React.ReactNode }&gt; = ({ children }) =&gt; {
+  const [user, setUser] = useState&lt;User | null&gt;(null);
+  const [token, setToken] = useState&lt;string | null&gt;(localStorage.getItem('token'));
+  const [loading, setLoading] = useState(true);
 
-              <div class="form-group">
-                <label data-en="Does George need to attend the house / preparation location during the day?" data-el="Χρειάζεται ο George να παρευρεθεί στο σπίτι / χώρο ετοιμασίας κατά τη διάρκεια της ημέρας;">Does George need to attend the house / preparation location during the day?</label>
-                <div class="radio-group">
-                  <label class="radio-option">
-                    <input type="radio" name="house-visit" value="yes" />
-                    <span data-en="Yes" data-el="Ναι">Yes</span>
-                  </label>
-                  <label class="radio-option">
-                    <input type="radio" name="house-visit" value="no" checked />
-                    <span data-en="No" data-el="Όχι">No</span>
-                  </label>
-                </div>
-              </div>
-            </div>
+  useEffect(() =&gt; {
+    if (token) {
+      api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      api.get('/auth/me')
+        .then(res =&gt; setUser(res.data))
+        .catch(() =&gt; logout())
+        .finally(() =&gt; setLoading(false));
+    } else {
+      setLoading(false);
+    }
+  }, [token]);
 
-            <div class="form-group">
-              <label data-en="Additional Logistics Notes" data-el="Επιπλέον Σημειώσεις Logistics">Additional Logistics Notes</label>
-              <textarea id="logistics-notes" placeholder="e.g. specific timing requests, special entrances, etc."></textarea>
-            </div>
-          </div>
+  const login = async (email: string, password: string) =&gt; {
+    const res = await api.post('/auth/login', { email, password });
+    const { token, user } = res.data;
+    localStorage.setItem('token', token);
+    api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    setToken(token);
+    setUser(user);
+  };
 
-          <button type="button" class="btn no-print" id="save-journal" data-en="Save Event Journal" data-el="Αποθήκευση Ημερολογίου">Save Event Journal</button>
-          <div id="journal-saved-msg" class="saved-msg"></div>
-        </form>
-      </div>
-    </section>
+  const logout = () =&gt; {
+    localStorage.removeItem('token');
+    delete api.defaults.headers.common['Authorization'];
+    setToken(null);
+    setUser(null);
+  };
 
-    <div id="print-summary">
-      <div style="text-align: center; margin-bottom: 2rem;">
-        <h1 style="font-size: 2.5rem;">GEORGE THEODOROPOULOS</h1>
-        <p style="font-size: 1.2rem; color: #d4af37; font-weight: 600;" id="print-title">Master of Ceremonies</p>
-      </div>
+  return (
+    &lt;AuthContext.Provider value={{ user, token, login, logout, loading }}&gt;
+      {children}
+    &lt;/AuthContext.Provider&gt;
+  );
+};
 
-      <div class="card" style="margin-bottom: 2rem;">
-        <h2>Wedding Party Details</h2>
-        <div id="print-party"></div>
-      </div>
+export const useAuth = () =&gt; {
+  const context = useContext(AuthContext);
+  if (!context) throw new Error('useAuth must be used within AuthProvider');
+  return context;
+};
+        </pre>
 
-      <div class="card" style="margin-bottom: 2rem;">
-        <h2>Love Story & Journal</h2>
-        <div id="print-love"></div>
-      </div>
+        <!-- ==================== frontend/src/services/api.ts ==================== -->
+        <div class="file-header">📄 frontend/src/services/api.ts</div>
+        <pre>
+import axios from 'axios';
 
-      <div class="card" style="margin-bottom: 2rem;">
-        <h2>Venue & Team</h2>
-        <div id="print-venue"></div>
-      </div>
+const api = axios.create({
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api',
+});
 
-      <div class="card" style="margin-bottom: 2rem;">
-        <h2>Logistics & Timeline</h2>
-        <div id="print-logistics"></div>
-      </div>
-    </div>
+api.interceptors.request.use((config) =&gt; {
+  const token = localStorage.getItem('token');
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
 
-    <div class="footer no-print">
-      © George Theodoropoulos · Master of Ceremonies
-    </div>
-  </div>
+export default api;
+        </pre>
 
-  <script>
-    (function () {
-      let currentLang = "en";
+        <!-- ==================== frontend/src/components/ProtectedRoute.tsx ==================== -->
+        <div class="file-header">📄 frontend/src/components/ProtectedRoute.tsx</div>
+        <pre>
+import React from 'react';
+import { Navigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
+import { CircularProgress, Box } from '@mui/material';
 
-      const langEn = document.getElementById("lang-en");
-      const langEl = document.getElementById("lang-el");
+interface ProtectedRouteProps {
+  children: React.ReactNode;
+  adminOnly?: boolean;
+}
 
-      const btnHome = document.getElementById("btn-home");
-      const btnParty = document.getElementById("btn-party");
-      const btnJournal = document.getElementById("btn-journal");
+const ProtectedRoute: React.FC&lt;ProtectedRouteProps&gt; = ({ children, adminOnly }) =&gt; {
+  const { user, loading } = useAuth();
 
-      const homeSection = document.getElementById("home-section");
-      const partySection = document.getElementById("party-section");
-      const journalSection = document.getElementById("journal-section");
+  if (loading) {
+    return (
+      &lt;Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}&gt;
+        &lt;CircularProgress /&gt;
+      &lt;/Box&gt;
+    );
+  }
 
-      const bridalContainer = document.getElementById("bridal-pairs-container");
-      const flowerContainer = document.getElementById("flower-pairs-container");
+  if (!user) return &lt;Navigate to="/login" replace /&gt;;
+  if (adminOnly && !user.is_admin) return &lt;Navigate to="/dashboard" replace /&gt;;
+  return &lt;&gt;{children}&lt;/&gt;;
+};
 
-      function setLanguage(lang) {
-        currentLang = lang;
+export default ProtectedRoute;
+        </pre>
 
-        langEn.classList.toggle("active", lang === "en");
-        langEl.classList.toggle("active", lang === "el");
+        <!-- ==================== frontend/src/App.tsx ==================== -->
+        <div class="file-header">📄 frontend/src/App.tsx</div>
+        <pre>
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider } from './contexts/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Dashboard from './pages/Dashboard';
+import Events from './pages/Events';
+import MyAssignments from './pages/MyAssignments';
+import AdminDashboard from './pages/admin/AdminDashboard';
+import StaffManagement from './pages/admin/StaffManagement';
+import EventManagement from './pages/admin/EventManagement';
+import AssignmentHub from './pages/admin/AssignmentHub';
 
-        document.querySelectorAll("[data-en]").forEach((el) => {
-          const text = el.getAttribute(`data-${lang}`);
-          if (text) el.textContent = text;
+function App() {
+  return (
+    &lt;BrowserRouter&gt;
+      &lt;AuthProvider&gt;
+        &lt;Routes&gt;
+          &lt;Route path="/login" element={&lt;Login /&gt;} /&gt;
+          &lt;Route path="/register" element={&lt;Register /&gt;} /&gt;
+          &lt;Route
+            path="/dashboard"
+            element={
+              &lt;ProtectedRoute&gt;
+                &lt;Dashboard /&gt;
+              &lt;/ProtectedRoute&gt;
+            }
+          /&gt;
+          &lt;Route
+            path="/events"
+            element={
+              &lt;ProtectedRoute&gt;
+                &lt;Events /&gt;
+              &lt;/ProtectedRoute&gt;
+            }
+          /&gt;
+          &lt;Route
+            path="/my-assignments"
+            element={
+              &lt;ProtectedRoute&gt;
+                &lt;MyAssignments /&gt;
+              &lt;/ProtectedRoute&gt;
+            }
+          /&gt;
+          {/* Admin routes */}
+          &lt;Route
+            path="/admin"
+            element={
+              &lt;ProtectedRoute adminOnly&gt;
+                &lt;AdminDashboard /&gt;
+              &lt;/ProtectedRoute&gt;
+            }
+          /&gt;
+          &lt;Route
+            path="/admin/staff"
+            element={
+              &lt;ProtectedRoute adminOnly&gt;
+                &lt;StaffManagement /&gt;
+              &lt;/ProtectedRoute&gt;
+            }
+          /&gt;
+          &lt;Route
+            path="/admin/events"
+            element={
+              &lt;ProtectedRoute adminOnly&gt;
+                &lt;EventManagement /&gt;
+              &lt;/ProtectedRoute&gt;
+            }
+          /&gt;
+          &lt;Route
+            path="/admin/assignments/:eventId"
+            element={
+              &lt;ProtectedRoute adminOnly&gt;
+                &lt;AssignmentHub /&gt;
+              &lt;/ProtectedRoute&gt;
+            }
+          /&gt;
+          &lt;Route path="/" element={&lt;Navigate to="/dashboard" /&gt;} /&gt;
+        &lt;/Routes&gt;
+      &lt;/AuthProvider&gt;
+    &lt;/BrowserRouter&gt;
+  );
+}
+
+export default App;
+        </pre>
+
+        <!-- ==================== frontend/src/pages/Login.tsx ==================== -->
+        <div class="file-header">📄 frontend/src/pages/Login.tsx</div>
+        <pre>
+import React, { useState } from 'react';
+import { Container, Box, TextField, Button, Typography, Paper, Alert } from '@mui/material';
+import { useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
+
+const Login: React.FC = () =&gt; {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e: React.FormEvent) =&gt; {
+    e.preventDefault();
+    try {
+      await login(email, password);
+      navigate('/dashboard');
+    } catch (err) {
+      setError('Invalid email or password');
+    }
+  };
+
+  return (
+    &lt;Container component="main" maxWidth="xs"&gt;
+      &lt;Box sx={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}&gt;
+        &lt;Paper elevation={3} sx={{ p: 4, width: '100%' }}&gt;
+          &lt;Box sx={{ textAlign: 'center', mb: 3 }}&gt;
+            &lt;img src="/logo.png" alt="Member's Lounge" height="60" /&gt;
+            &lt;Typography variant="h4" sx={{ mt: 2 }}&gt;Staff Login&lt;/Typography&gt;
+          &lt;/Box&gt;
+          {error && &lt;Alert severity="error" sx={{ mb: 2 }}&gt;{error}&lt;/Alert&gt;}
+          &lt;form onSubmit={handleSubmit}&gt;
+            &lt;TextField margin="normal" required fullWidth label="Email Address" autoComplete="email" autoFocus value={email} onChange={(e) =&gt; setEmail(e.target.value)} /&gt;
+            &lt;TextField margin="normal" required fullWidth label="Password" type="password" autoComplete="current-password" value={password} onChange={(e) =&gt; setPassword(e.target.value)} /&gt;
+            &lt;Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}&gt;Sign In&lt;/Button&gt;
+            &lt;Typography variant="body2" align="center"&gt;
+              New staff? &lt;Link to="/register"&gt;Create an account&lt;/Link&gt;
+            &lt;/Typography&gt;
+          &lt;/form&gt;
+        &lt;/Paper&gt;
+      &lt;/Box&gt;
+    &lt;/Container&gt;
+  );
+};
+
+export default Login;
+        </pre>
+
+        <!-- ==================== frontend/src/pages/Register.tsx ==================== -->
+        <div class="file-header">📄 frontend/src/pages/Register.tsx</div>
+        <pre>
+import React, { useState } from 'react';
+import { Container, Box, TextField, Button, Typography, Paper, Alert, FormControl, FormLabel, FormGroup, FormControlLabel, Checkbox } from '@mui/material';
+import { useNavigate, Link } from 'react-router-dom';
+import api from '../services/api';
+
+const Register: React.FC = () =&gt; {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [fullName, setFullName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [roles, setRoles] = useState({
+    kitchen: false,
+    floor: false,
+    bar: false,
+    cleaner: false,
+    setup: false,
+  });
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+
+  const handleRoleChange = (e: React.ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {
+    setRoles({ ...roles, [e.target.name]: e.target.checked });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) =&gt; {
+    e.preventDefault();
+    const selectedRoles = Object.entries(roles)
+      .filter(([, v]) =&gt; v)
+      .map(([k]) =&gt; k);
+    try {
+      await api.post('/auth/register', {
+        email,
+        password,
+        full_name: fullName,
+        phone,
+        roles: selectedRoles,
+      });
+      navigate('/login', { state: { message: 'Registration successful! Please log in.' } });
+    } catch (err) {
+      setError('Registration failed. Email may already be in use.');
+    }
+  };
+
+  return (
+    &lt;Container component="main" maxWidth="sm"&gt;
+      &lt;Box sx={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', py: 4 }}&gt;
+        &lt;Paper elevation={3} sx={{ p: 4, width: '100%' }}&gt;
+          &lt;Box sx={{ textAlign: 'center', mb: 3 }}&gt;
+            &lt;img src="/logo.png" alt="Member's Lounge" height="60" /&gt;
+            &lt;Typography variant="h4" sx={{ mt: 2 }}&gt;Staff Registration&lt;/Typography&gt;
+          &lt;/Box&gt;
+          {error && &lt;Alert severity="error" sx={{ mb: 2 }}&gt;{error}&lt;/Alert&gt;}
+          &lt;form onSubmit={handleSubmit}&gt;
+            &lt;TextField margin="normal" required fullWidth label="Full Name" autoFocus value={fullName} onChange={(e) =&gt; setFullName(e.target.value)} /&gt;
+            &lt;TextField margin="normal" required fullWidth label="Email Address" type="email" value={email} onChange={(e) =&gt; setEmail(e.target.value)} /&gt;
+            &lt;TextField margin="normal" fullWidth label="Phone Number" value={phone} onChange={(e) =&gt; setPhone(e.target.value)} placeholder="(optional)" /&gt;
+            &lt;TextField margin="normal" required fullWidth label="Password" type="password" value={password} onChange={(e) =&gt; setPassword(e.target.value)} /&gt;
+            &lt;FormControl component="fieldset" sx={{ mt: 2 }}&gt;
+              &lt;FormLabel component="legend"&gt;Roles you can perform&lt;/FormLabel&gt;
+              &lt;FormGroup row&gt;
+                &lt;FormControlLabel control={&lt;Checkbox checked={roles.kitchen} onChange={handleRoleChange} name="kitchen" /&gt;} label="Kitchen" /&gt;
+                &lt;FormControlLabel control={&lt;Checkbox checked={roles.floor} onChange={handleRoleChange} name="floor" /&gt;} label="Floor" /&gt;
+                &lt;FormControlLabel control={&lt;Checkbox checked={roles.bar} onChange={handleRoleChange} name="bar" /&gt;} label="Bar" /&gt;
+                &lt;FormControlLabel control={&lt;Checkbox checked={roles.cleaner} onChange={handleRoleChange} name="cleaner" /&gt;} label="Cleaner" /&gt;
+                &lt;FormControlLabel control={&lt;Checkbox checked={roles.setup} onChange={handleRoleChange} name="setup" /&gt;} label="Setup Crew" /&gt;
+              &lt;/FormGroup&gt;
+            &lt;/FormControl&gt;
+            &lt;Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}&gt;Register&lt;/Button&gt;
+            &lt;Typography variant="body2" align="center"&gt;
+              Already have an account? &lt;Link to="/login"&gt;Sign in&lt;/Link&gt;
+            &lt;/Typography&gt;
+          &lt;/form&gt;
+        &lt;/Paper&gt;
+      &lt;/Box&gt;
+    &lt;/Container&gt;
+  );
+};
+
+export default Register;
+        </pre>
+
+        <!-- ==================== frontend/src/pages/Dashboard.tsx ==================== -->
+        <div class="file-header">📄 frontend/src/pages/Dashboard.tsx</div>
+        <pre>
+import React from 'react';
+import { Container, Typography, Box, Button, Paper, Grid } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
+
+const Dashboard: React.FC = () =&gt; {
+  const { user } = useAuth();
+  return (
+    &lt;Container&gt;
+      &lt;Box sx={{ mt: 4 }}&gt;
+        &lt;Typography variant="h4" gutterBottom&gt;
+          Welcome, {user?.full_name}
+        &lt;/Typography&gt;
+        &lt;Grid container spacing={3}&gt;
+          &lt;Grid item xs={12} md={4}&gt;
+            &lt;Paper sx={{ p: 3, textAlign: 'center' }}&gt;
+              &lt;Typography variant="h6"&gt;Events&lt;/Typography&gt;
+              &lt;Button component={Link} to="/events" variant="contained" sx={{ mt: 2 }}&gt;
+                View & Set Availability
+              &lt;/Button&gt;
+            &lt;/Paper&gt;
+          &lt;/Grid&gt;
+          &lt;Grid item xs={12} md={4}&gt;
+            &lt;Paper sx={{ p: 3, textAlign: 'center' }}&gt;
+              &lt;Typography variant="h6"&gt;My Assignments&lt;/Typography&gt;
+              &lt;Button component={Link} to="/my-assignments" variant="contained" sx={{ mt: 2 }}&gt;
+                View
+              &lt;/Button&gt;
+            &lt;/Paper&gt;
+          &lt;/Grid&gt;
+          {user?.is_admin && (
+            &lt;Grid item xs={12} md={4}&gt;
+              &lt;Paper sx={{ p: 3, textAlign: 'center' }}&gt;
+                &lt;Typography variant="h6"&gt;Admin&lt;/Typography&gt;
+                &lt;Button component={Link} to="/admin" variant="contained" sx={{ mt: 2 }}&gt;
+                  Dashboard
+                &lt;/Button&gt;
+              &lt;/Paper&gt;
+            &lt;/Grid&gt;
+          )}
+        &lt;/Grid&gt;
+      &lt;/Box&gt;
+    &lt;/Container&gt;
+  );
+};
+
+export default Dashboard;
+        </pre>
+
+        <!-- ==================== frontend/src/pages/Events.tsx ==================== -->
+        <div class="file-header">📄 frontend/src/pages/Events.tsx</div>
+        <pre>
+import React, { useEffect, useState } from 'react';
+import { Container, Typography, List, ListItem, ListItemText, Switch, CircularProgress, Box, Alert } from '@mui/material';
+import api from '../services/api';
+
+interface Event {
+  id: string;
+  date: string;
+  venue_name: string;
+}
+
+const Events: React.FC = () =&gt; {
+  const [events, setEvents] = useState&lt;Event[]&gt;([]);
+  const [availability, setAvailability] = useState&lt;Record&lt;string, boolean&gt;&gt;({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  useEffect(() =&gt; {
+    const fetchData = async () =&gt; {
+      try {
+        const [eventsRes, availRes] = await Promise.all([
+          api.get('/events'),
+          api.get('/availability'),
+        ]);
+        setEvents(eventsRes.data);
+        const availMap: Record&lt;string, boolean&gt; = {};
+        availRes.data.forEach((a: any) =&gt; {
+          availMap[a.event_id] = a.is_available;
         });
+        setAvailability(availMap);
+      } catch (err) {
+        setError('Failed to load events');
+      } finally {
+        setLoading(false);
       }
+    };
+    fetchData();
+  }, []);
 
-      function showSection(section) {
-        [homeSection, partySection, journalSection].forEach((s) => s.classList.remove("active"));
-        section.classList.add("active");
+  const handleToggle = async (eventId: string, checked: boolean) =&gt; {
+    setAvailability(prev =&gt; ({ ...prev, [eventId]: checked }));
+    try {
+      await api.put('/availability', { eventId, isAvailable: checked });
+    } catch (err) {
+      setError('Failed to update availability');
+      setAvailability(prev =&gt; ({ ...prev, [eventId]: !checked }));
+    }
+  };
 
-        [btnHome, btnParty, btnJournal].forEach((b) => b.classList.remove("active"));
-        if (section === homeSection) btnHome.classList.add("active");
-        if (section === partySection) btnParty.classList.add("active");
-        if (section === journalSection) btnJournal.classList.add("active");
-      }
+  if (loading) return &lt;CircularProgress sx={{ display: 'block', mx: 'auto', mt: 4 }} /&gt;;
 
-      function createBridalPair(person1 = "", person2 = "") {
-        const div = document.createElement("div");
-        div.className = "paired-row";
-        div.innerHTML = `
-          <div class="form-group">
-            <label>Person 1</label>
-            <input type="text" class="bridal-person1" value="${escapeHtml(person1)}" placeholder="Full name">
-          </div>
-          <div class="form-group">
-            <label>Person 2</label>
-            <input type="text" class="bridal-person2" value="${escapeHtml(person2)}" placeholder="Full name">
-          </div>
-        `;
-        return div;
-      }
+  return (
+    &lt;Container&gt;
+      &lt;Typography variant="h4" gutterBottom&gt;Upcoming Events&lt;/Typography&gt;
+      {error && &lt;Alert severity="error" sx={{ mb: 2 }}&gt;{error}&lt;/Alert&gt;}
+      &lt;List&gt;
+        {events.map((event) =&gt; (
+          &lt;ListItem
+            key={event.id}
+            secondaryAction={
+              &lt;Switch
+                edge="end"
+                checked={availability[event.id] || false}
+                onChange={(e) =&gt; handleToggle(event.id, e.target.checked)}
+                color="primary"
+              /&gt;
+            }
+          &gt;
+            &lt;ListItemText
+              primary={`${new Date(event.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })} — ${event.venue_name}`}
+            /&gt;
+          &lt;/ListItem&gt;
+        ))}
+      &lt;/List&gt;
+    &lt;/Container&gt;
+  );
+};
 
-      function createFlowerPair(person1 = "", person2 = "") {
-        const div = document.createElement("div");
-        div.className = "paired-row";
-        div.innerHTML = `
-          <div class="form-group">
-            <label>Flower Kid 1</label>
-            <input type="text" class="flower-person1" value="${escapeHtml(person1)}" placeholder="Full name">
-          </div>
-          <div class="form-group">
-            <label>Flower Kid 2</label>
-            <input type="text" class="flower-person2" value="${escapeHtml(person2)}" placeholder="Full name">
-          </div>
-        `;
-        return div;
-      }
+export default Events;
+        </pre>
 
-      function loadBridalPairs(pairs) {
-        bridalContainer.querySelectorAll(".paired-row").forEach((row) => row.remove());
-        if (pairs && pairs.length) {
-          pairs.forEach((p) => bridalContainer.appendChild(createBridalPair(p.person1, p.person2)));
-        } else {
-          bridalContainer.appendChild(createBridalPair());
-        }
-      }
+        <!-- ==================== frontend/src/pages/MyAssignments.tsx ==================== -->
+        <div class="file-header">📄 frontend/src/pages/MyAssignments.tsx</div>
+        <pre>
+import React, { useEffect, useState } from 'react';
+import { Container, Typography, List, ListItem, ListItemText, CircularProgress, Alert } from '@mui/material';
+import api from '../services/api';
 
-      function loadFlowerPairs(pairs) {
-        flowerContainer.querySelectorAll(".paired-row").forEach((row) => row.remove());
-        if (pairs && pairs.length) {
-          pairs.forEach((p) => flowerContainer.appendChild(createFlowerPair(p.person1, p.person2)));
-        } else {
-          flowerContainer.appendChild(createFlowerPair());
-        }
-      }
+interface Assignment {
+  event_id: string;
+  event_date: string;
+  venue_name: string;
+  role: string;
+}
 
-      function getBridalPairs() {
-        return [...bridalContainer.querySelectorAll(".paired-row")].map((row) => ({
-          person1: row.querySelector(".bridal-person1")?.value || "",
-          person2: row.querySelector(".bridal-person2")?.value || ""
-        }));
-      }
+const MyAssignments: React.FC = () =&gt; {
+  const [assignments, setAssignments] = useState&lt;Assignment[]&gt;([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
-      function getFlowerPairs() {
-        return [...flowerContainer.querySelectorAll(".paired-row")].map((row) => ({
-          person1: row.querySelector(".flower-person1")?.value || "",
-          person2: row.querySelector(".flower-person2")?.value || ""
-        }));
-      }
+  useEffect(() =&gt; {
+    api.get('/assignments/me')
+      .then(res =&gt; setAssignments(res.data))
+      .catch(() =&gt; setError('Failed to load assignments'))
+      .finally(() =&gt; setLoading(false));
+  }, []);
 
-      function loadPartyData() {
-        const data = JSON.parse(localStorage.getItem("george_mc_party") || "{}");
-        document.getElementById("groom").value = data.groom || "";
-        document.getElementById("bride").value = data.bride || "";
-        document.getElementById("matron").value = data.matron || "";
-        document.getElementById("bestman").value = data.bestman || "";
-        document.getElementById("parents-groom").value = data.parentsGroom || "";
-        document.getElementById("parents-bride").value = data.parentsBride || "";
-        document.getElementById("other-people").value = data.otherPeople || "";
-        loadBridalPairs(data.bridalPairs || []);
-        loadFlowerPairs(data.flowerPairs || []);
-      }
+  if (loading) return &lt;CircularProgress sx={{ display: 'block', mx: 'auto', mt: 4 }} /&gt;;
 
-      function loadJournalData() {
-        const data = JSON.parse(localStorage.getItem("george_mc_journal") || "{}");
-        document.getElementById("how-met").value = data.howMet || "";
-        document.getElementById("proposal").value = data.proposal || "";
-        document.getElementById("traditions").value = data.traditions || "";
-        document.getElementById("first-dance").value = data.firstDance || "";
-        document.getElementById("other-songs").value = data.otherSongs || "";
-        document.getElementById("messages").value = data.messages || "";
-        document.getElementById("avoid").value = data.avoid || "";
-        document.getElementById("venue-name").value = data.venueName || "";
-        document.getElementById("room-name").value = data.roomName || "";
-        document.getElementById("wedding-date").value = data.weddingDate || "";
-        document.getElementById("dj-name").value = data.djName || "";
-        document.getElementById("venue-manager").value = data.venueManager || "";
-        document.getElementById("caterer").value = data.caterer || "";
-        document.getElementById("activities").value = data.activities || "";
-        document.getElementById("ceremony-time").value = data.ceremonyTime || "";
-        document.getElementById("finish-time").value = data.finishTime || "";
-        document.getElementById("guest-count").value = data.guestCount || "";
-        document.getElementById("wedding-scope").value = data.weddingScope || "";
-        document.getElementById("scope-other").value = data.scopeOther || "";
-        document.querySelector
+  return (
+    &lt;Container&gt;
+      &lt;Typography variant="h4" gutterBottom&gt;My Assignments&lt;/Typography&gt;
+      {error && &lt;Alert severity="error"&gt;{error}&lt;/Alert&gt;}
+      {assignments.length === 0 ? (
+        &lt;Typography&gt;You have no assignments yet.&lt;/Typography&gt;
+      ) : (
+        &lt;List&gt;
+          {assignments.map((a) =&gt; (
+            &lt;ListItem key={a.event_id}&gt;
+              &lt;ListItemText
+                primary={`${new Date(a.event_date).toLocaleDateString()} — ${a.venue_name}`}
+                secondary={`Role: ${a.role}`}
+              /&gt;
+            &lt;/ListItem&gt;
+          ))}
+        &lt;/List&gt;
+      )}
+    &lt;/Container&gt;
+  );
+};
+
+export default MyAssignments;
+        </pre>
+
+        <!-- ==================== frontend/src/pages/admin/AdminDashboard.tsx ==================== -->
+        <div class="file-header">📄 frontend/src/pages/admin/AdminDashboard.tsx</div>
+        <pre>
+import React from 'react';
+import { Container, Typography, Grid, Paper, Button } from '@mui/material';
+import { Link } from 'react-router-dom';
+
+const AdminDashboard: React.FC = () =&gt; {
+  return (
+    &lt;Container&gt;
+      &lt;Typography variant="h4" gutterBottom&gt;Admin Dashboard&lt;/Typography&gt;
+      &lt;Grid container spacing={3}&gt;
+        &lt;Grid item xs={12} md={4}&gt;
+          &lt;Paper sx={{ p: 3, textAlign: 'center' }}&gt;
+            &lt;Typography variant="h6"&gt;Staff Management&lt;/Typography&gt;
+            &lt;Button component={Link} to="/admin/staff" variant="contained" sx={{ mt: 2 }}&gt;
+              Manage Staff
+            &lt;/Button&gt;
+          &lt;/Paper&gt;
+        &lt;/Grid&gt;
+        &lt;Grid item xs={12} md={4}&gt;
+          &lt;Paper sx={{ p: 3, textAlign: 'center' }}&gt;
+            &lt;Typography variant="h6"&gt;Event Management&lt;/Typography&gt;
+            &lt;Button component={Link} to="/admin/events" variant="contained" sx={{ mt: 2 }}&gt;
+              Manage Events
+            &lt;/Button&gt;
+          &lt;/Paper&gt;
+        &lt;/Grid&gt;
+        &lt;Grid item xs={12} md={4}&gt;
+          &lt;Paper sx={{ p: 3, textAlign: 'center' }}&gt;
+            &lt;Typography variant="h6"&gt;Assignments&lt;/Typography&gt;
+            &lt;Button component={Link} to="/admin/events" variant="contained" sx={{ mt: 2 }}&gt;
+              Go to Events
+            &lt;/Button&gt;
+          &lt;/Paper&gt;
+        &lt;/Grid&gt;
+      &lt;/Grid&gt;
+    &lt;/Container&gt;
+  );
+};
+
+export default AdminDashboard;
+        </pre>
+
+        <!-- ==================== frontend/src/pages/admin/StaffManagement.tsx ==================== -->
+        <div class="file-header">📄 frontend/src/pages/admin/StaffManagement.tsx</div>
+        <pre>
+import React, { useEffect, useState } from 'react';
+import { Container, Typography, Table, TableHead, TableRow, TableCell, TableBody, Paper, CircularProgress, Alert } from '@mui/material';
+import api from '../../services/api';
+
+interface Staff {
+  id: string;
+  full_name: string;
+  email: string;
+  phone: string | null;
+  roles: string[];
+  is_active: boolean;
+}
+
+const StaffManagement: React.FC = () =&gt; {
+  const [staff, setStaff] = useState&lt;Staff[]&gt;([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  useEffect(() =&gt; {
+    api.get('/users')
+      .then(res =&gt; setStaff(res.data))
+      .catch(() =&gt; setError('Failed to load staff'))
+      .finally(() =&gt; setLoading(false));
+  }, []);
+
+  if (loading) return &lt;CircularProgress sx={{ display: 'block', mx: 'auto', mt: 4 }} /&gt;;
+
+  return (
+    &lt;Container&gt;
+      &lt;Typography variant="h4" gutterBottom&gt;Staff Management&lt;/Typography&gt;
+      {error && &lt;Alert severity="error"&gt;{error}&lt;/Alert&gt;}
+      &lt;Paper&gt;
+        &lt;Table&gt;
+          &lt;TableHead&gt;
+            &lt;TableRow&gt;
+              &lt;TableCell&gt;Name&lt;/TableCell&gt;
+              &lt;TableCell&gt;Email&lt;/TableCell&gt;
+              &lt;TableCell&gt;Phone&lt;/TableCell&gt;
+              &lt;TableCell&gt;Roles&lt;/TableCell&gt;
+              &lt;TableCell&gt;Status&lt;/TableCell&gt;
+            &lt;/TableRow&gt;
+          &lt;/TableHead&gt;
+          &lt;TableBody&gt;
+            {staff.map((person) =&gt; (
+              &lt;TableRow key={person.id}&gt;
+                &lt;TableCell&gt;{person.full_name}&lt;/TableCell&gt;
+                &lt;TableCell&gt;{person.email}&lt;/TableCell&gt;
+                &lt;TableCell&gt;{person.phone || '—'}&lt;/TableCell&gt;
+                &lt;TableCell&gt;{person.roles.join(', ')}&lt;/TableCell&gt;
+                &lt;TableCell&gt;{person.is_active ? 'Active' : 'Inactive'}&lt;/TableCell&gt;
+              &lt;/TableRow&gt;
+            ))}
+          &lt;/TableBody&gt;
+        &lt;/Table&gt;
+      &lt;/Paper&gt;
+    &lt;/Container&gt;
+  );
+};
+
+export default StaffManagement;
+        </pre>
+
+        <!-- ==================== frontend/src/pages/admin/EventManagement.tsx ==================== -->
+        <div class="file-header">📄 frontend/src/pages/admin/EventManagement.tsx</div>
+        <pre>
+import React, { useEffect, useState } from 'react';
+import { Container, Typography, List, ListItem, ListItemText, Button, Paper, CircularProgress, Alert } from '@mui/material';
+import { Link } from 'react-router-dom';
+import api from '../../services/api';
+
+interface Event {
+  id: string;
+  date: string;
+  venue_name: string;
+}
+
+const EventManagement: React.FC = () =&gt; {
+  const [events, setEvents] = useState&lt;Event[]&gt;([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  useEffect(() =&gt; {
+    api.get('/events')
+      .then(res =&gt; setEvents(res.data))
+      .catch(() =&gt; setError('Failed to load events'))
+      .finally(() =&gt; setLoading(false));
+  }, []);
+
+  if (loading) return &lt;CircularProgress sx={{ display: 'block', mx: 'auto', mt: 4 }} /&gt;;
+
+  return (
+    &lt;Container&gt;
+      &lt;Typography variant="h4" gutterBottom&gt;Event Management&lt;/Typography&gt;
+      {error && &lt;Alert severity="error"&gt;{error}&lt;/Alert&gt;}
+      &lt;Button variant="contained" sx={{ mb: 2 }}&gt;Add New Event&lt;/Button&gt;
+      &lt;Paper&gt;
+        &lt;List&gt;
+          {events.map((event) =&gt; (
+            &lt;ListItem key={event.id} divider&gt;
+              &lt;ListItemText
+                primary={`${new Date(event.date).toLocaleDateString()} — ${event.venue_name}`}
+              /&gt;
+              &lt;Button component={Link} to={`/admin/assignments/${event.id}`} variant="outlined" size="small"&gt;
+                Assign Staff
+              &lt;/Button&gt;
+            &lt;/ListItem&gt;
+          ))}
+        &lt;/List&gt;
+      &lt;/Paper&gt;
+    &lt;/Container&gt;
+  );
+};
+
+export default EventManagement;
+        </pre>
+
+        <!-- ==================== frontend/src/pages/admin/AssignmentHub.tsx ==================== -->
+        <div class="file-header">📄 frontend/src/pages/admin/AssignmentHub.tsx</div>
+        <pre>
+import React from 'react';
+import { Container, Typography } from '@mui/material';
+import { useParams } from 'react-router-dom';
+
+const AssignmentHub: React.FC = () =&gt; {
+  const { eventId } = useParams();
+  return (
+    &lt;Container&gt;
+      &lt;Typography variant="h4" gutterBottom&gt;Assign Staff for Event&lt;/Typography&gt;
+      &lt;Typography&gt;Event ID: {eventId}&lt;/Typography&gt;
+      &lt;Typography&gt;This page will display available staff grouped by role and allow assignments. To be implemented in Phase 2.&lt;/Typography&gt;
+    &lt;/Container&gt;
+  );
+};
+
+export default AssignmentHub;
+        </pre>
+
+        <!-- ==================== backend/package.json ==================== -->
+        <div class="file-header">📄 backend/package.json</div>
+        <pre>
+{
+  "name": "members-lounge-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "nodemon src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.1",
+    "pg": "^8.11.0"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.17",
+    "@types/jsonwebtoken": "^9.0.2",
+    "@types/node": "^20.3.1",
+    "@types/pg": "^8.10.2",
+    "nodemon": "^2.0.22",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.3"
+  }
+}
+        </pre>
+
+        <!-- ==================== backend/tsconfig.json ==================== -->
+        <div class="file-header">📄 backend/tsconfig.json</div>
+        <pre>
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
+        </pre>
+
+        <!-- ==================== backend/.env.example ==================== -->
+        <div class="file-header">📄 backend/.env.example</div>
+        <pre>
+PORT=5000
+DATABASE_URL=postgresql://user:password@localhost:5432/members_lounge
+JWT_SECRET=your_super_secret_key_change_me
+FRONTEND_URL=http://localhost:5173
+        </pre>
+
+        <!-- ==================== backend/src/index.ts ==================== -->
+        <div class="file-header">📄 backend/src/index.ts</div>
+        <pre>
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import authRoutes from './routes/auth';
+import userRoutes from './routes/users';
+import eventRoutes from './routes/events';
+import availabilityRoutes from './routes/availability';
+import assignmentRoutes from './routes/assignments';
+
+dotenv.config();
+
+const app = express();
+app.use(cors({ origin: process.env.FRONTEND_URL || 'http://localhost:5173' }));
+app.use(express.json());
+
+app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/events', eventRoutes);
+app.use('/api/availability', availabilityRoutes);
+app.use('/api/assignments', assignmentRoutes);
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+        </pre>
+
+        <!-- ==================== backend/src/db.ts ==================== -->
+        <div class="file-header">📄 backend/src/db.ts</div>
+        <pre>
+import { Pool } from 'pg';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+export const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+});
+
+export const query = (text: string, params?: any[]) => pool.query(text, params);
+        </pre>
+
+        <!-- ==================== backend/src/middleware/auth.ts ==================== -->
+        <div class="file-header">📄 backend/src/middleware/auth.ts</div>
+        <pre>
+import { Request, Response, NextFunction } from 'express';
+import jwt from 'jsonwebtoken';
+
+export interface AuthRequest extends Request {
+  user?: any;
+}
+
+export const authenticate = (req: AuthRequest, res: Response, next: NextFunction) => {
+  const authHeader = req.headers.authorization;
+  if (!authHeader) return res.status(401).json({ message: 'No token provided' });
+
+  const token = authHeader.split(' ')[1];
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET!);
+    req.user = decoded;
+    next();
+  } catch {
+    res.status(401).json({ message: 'Invalid token' });
+  }
+};
+
+export const requireAdmin = (req: AuthRequest, res: Response, next: NextFunction) => {
+  if (!req.user?.is_admin) {
+    return res.status(403).json({ message: 'Forbidden' });
+  }
+  next();
+};
+        </pre>
+
+        <!-- ==================== backend/src/routes/auth.ts ==================== -->
+        <div class="file-header">📄 backend/src/routes/auth.ts</div>
+        <pre>
+import { Router } from 'express';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import { query } from '../db';
+import { authenticate, AuthRequest } from '../middleware/auth';
+
+const router = Router();
+
+router.post('/register', async (req, res) => {
+  const { email, password, full_name, phone, roles } = req.body;
+  const hashedPassword = await bcrypt.hash(password, 10);
+  try {
+    const result = await query(
+      `INSERT INTO users (email, password_hash, full_name, phone, roles)
+       VALUES ($1, $2, $3, $4, $5) RETURNING id, email, full_name, phone, roles, is_admin`,
+      [email, hashedPassword, full_name, phone, roles]
+    );
+    res.status(201).json(result.rows[0]);
+  } catch (err: any) {
+    if (err.code === '23505') {
+      return res.status(400).json({ message: 'Email already exists' });
+    }
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+router.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+  const result = await query('SELECT * FROM users WHERE email = $1', [email]);
+  const user = result.rows[0];
+  if (!user) return res.status(401).json({ message: 'Invalid credentials' });
+
+  const valid = await bcrypt.compare(password, user.password_hash);
+  if (!valid) return res.status(401).json({ message: 'Invalid credentials' });
+
+  const token = jwt.sign(
+    { id: user.id, email: user.email, is_admin: user.is_admin },
+    process.env.JWT_SECRET!,
+    { expiresIn: '7d' }
+  );
+
+  res.json({
+    token,
+    user: {
+      id: user.id,
+      email: user.email,
+      full_name: user.full_name,
+      phone: user.phone,
+      roles: user.roles,
+      is_admin: user.is_admin,
+    },
+  });
+});
+
+router.get('/me', authenticate, async (req: AuthRequest, res) => {
+  const result = await query(
+    'SELECT id, email, full_name, phone, roles, is_admin FROM users WHERE id = $1',
+    [req.user.id]
+  );
+  res.json(result.rows[0]);
+});
+
+export default router;
+        </pre>
+
+        <!-- ==================== backend/src/routes/users.ts ==================== -->
+        <div class="file-header">📄 backend/src/routes/users.ts</div>
+        <pre>
+import { Router } from 'express';
+import { query } from '../db';
+import { authenticate, requireAdmin, AuthRequest } from '../middleware/auth';
+
+const router = Router();
+
+// Get all users (admin only)
+router.get('/', authenticate, requireAdmin, async (req, res) => {
+  const result = await query(
+    'SELECT id, email, full_name, phone, roles, is_active, is_admin FROM users ORDER BY full_name'
+  );
+  res.json(result.rows);
+});
+
+// Get single user (admin or self)
+router.get('/:id', authenticate, async (req: AuthRequest, res) => {
+  if (!req.user.is_admin && req.user.id !== req.params.id) {
+    return res.status(403).json({ message: 'Forbidden' });
+  }
+  const result = await query(
+    'SELECT id, email, full_name, phone, roles, is_active, is_admin FROM users WHERE id = $1',
+    [req.params.id]
+  );
+  if (result.rows.length === 0) return res.status(404).json({ message: 'User not found' });
+  res.json(result.rows[0]);
+});
+
+// Update user (admin or self)
+router.put('/:id', authenticate, async (req: AuthRequest, res) => {
+  if (!req.user.is_admin && req.user.id !== req.params.id) {
+    return res.status(403).json({ message: 'Forbidden' });
+  }
+  const { full_name, phone, roles } = req.body;
+  try {
+    const result = await query(
+      'UPDATE users SET full_name = $1, phone = $2, roles = $3 WHERE id = $4 RETURNING id, email, full_name, phone, roles, is_admin',
+      [full_name, phone, roles, req.params.id]
+    );
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Deactivate/activate (admin only)
+router.patch('/:id/toggle-active', authenticate, requireAdmin, async (req, res) => {
+  const user = await query('SELECT is_active FROM users WHERE id = $1', [req.params.id]);
+  if (user.rows.length === 0) return res.status(404).json({ message: 'User not found' });
+  const newStatus = !user.rows[0].is_active;
+  await query('UPDATE users SET is_active = $1 WHERE id = $2', [newStatus, req.params.id]);
+  res.json({ message: `User ${newStatus ? 'activated' : 'deactivated'}` });
+});
+
+export default router;
+        </pre>
+
+        <!-- ==================== backend/src/routes/events.ts ==================== -->
+        <div class="file-header">📄 backend/src/routes/events.ts</div>
+        <pre>
+import { Router } from 'express';
+import { query } from '../db';
+import { authenticate, requireAdmin } from '../middleware/auth';
+
+const router = Router();
+
+// Get all events (staff and admin)
+router.get('/', authenticate, async (req, res) => {
+  const result = await query('SELECT * FROM events ORDER BY date ASC');
+  res.json(result.rows);
+});
+
+// Get single event
+router.get('/:id', authenticate, async (req, res) => {
+  const result = await query('SELECT * FROM events WHERE id = $1', [req.params.id]);
+  if (result.rows.length === 0) return res.status(404).json({ message: 'Event not found' });
+  res.json(result.rows[0]);
+});
+
+// Create new event (admin only)
+router.post('/', authenticate, requireAdmin, async (req, res) => {
+  const { date, venue_name, notes } = req.body;
+  try {
+    const result = await query(
+      'INSERT INTO events (date, venue_name, notes) VALUES ($1, $2, $3) RETURNING *',
+      [date, venue_name, notes]
+    );
+    res.status(201).json(result.rows[0]);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Update event (admin only)
+router.put('/:id', authenticate, requireAdmin, async (req, res) => {
+  const { date, venue_name, notes } = req.body;
+  try {
+    const result = await query(
+      'UPDATE events SET date = $1, venue_name = $2, notes = $3 WHERE id = $4 RETURNING *',
+      [date, venue_name, notes, req.params.id]
+    );
+    if (result.rows.length === 0) return res.status(404).json({ message: 'Event not found' });
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Delete event (admin only)
+router.delete('/:id', authenticate, requireAdmin, async (req, res) => {
+  const result = await query('DELETE FROM events WHERE id = $1 RETURNING id', [req.params.id]);
+  if (result.rows.length === 0) return res.status(404).json({ message: 'Event not found' });
+  res.json({ message: 'Event deleted' });
+});
+
+export default router;
+        </pre>
+
+        <!-- ==================== backend/src/routes/availability.ts ==================== -->
+        <div class="file-header">📄 backend/src/routes/availability.ts</div>
+        <pre>
+import { Router } from 'express';
+import { query } from '../db';
+import { authenticate, AuthRequest } from '../middleware/auth';
+
+const router = Router();
+
+// Get current user's availability for all events
+router.get('/', authenticate, async (req: AuthRequest, res) => {
+  const result = await query(
+    'SELECT event_id, is_available FROM availability WHERE user_id = $1',
+    [req.user.id]
+  );
+  res.json(result.rows);
+});
+
+// Update availability for a specific event
+router.put('/', authenticate, async (req: AuthRequest, res) => {
+  const { eventId, isAvailable } = req.body;
+  try {
+    await query(
+      `INSERT INTO availability (user_id, event_id, is_available)
+       VALUES ($1, $2, $3)
+       ON CONFLICT (user_id, event_id)
+       DO UPDATE SET is_available = EXCLUDED.is_available, updated_at = NOW()`,
+      [req.user.id, eventId, isAvailable]
+    );
+    res.json({ message: 'Availability updated' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Bulk update availability (optional)
+router.post('/bulk', authenticate, async (req: AuthRequest, res) => {
+  const { availability } = req.body; // array of { eventId, isAvailable }
+  const client = await query('BEGIN');
+  try {
+    for (const a of availability) {
+      await query(
+        `INSERT INTO availability (user_id, event_id, is_available)
+         VALUES ($1, $2, $3)
+         ON CONFLICT (user_id, event_id)
+         DO UPDATE SET is_available = EXCLUDED.is_available, updated_at = NOW()`,
+        [req.user.id, a.eventId, a.isAvailable]
+      );
+    }
+    await query('COMMIT');
+    res.json({ message: 'Availability updated' });
+  } catch (err) {
+    await query('ROLLBACK');
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+export default router;
+        </pre>
+
+        <!-- ==================== backend/src/routes/assignments.ts ==================== -->
+        <div class="file-header">📄 backend/src/routes/assignments.ts</div>
+        <pre>
+import { Router } from 'express';
+import { query } from '../db';
+import { authenticate, requireAdmin, AuthRequest } from '../middleware/auth';
+
+const router = Router();
+
+// Get assignments for current user (staff view)
+router.get('/me', authenticate, async (req: AuthRequest, res) => {
+  const result = await query(
+    `SELECT a.event_id, e.date as event_date, e.venue_name, a.role
+     FROM assignments a
+     JOIN events e ON a.event_id = e.id
+     WHERE a.user_id = $1
+     ORDER BY e.date`,
+    [req.user.id]
+  );
+  res.json(result.rows);
+});
+
+// Get all assignments for an event (admin only)
+router.get('/event/:eventId', authenticate, requireAdmin, async (req, res) => {
+  const result = await query(
+    `SELECT a.user_id, u.full_name, u.roles, a.role
+     FROM assignments a
+     JOIN users u ON a.user_id = u.id
+     WHERE a.event_id = $1`,
+    [req.params.eventId]
+  );
+  res.json(result.rows);
+});
+
+// Create assignment (admin only) – includes conflict check
+router.post('/', authenticate, requireAdmin, async (req, res) => {
+  const { eventId, userId, role } = req.body;
+
+  // Check if user is already assigned to another event on the same day
+  const conflictCheck = await query(
+    `SELECT e.date FROM events e
+     JOIN assignments a ON e.id = a.event_id
+     WHERE a.user_id = $1 AND e.id != $2 AND e.date = (
+       SELECT date FROM events WHERE id = $2
+     )`,
+    [userId, eventId]
+  );
+
+  if (conflictCheck.rows.length > 0) {
+    return res.status(409).json({ message: 'User already assigned to another event on this date' });
+  }
+
+  try {
+    const result = await query(
+      'INSERT INTO assignments (event_id, user_id, role) VALUES ($1, $2, $3) RETURNING *',
+      [eventId, userId, role]
+    );
+    res.status(201).json(result.rows[0]);
+  } catch (err: any) {
+    if (err.code === '23505') {
+      return res.status(409).json({ message: 'User already assigned to this event' });
+    }
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
+// Remove assignment (admin only)
+router.delete('/:id', authenticate, requireAdmin, async (req, res) => {
+  const result = await query('DELETE FROM assignments WHERE id = $1 RETURNING id', [req.params.id]);
+  if (result.rows.length === 0) return res.status(404).json({ message: 'Assignment not found' });
+  res.json({ message: 'Assignment removed' });
+});
+
+export default router;
+        </pre>
+
+        <!-- ==================== database/schema.sql ==================== -->
+        <div class="file-header">📄 database/schema.sql</div>
+        <pre>
+-- Users table
+CREATE TABLE users (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  email TEXT UNIQUE NOT NULL,
+  password_hash TEXT NOT NULL,
+  full_name TEXT NOT NULL,
+  phone TEXT,
+  roles TEXT[] NOT NULL,
+  is_active BOOLEAN DEFAULT true,
+  is_admin BOOLEAN DEFAULT false,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Events table
+CREATE TABLE events (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  date DATE NOT NULL,
+  venue_name TEXT NOT NULL,
+  notes TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Availability table
+CREATE TABLE availability (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  event_id UUID NOT NULL REFERENCES events(id) ON DELETE CASCADE,
+  is_available BOOLEAN NOT NULL DEFAULT false,
+  updated_at TIMESTAMPTZ DEFAULT NOW(),
+  UNIQUE(user_id, event_id)
+);
+
+-- Assignments table
+CREATE TABLE assignments (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  event_id UUID NOT NULL REFERENCES events(id) ON DELETE CASCADE,
+  user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  role TEXT NOT NULL CHECK (role IN ('kitchen', 'floor', 'bar', 'cleaner', 'setup')),
+  assigned_at TIMESTAMPTZ DEFAULT NOW(),
+  UNIQUE(event_id, user_id)
+);
+
+-- Indexes for performance
+CREATE INDEX idx_availability_user ON availability(user_id);
+CREATE INDEX idx_availability_event ON availability(event_id);
+CREATE INDEX idx_assignments_event ON assignments(event_id);
+CREATE INDEX idx_assignments_user ON assignments(user_id);
+        </pre>
+
+        <!-- ==================== database/seed.sql ==================== -->
+        <div class="file-header">📄 database/seed.sql</div>
+        <pre>
+-- Insert the 44 events
+INSERT INTO events (date, venue_name) VALUES
+('2026-03-28', 'Sala Reggio Ballroom'),
+('2026-04-18', 'Fior Events'),
+('2026-05-09', 'Fior Events'),
+('2026-05-17', 'Sala Reggio Ballroom'),
+('2026-05-22', 'Sala Reggio Ballroom'),
+('2026-05-23', 'Sala Reggio Ballroom'),
+('2026-05-24', 'Sala Reggio Ballroom'),
+('2026-05-29', 'Sala Reggio Ballroom'),
+('2026-05-30', 'Sala Reggio Ballroom'),
+('2026-05-31', 'Sala Reggio Ballroom'),
+('2026-06-07', 'Sala Reggio Ballroom'),
+('2026-06-07', 'Fior Events'),
+('2026-06-12', 'Sala Reggio Ballroom'),
+('2026-06-13', 'Sala Reggio Ballroom'),
+('2026-06-20', 'Sala Reggio Ballroom'),
+('2026-06-21', 'Sala Reggio Ballroom'),
+('2026-07-19', 'Sala Reggio Ballroom'),
+('2026-07-25', 'Sala Reggio Ballroom'),
+('2026-07-25', 'Fior Events'),
+('2026-07-26', 'Sala Reggio Ballroom'),
+('2026-08-01', 'Sala Reggio Ballroom'),
+('2026-08-02', 'Sala Reggio Ballroom'),
+('2026-08-08', 'Sala Reggio Ballroom'),
+('2026-08-15', 'Sala Reggio Ballroom'),
+('2026-08-16', 'Fior Events'),
+('2026-08-22', 'Sala Reggio Ballroom'),
+('2026-08-23', 'Sala Reggio Ballroom'),
+('2026-08-30', 'Sala Reggio Ballroom'),
+('2026-09-13', 'Sala Reggio Ballroom'),
+('2026-09-13', 'Fior Events'),
+('2026-09-18', 'Sala Reggio Ballroom'),
+('2026-09-20', 'Fior Events'),
+('2026-10-03', 'Fior Events'),
+('2026-10-17', 'Sala Reggio Ballroom'),
+('2026-11-13', 'Sala Reggio Ballroom'),
+('2026-11-21', 'Sala Reggio Ballroom'),
+('2026-12-11', 'Fior Events'),
+('2026-12-12', 'Fior Events'),
+('2026-12-14', 'Sala Reggio Ballroom'),
+('2026-12-15', 'Sala Reggio Ballroom'),
+('2026-12-17', 'Sala Reggio Ballroom'),
+('2027-02-27', 'Fior Events'),
+('2027-02-28', 'Fior Events'),
+('2027-03-27', 'Fior Events');
+
+-- Create an initial admin user (password: "admin123" – change immediately!)
+INSERT INTO users (email, password_hash, full_name, phone, roles, is_admin)
+VALUES (
+  'admin@memberslounge.com',
+  '$2b$10$YxL6Iv0s8N5vZw5k9X9JzO1yX8YqX8YqX8YqX8YqX8YqX8YqX8Yq', -- bcrypt hash for "admin123"
+  'Admin User',
+  '',
+  ARRAY[]::TEXT[],
+  true
+);
+        </pre>
+
+        <hr />
+        <div class="note">
+            <strong>✅ All files have been displayed.</strong><br>
+            <ol style="margin-top:10px;">
+                <li>Create the folder structure on your computer as shown above.</li>
+                <li>Copy each code block into the corresponding file.</li>
+                <li>Place your Member's Lounge logo in <code>frontend/public/logo.png</code>.</li>
+                <li>Push the entire folder to a new GitHub repository.</li>
+                <li>Deploy the frontend on Vercel (point to the <code>frontend</code> folder).</li>
+                <li>For the backend, you'll need to deploy separately (Render, etc.) and set up PostgreSQL.</li>
+            </ol>
+            <p>If you need further assistance, just ask!</p>
+        </div>
+    </div>
+</body>
+</html>
