@@ -1691,7 +1691,7 @@ VALUES (
 
         <hr />
         <div class="note">
-            <strong>✅ All files have been displayed.</strong><br>
+            <strong> All files have been displayed.</strong><br>
             <ol style="margin-top:10px;">
                 <li>Create the folder structure on your computer as shown above.</li>
                 <li>Copy each code block into the corresponding file.</li>
