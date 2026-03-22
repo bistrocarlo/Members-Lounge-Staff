@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Member's Lounge Staff Manager</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Members Lounge Staff Manager</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
             background: #000000;
             color: #ffffff;
-            font-family: 'Segoe UI', 'Roboto', sans-serif;
+            font-family: "Segoe UI", "Roboto", sans-serif;
             line-height: 1.6;
             padding: 20px;
         }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
         }
-        /* Header */
+
         .header {
             background: #000000;
             border-bottom: 2px solid #D4AF37;
@@ -32,11 +34,13 @@
             align-items: center;
             flex-wrap: wrap;
         }
+
         .logo {
             display: flex;
             align-items: center;
             gap: 15px;
         }
+
         .logo-icon {
             background: #D4AF37;
             color: #000000;
@@ -49,23 +53,30 @@
             font-weight: bold;
             font-size: 20px;
         }
+
         .logo h1 {
             color: #D4AF37;
             font-size: 1.5rem;
         }
+
         .nav {
             display: flex;
             gap: 20px;
+            flex-wrap: wrap;
         }
+
         .nav a {
             color: #ffffff;
             text-decoration: none;
             padding: 8px 12px;
-            transition: color 0.3s;
+            transition: color 0.3s ease;
         }
-        .nav a:hover, .nav a.active {
+
+        .nav a:hover,
+        .nav a.active {
             color: #D4AF37;
         }
+
         .btn {
             background: #D4AF37;
             color: #000000;
@@ -74,106 +85,128 @@
             border-radius: 8px;
             cursor: pointer;
             font-weight: 600;
-            transition: background 0.3s;
+            transition: background 0.3s ease;
         }
+
         .btn:hover {
             background: #C6A22E;
         }
+
         .btn-outline {
             background: transparent;
             border: 1px solid #D4AF37;
             color: #D4AF37;
         }
+
         .btn-outline:hover {
             background: #D4AF37;
             color: #000000;
         }
+
         .card {
             background: #1E1E1E;
             border-radius: 12px;
             padding: 20px;
             margin-bottom: 20px;
-            border: 1px solid #333;
+            border: 1px solid #333333;
         }
-        .card h2, .card h3 {
+
+        .card h2,
+        .card h3 {
             color: #D4AF37;
             margin-bottom: 15px;
         }
+
         .form-group {
             margin-bottom: 15px;
         }
+
         label {
             display: block;
             margin-bottom: 5px;
             color: #B0B0B0;
         }
-        input, select {
+
+        input,
+        select {
             width: 100%;
             padding: 10px;
             background: #2D2D2D;
-            border: 1px solid #444;
+            border: 1px solid #444444;
             border-radius: 6px;
             color: #ffffff;
         }
+
         .role-group {
             display: flex;
             gap: 15px;
             flex-wrap: wrap;
             margin-top: 5px;
         }
+
         .role-group label {
             display: flex;
             align-items: center;
             gap: 5px;
             color: #ffffff;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
         }
-        th, td {
+
+        th,
+        td {
             padding: 12px;
             text-align: left;
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid #333333;
         }
+
         th {
             color: #D4AF37;
         }
+
         .event-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 12px;
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid #333333;
+            gap: 20px;
         }
+
         .event-date {
             font-weight: 600;
         }
+
         .event-venue {
             color: #B0B0B0;
         }
+
         .switch {
             position: relative;
             display: inline-block;
             width: 50px;
             height: 24px;
+            flex-shrink: 0;
         }
+
         .switch input {
             opacity: 0;
             width: 0;
             height: 0;
         }
+
         .slider {
             position: absolute;
             cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #444;
+            inset: 0;
+            background-color: #444444;
             transition: 0.3s;
             border-radius: 24px;
         }
+
         .slider:before {
             position: absolute;
             content: "";
@@ -185,33 +218,43 @@
             transition: 0.3s;
             border-radius: 50%;
         }
-        input:checked + .slider {
+
+        .switch input:checked + .slider {
             background-color: #D4AF37;
         }
-        input:checked + .slider:before {
+
+        .switch input:checked + .slider:before {
             transform: translateX(26px);
         }
+
         .alert {
             padding: 12px;
             border-radius: 6px;
             margin-bottom: 20px;
         }
+
         .alert-success {
             background: #1e4620;
             color: #a5d6a5;
         }
+
         .alert-error {
             background: #4a1c1c;
             color: #ffb3b3;
         }
+
         .hidden {
-            display: none;
+            display: none !important;
         }
+
         .flex-between {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
         }
+
         .role-badge {
             background: #D4AF37;
             color: #000000;
@@ -221,15 +264,32 @@
             font-weight: bold;
             display: inline-block;
             margin: 2px;
+            text-transform: capitalize;
         }
+
+        .muted {
+            color: #B0B0B0;
+        }
+
+        ul.clean-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
         @media (max-width: 768px) {
             .header {
                 flex-direction: column;
                 gap: 10px;
             }
+
             .nav {
-                flex-wrap: wrap;
                 justify-content: center;
+            }
+
+            .event-item {
+                flex-direction: column;
+                align-items: flex-start;
             }
         }
     </style>
@@ -240,12 +300,13 @@
         <div class="header">
             <div class="logo">
                 <div class="logo-icon">ML</div>
-                <h1>Member's Lounge Staff</h1>
+                <h1>Members Lounge Staff</h1>
             </div>
-            <div class="nav" id="nav-links">
+
+            <div class="nav hidden" id="nav-links">
                 <a href="#" data-page="dashboard">Dashboard</a>
                 <a href="#" data-page="events">Events</a>
-                <a href="#" data-page="my-assignments">My Assignments</a>
+                <a href="#" data-page="assignments">My Assignments</a>
                 <a href="#" data-page="admin" id="admin-link" class="hidden">Admin</a>
                 <a href="#" id="logout-link">Logout</a>
             </div>
@@ -256,57 +317,70 @@
             <div class="card" id="login-card">
                 <h2>Staff Login</h2>
                 <div id="login-error" class="alert alert-error hidden"></div>
+
                 <form id="login-form">
                     <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" id="login-email" required>
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" required />
                     </div>
+
                     <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" id="login-password" required>
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" required />
                     </div>
+
                     <button type="submit" class="btn">Sign In</button>
-                    <p style="margin-top: 15px;">New staff? <a href="#" id="show-register">Create an account</a></p>
+                    <p style="margin-top: 15px;">
+                        New staff? <a href="#" id="show-register">Create an account</a>
+                    </p>
                 </form>
             </div>
 
             <div class="card hidden" id="register-card">
                 <h2>Staff Registration</h2>
                 <div id="register-error" class="alert alert-error hidden"></div>
+
                 <form id="register-form">
                     <div class="form-group">
-                        <label>Full Name</label>
-                        <input type="text" id="reg-name" required>
+                        <label for="reg-name">Full Name</label>
+                        <input type="text" id="reg-name" required />
                     </div>
+
                     <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" id="reg-email" required>
+                        <label for="reg-email">Email</label>
+                        <input type="email" id="reg-email" required />
                     </div>
+
                     <div class="form-group">
-                        <label>Phone (optional)</label>
-                        <input type="tel" id="reg-phone">
+                        <label for="reg-phone">Phone (optional)</label>
+                        <input type="tel" id="reg-phone" />
                     </div>
+
                     <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" id="reg-password" required>
+                        <label for="reg-password">Password</label>
+                        <input type="password" id="reg-password" required />
                     </div>
+
                     <div class="form-group">
                         <label>Roles you can perform</label>
                         <div class="role-group">
-                            <label><input type="checkbox" value="kitchen"> Kitchen</label>
-                            <label><input type="checkbox" value="floor"> Floor</label>
-                            <label><input type="checkbox" value="bar"> Bar</label>
-                            <label><input type="checkbox" value="cleaner"> Cleaner</label>
-                            <label><input type="checkbox" value="setup"> Setup Crew</label>
+                            <label><input type="checkbox" value="kitchen" /> Kitchen</label>
+                            <label><input type="checkbox" value="floor" /> Floor</label>
+                            <label><input type="checkbox" value="bar" /> Bar</label>
+                            <label><input type="checkbox" value="cleaner" /> Cleaner</label>
+                            <label><input type="checkbox" value="setup" /> Setup Crew</label>
                         </div>
                     </div>
+
                     <button type="submit" class="btn">Register</button>
-                    <p style="margin-top: 15px;">Already have an account? <a href="#" id="show-login">Sign in</a></p>
+                    <p style="margin-top: 15px;">
+                        Already have an account? <a href="#" id="show-login">Sign in</a>
+                    </p>
                 </form>
             </div>
         </div>
 
-        <!-- Dashboard (protected) -->
+        <!-- Dashboard -->
         <div id="dashboard-section" class="hidden">
             <div class="card">
                 <h2 id="dashboard-welcome"></h2>
@@ -324,7 +398,7 @@
             </div>
         </div>
 
-        <!-- Events Section -->
+        <!-- Events -->
         <div id="events-section" class="hidden">
             <div class="card">
                 <h2>Upcoming Events</h2>
@@ -332,7 +406,7 @@
             </div>
         </div>
 
-        <!-- My Assignments Section -->
+        <!-- Assignments -->
         <div id="assignments-section" class="hidden">
             <div class="card">
                 <h2>My Assignments</h2>
@@ -340,318 +414,432 @@
             </div>
         </div>
 
-        <!-- Admin Dashboard -->
+        <!-- Admin -->
         <div id="admin-section" class="hidden">
             <div class="card">
                 <h2>Admin Dashboard</h2>
-                <div style="display: flex; gap: 20px; margin-bottom: 20px;">
+
+                <div style="display: flex; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
                     <button class="btn" id="admin-staff-btn">Staff Management</button>
                     <button class="btn" id="admin-events-btn">Event Management</button>
                     <button class="btn" id="admin-assignments-btn">Assignments</button>
                 </div>
+
                 <div id="admin-content"></div>
             </div>
         </div>
     </div>
 
     <script>
-        // ---------- DATA MODELS ----------
-        // Staff: { id, email, password, full_name, phone, roles, is_admin }
-        // Events: { id, date, venue_name, notes }
-        // Availability: { user_id, event_id, is_available }
-        // Assignments: { event_id, user_id, role }
-
-        // Initialize localStorage if empty
+        // ---------- STORAGE HELPERS ----------
         function initData() {
-            if (!localStorage.getItem('events')) {
+            if (!localStorage.getItem("events")) {
                 const events = [
-                    { id: '1', date: '2026-03-28', venue_name: 'Sala Reggio Ballroom' },
-                    { id: '2', date: '2026-04-18', venue_name: 'Fior Events' },
-                    { id: '3', date: '2026-05-09', venue_name: 'Fior Events' },
-                    { id: '4', date: '2026-05-17', venue_name: 'Sala Reggio Ballroom' },
-                    { id: '5', date: '2026-05-22', venue_name: 'Sala Reggio Ballroom' },
-                    { id: '6', date: '2026-05-23', venue_name: 'Sala Reggio Ballroom' },
-                    { id: '7', date: '2026-05-24', venue_name: 'Sala Reggio Ballroom' },
-                    { id: '8', date: '2026-05-29', venue_name: 'Sala Reggio Ballroom' },
-                    { id: '9', date: '2026-05-30', venue_name: 'Sala Reggio Ballroom' },
-                    { id: '10', date: '2026-05-31', venue_name: 'Sala Reggio Ballroom' },
-                    { id: '11', date: '2026-06-07', venue_name: 'Sala Reggio Ballroom' },
-                    { id: '12', date: '2026-06-07', venue_name: 'Fior Events' },
-                    { id: '13', date: '2026-06-12', venue_name: 'Sala Reggio Ballroom' },
-                    { id: '14', date: '2026-06-13', venue_name: 'Sala Reggio Ballroom' },
-                    { id: '15', date: '2026-06-20', venue_name: 'Sala Reggio Ballroom' },
-                    { id: '16', date: '2026-06-21', venue_name: 'Sala Reggio Ballroom' },
-                    { id: '17', date: '2026-07-19', venue_name: 'Sala Reggio Ballroom' },
-                    { id: '18', date: '2026-07-25', venue_name: 'Sala Reggio Ballroom' },
-                    { id: '19', date: '2026-07-25', venue_name: 'Fior Events' },
-                    { id: '20', date: '2026-07-26', venue_name: 'Sala Reggio Ballroom' },
-                    { id: '21', date: '2026-08-01', venue_name: 'Sala Reggio Ballroom' },
-                    { id: '22', date: '2026-08-02', venue_name: 'Sala Reggio Ballroom' },
-                    { id: '23', date: '2026-08-08', venue_name: 'Sala Reggio Ballroom' },
-                    { id: '24', date: '2026-08-15', venue_name: 'Sala Reggio Ballroom' },
-                    { id: '25', date: '2026-08-16', venue_name: 'Fior Events' },
-                    { id: '26', date: '2026-08-22', venue_name: 'Sala Reggio Ballroom' },
-                    { id: '27', date: '2026-08-23', venue_name: 'Sala Reggio Ballroom' },
-                    { id: '28', date: '2026-08-30', venue_name: 'Sala Reggio Ballroom' },
-                    { id: '29', date: '2026-09-13', venue_name: 'Sala Reggio Ballroom' },
-                    { id: '30', date: '2026-09-13', venue_name: 'Fior Events' },
-                    { id: '31', date: '2026-09-18', venue_name: 'Sala Reggio Ballroom' },
-                    { id: '32', date: '2026-09-20', venue_name: 'Fior Events' },
-                    { id: '33', date: '2026-10-03', venue_name: 'Fior Events' },
-                    { id: '34', date: '2026-10-17', venue_name: 'Sala Reggio Ballroom' },
-                    { id: '35', date: '2026-11-13', venue_name: 'Sala Reggio Ballroom' },
-                    { id: '36', date: '2026-11-21', venue_name: 'Sala Reggio Ballroom' },
-                    { id: '37', date: '2026-12-11', venue_name: 'Fior Events' },
-                    { id: '38', date: '2026-12-12', venue_name: 'Fior Events' },
-                    { id: '39', date: '2026-12-14', venue_name: 'Sala Reggio Ballroom' },
-                    { id: '40', date: '2026-12-15', venue_name: 'Sala Reggio Ballroom' },
-                    { id: '41', date: '2026-12-17', venue_name: 'Sala Reggio Ballroom' },
-                    { id: '42', date: '2027-02-27', venue_name: 'Fior Events' },
-                    { id: '43', date: '2027-02-28', venue_name: 'Fior Events' },
-                    { id: '44', date: '2027-03-27', venue_name: 'Fior Events' }
+                    { id: "1", date: "2026-03-28", venue_name: "Sala Reggio Ballroom" },
+                    { id: "2", date: "2026-04-18", venue_name: "Fior Events" },
+                    { id: "3", date: "2026-05-09", venue_name: "Fior Events" },
+                    { id: "4", date: "2026-05-17", venue_name: "Sala Reggio Ballroom" },
+                    { id: "5", date: "2026-05-22", venue_name: "Sala Reggio Ballroom" },
+                    { id: "6", date: "2026-05-23", venue_name: "Sala Reggio Ballroom" },
+                    { id: "7", date: "2026-05-24", venue_name: "Sala Reggio Ballroom" },
+                    { id: "8", date: "2026-05-29", venue_name: "Sala Reggio Ballroom" },
+                    { id: "9", date: "2026-05-30", venue_name: "Sala Reggio Ballroom" },
+                    { id: "10", date: "2026-05-31", venue_name: "Sala Reggio Ballroom" },
+                    { id: "11", date: "2026-06-07", venue_name: "Sala Reggio Ballroom" },
+                    { id: "12", date: "2026-06-07", venue_name: "Fior Events" },
+                    { id: "13", date: "2026-06-12", venue_name: "Sala Reggio Ballroom" },
+                    { id: "14", date: "2026-06-13", venue_name: "Sala Reggio Ballroom" },
+                    { id: "15", date: "2026-06-20", venue_name: "Sala Reggio Ballroom" },
+                    { id: "16", date: "2026-06-21", venue_name: "Sala Reggio Ballroom" },
+                    { id: "17", date: "2026-07-19", venue_name: "Sala Reggio Ballroom" },
+                    { id: "18", date: "2026-07-25", venue_name: "Sala Reggio Ballroom" },
+                    { id: "19", date: "2026-07-25", venue_name: "Fior Events" },
+                    { id: "20", date: "2026-07-26", venue_name: "Sala Reggio Ballroom" },
+                    { id: "21", date: "2026-08-01", venue_name: "Sala Reggio Ballroom" },
+                    { id: "22", date: "2026-08-02", venue_name: "Sala Reggio Ballroom" },
+                    { id: "23", date: "2026-08-08", venue_name: "Sala Reggio Ballroom" },
+                    { id: "24", date: "2026-08-15", venue_name: "Sala Reggio Ballroom" },
+                    { id: "25", date: "2026-08-16", venue_name: "Fior Events" },
+                    { id: "26", date: "2026-08-22", venue_name: "Sala Reggio Ballroom" },
+                    { id: "27", date: "2026-08-23", venue_name: "Sala Reggio Ballroom" },
+                    { id: "28", date: "2026-08-30", venue_name: "Sala Reggio Ballroom" },
+                    { id: "29", date: "2026-09-13", venue_name: "Sala Reggio Ballroom" },
+                    { id: "30", date: "2026-09-13", venue_name: "Fior Events" },
+                    { id: "31", date: "2026-09-18", venue_name: "Sala Reggio Ballroom" },
+                    { id: "32", date: "2026-09-20", venue_name: "Fior Events" },
+                    { id: "33", date: "2026-10-03", venue_name: "Fior Events" },
+                    { id: "34", date: "2026-10-17", venue_name: "Sala Reggio Ballroom" },
+                    { id: "35", date: "2026-11-13", venue_name: "Sala Reggio Ballroom" },
+                    { id: "36", date: "2026-11-21", venue_name: "Sala Reggio Ballroom" },
+                    { id: "37", date: "2026-12-11", venue_name: "Fior Events" },
+                    { id: "38", date: "2026-12-12", venue_name: "Fior Events" },
+                    { id: "39", date: "2026-12-14", venue_name: "Sala Reggio Ballroom" },
+                    { id: "40", date: "2026-12-15", venue_name: "Sala Reggio Ballroom" },
+                    { id: "41", date: "2026-12-17", venue_name: "Sala Reggio Ballroom" },
+                    { id: "42", date: "2027-02-27", venue_name: "Fior Events" },
+                    { id: "43", date: "2027-02-28", venue_name: "Fior Events" },
+                    { id: "44", date: "2027-03-27", venue_name: "Fior Events" }
                 ];
-                localStorage.setItem('events', JSON.stringify(events));
+                localStorage.setItem("events", JSON.stringify(events));
             }
-            if (!localStorage.getItem('staff')) {
-                // Create admin user: admin@memberslounge.com / admin123
+
+            if (!localStorage.getItem("staff")) {
                 const admin = {
-                    id: 'admin1',
-                    email: 'admin@memberslounge.com',
-                    password: 'admin123',
-                    full_name: 'Admin User',
-                    phone: '',
+                    id: "admin1",
+                    email: "admin@memberslounge.com",
+                    password: "admin123",
+                    full_name: "Admin User",
+                    phone: "",
                     roles: [],
                     is_admin: true
                 };
-                localStorage.setItem('staff', JSON.stringify([admin]));
+                localStorage.setItem("staff", JSON.stringify([admin]));
             }
-            if (!localStorage.getItem('availability')) {
-                localStorage.setItem('availability', JSON.stringify([]));
+
+            if (!localStorage.getItem("availability")) {
+                localStorage.setItem("availability", JSON.stringify([]));
             }
-            if (!localStorage.getItem('assignments')) {
-                localStorage.setItem('assignments', JSON.stringify([]));
+
+            if (!localStorage.getItem("assignments")) {
+                localStorage.setItem("assignments", JSON.stringify([]));
             }
         }
 
-        // Helper functions
-        function getEvents() { return JSON.parse(localStorage.getItem('events')); }
-        function getStaff() { return JSON.parse(localStorage.getItem('staff')); }
-        function getAvailability() { return JSON.parse(localStorage.getItem('availability')); }
-        function getAssignments() { return JSON.parse(localStorage.getItem('assignments')); }
-        function saveStaff(staff) { localStorage.setItem('staff', JSON.stringify(staff)); }
-        function saveAvailability(avail) { localStorage.setItem('availability', JSON.stringify(avail)); }
-        function saveAssignments(assign) { localStorage.setItem('assignments', JSON.stringify(assign)); }
+        function getEvents() {
+            return JSON.parse(localStorage.getItem("events") || "[]");
+        }
+
+        function getStaff() {
+            return JSON.parse(localStorage.getItem("staff") || "[]");
+        }
+
+        function getAvailability() {
+            return JSON.parse(localStorage.getItem("availability") || "[]");
+        }
+
+        function getAssignments() {
+            return JSON.parse(localStorage.getItem("assignments") || "[]");
+        }
+
+        function saveStaff(staff) {
+            localStorage.setItem("staff", JSON.stringify(staff));
+        }
+
+        function saveAvailability(availability) {
+            localStorage.setItem("availability", JSON.stringify(availability));
+        }
+
+        function saveAssignments(assignments) {
+            localStorage.setItem("assignments", JSON.stringify(assignments));
+        }
 
         let currentUser = null;
 
-        // UI Elements
-        const authSection = document.getElementById('auth-section');
-        const dashboardSection = document.getElementById('dashboard-section');
-        const eventsSection = document.getElementById('events-section');
-        const assignmentsSection = document.getElementById('assignments-section');
-        const adminSection = document.getElementById('admin-section');
-        const loginCard = document.getElementById('login-card');
-        const registerCard = document.getElementById('register-card');
-        const adminLink = document.getElementById('admin-link');
-        const logoutLink = document.getElementById('logout-link');
+        // ---------- UI ELEMENTS ----------
+        const authSection = document.getElementById("auth-section");
+        const dashboardSection = document.getElementById("dashboard-section");
+        const eventsSection = document.getElementById("events-section");
+        const assignmentsSection = document.getElementById("assignments-section");
+        const adminSection = document.getElementById("admin-section");
 
-        // Navigation
-        function showPage(page) {
-            dashboardSection.classList.add('hidden');
-            eventsSection.classList.add('hidden');
-            assignmentsSection.classList.add('hidden');
-            adminSection.classList.add('hidden');
-            if (page === 'dashboard') dashboardSection.classList.remove('hidden');
-            else if (page === 'events') eventsSection.classList.remove('hidden');
-            else if (page === 'assignments') assignmentsSection.classList.remove('hidden');
-            else if (page === 'admin') adminSection.classList.remove('hidden');
+        const loginCard = document.getElementById("login-card");
+        const registerCard = document.getElementById("register-card");
+
+        const navLinksContainer = document.getElementById("nav-links");
+        const adminLink = document.getElementById("admin-link");
+        const logoutLink = document.getElementById("logout-link");
+
+        // ---------- NAV ----------
+        function hideAllPages() {
+            dashboardSection.classList.add("hidden");
+            eventsSection.classList.add("hidden");
+            assignmentsSection.classList.add("hidden");
+            adminSection.classList.add("hidden");
         }
 
-        function updateNav() {
-            const navLinks = document.querySelectorAll('.nav a[data-page]');
-            navLinks.forEach(link => {
-                const page = link.getAttribute('data-page');
-                if (page === 'admin' && !currentUser?.is_admin) return;
-                link.classList.remove('active');
-                if (page === 'dashboard' && !dashboardSection.classList.contains('hidden')) link.classList.add('active');
-                if (page === 'events' && !eventsSection.classList.contains('hidden')) link.classList.add('active');
-                if (page === 'my-assignments' && !assignmentsSection.classList.contains('hidden')) link.classList.add('active');
-                if (page === 'admin' && !adminSection.classList.contains('hidden')) link.classList.add('active');
+        function showPage(page) {
+            hideAllPages();
+
+            if (page === "dashboard") {
+                dashboardSection.classList.remove("hidden");
+            } else if (page === "events") {
+                eventsSection.classList.remove("hidden");
+            } else if (page === "assignments") {
+                assignmentsSection.classList.remove("hidden");
+            } else if (page === "admin" && currentUser?.is_admin) {
+                adminSection.classList.remove("hidden");
+            }
+
+            updateNav(page);
+        }
+
+        function updateNav(activePage) {
+            document.querySelectorAll(".nav a[data-page]").forEach(link => {
+                link.classList.remove("active");
+                const page = link.getAttribute("data-page");
+                if (page === activePage) {
+                    link.classList.add("active");
+                }
             });
         }
 
-        // Render Dashboard
-        function renderDashboard() {
-            document.getElementById('dashboard-welcome').innerText = `Welcome, ${currentUser.full_name}`;
-            const rolesBadges = document.getElementById('user-roles-badges');
-            rolesBadges.innerHTML = currentUser.roles.map(r => `<span class="role-badge">${r}</span>`).join('') || 'No roles selected';
+        function updateHeaderForAuth() {
+            if (currentUser) {
+                navLinksContainer.classList.remove("hidden");
+                if (currentUser.is_admin) {
+                    adminLink.classList.remove("hidden");
+                } else {
+                    adminLink.classList.add("hidden");
+                }
+            } else {
+                navLinksContainer.classList.add("hidden");
+                adminLink.classList.add("hidden");
+            }
         }
 
-        // Render Events with availability toggles
+        // ---------- RENDERS ----------
+        function renderDashboard() {
+            document.getElementById("dashboard-welcome").innerText = `Welcome, ${currentUser.full_name}`;
+
+            const rolesBadges = document.getElementById("user-roles-badges");
+            if (currentUser.roles && currentUser.roles.length > 0) {
+                rolesBadges.innerHTML = currentUser.roles
+                    .map(role => `<span class="role-badge">${role}</span>`)
+                    .join("");
+            } else {
+                rolesBadges.innerHTML = `<span class="muted">No roles selected</span>`;
+            }
+        }
+
         function renderEvents() {
             const events = getEvents();
             const availability = getAvailability();
-            const container = document.getElementById('events-list');
-            container.innerHTML = '';
+            const container = document.getElementById("events-list");
+
+            container.innerHTML = "";
+
             events.forEach(event => {
-                const avail = availability.find(a => a.user_id === currentUser.id && a.event_id === event.id);
-                const isChecked = avail ? avail.is_available : false;
-                const eventDiv = document.createElement('div');
-                eventDiv.className = 'event-item';
+                const userAvailability = availability.find(
+                    item => item.user_id === currentUser.id && item.event_id === event.id
+                );
+
+                const isChecked = userAvailability ? userAvailability.is_available : false;
+
+                const eventDiv = document.createElement("div");
+                eventDiv.className = "event-item";
                 eventDiv.innerHTML = `
                     <div>
-                        <div class="event-date">${new Date(event.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</div>
+                        <div class="event-date">
+                            ${new Date(event.date + "T00:00:00").toLocaleDateString("en-GB", {
+                                day: "numeric",
+                                month: "short",
+                                year: "numeric"
+                            })}
+                        </div>
                         <div class="event-venue">${event.venue_name}</div>
                     </div>
                     <label class="switch">
-                        <input type="checkbox" data-event-id="${event.id}" ${isChecked ? 'checked' : ''}>
+                        <input type="checkbox" data-event-id="${event.id}" ${isChecked ? "checked" : ""} />
                         <span class="slider"></span>
                     </label>
                 `;
                 container.appendChild(eventDiv);
             });
-            // Add event listeners
-            document.querySelectorAll('#events-list .switch input').forEach(input => {
-                input.addEventListener('change', (e) => {
-                    const eventId = e.target.getAttribute('data-event-id');
-                    const isChecked = e.target.checked;
-                    let availability = getAvailability();
-                    const existing = availability.find(a => a.user_id === currentUser.id && a.event_id === eventId);
+
+            document.querySelectorAll('#events-list input[type="checkbox"]').forEach(input => {
+                input.addEventListener("change", event => {
+                    const eventId = event.target.getAttribute("data-event-id");
+                    const isAvailable = event.target.checked;
+
+                    const availability = getAvailability();
+                    const existing = availability.find(
+                        item => item.user_id === currentUser.id && item.event_id === eventId
+                    );
+
                     if (existing) {
-                        existing.is_available = isChecked;
+                        existing.is_available = isAvailable;
                     } else {
-                        availability.push({ user_id: currentUser.id, event_id: eventId, is_available: isChecked });
+                        availability.push({
+                            user_id: currentUser.id,
+                            event_id: eventId,
+                            is_available: isAvailable
+                        });
                     }
+
                     saveAvailability(availability);
                 });
             });
         }
 
-        // Render My Assignments
         function renderMyAssignments() {
-            const assignments = getAssignments().filter(a => a.user_id === currentUser.id);
+            const assignments = getAssignments().filter(item => item.user_id === currentUser.id);
             const events = getEvents();
-            const container = document.getElementById('assignments-list');
+            const container = document.getElementById("assignments-list");
+
             if (assignments.length === 0) {
-                container.innerHTML = '<p>You have no assignments yet.</p>';
+                container.innerHTML = "<p>You have no assignments yet.</p>";
                 return;
             }
-            container.innerHTML = '<ul style="list-style: none;">' + assignments.map(ass => {
-                const event = events.find(e => e.id === ass.event_id);
-                return `<li style="margin-bottom: 15px;">
-                            <strong>${event ? new Date(event.date).toLocaleDateString() : ''}</strong><br>
-                            ${event ? event.venue_name : ''}<br>
-                            <span class="role-badge">${ass.role}</span>
-                        </li>`;
-            }).join('') + '</ul>';
+
+            container.innerHTML = `
+                <ul class="clean-list">
+                    ${assignments.map(assignment => {
+                        const event = events.find(e => e.id === assignment.event_id);
+                        const formattedDate = event
+                            ? new Date(event.date + "T00:00:00").toLocaleDateString("en-GB", {
+                                day: "numeric",
+                                month: "short",
+                                year: "numeric"
+                            })
+                            : "";
+
+                        return `
+                            <li style="margin-bottom: 15px;">
+                                <strong>${formattedDate}</strong><br>
+                                ${event ? event.venue_name : ""}<br>
+                                <span class="role-badge">${assignment.role}</span>
+                            </li>
+                        `;
+                    }).join("")}
+                </ul>
+            `;
         }
 
-        // Admin views
         function renderAdminStaff() {
             const staff = getStaff();
-            const html = `
+
+            document.getElementById("admin-content").innerHTML = `
                 <h3>Staff List</h3>
                 <table>
-                    <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Roles</th><th>Admin</th></tr></thead>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Roles</th>
+                            <th>Admin</th>
+                        </tr>
+                    </thead>
                     <tbody>
-                        ${staff.map(s => `
+                        ${staff.map(person => `
                             <tr>
-                                <td>${s.full_name}</td>
-                                <td>${s.email}</td>
-                                <td>${s.phone || '—'}</td>
-                                <td>${s.roles.join(', ') || '—'}</td>
-                                <td>${s.is_admin ? 'Yes' : 'No'}</td>
+                                <td>${person.full_name}</td>
+                                <td>${person.email}</td>
+                                <td>${person.phone || "—"}</td>
+                                <td>${person.roles.join(", ") || "—"}</td>
+                                <td>${person.is_admin ? "Yes" : "No"}</td>
                             </tr>
-                        `).join('')}
+                        `).join("")}
                     </tbody>
                 </table>
             `;
-            document.getElementById('admin-content').innerHTML = html;
         }
 
         function renderAdminEvents() {
             const events = getEvents();
-            const html = `
+
+            document.getElementById("admin-content").innerHTML = `
                 <h3>Event List</h3>
                 <table>
-                    <thead><tr><th>Date</th><th>Venue</th></tr></thead>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Venue</th>
+                        </tr>
+                    </thead>
                     <tbody>
-                        ${events.map(e => `
+                        ${events.map(event => `
                             <tr>
-                                <td>${new Date(e.date).toLocaleDateString()}</td>
-                                <td>${e.venue_name}</td>
+                                <td>${new Date(event.date + "T00:00:00").toLocaleDateString("en-GB")}</td>
+                                <td>${event.venue_name}</td>
                             </tr>
-                        `).join('')}
+                        `).join("")}
                     </tbody>
                 </table>
             `;
-            document.getElementById('admin-content').innerHTML = html;
         }
 
         function renderAdminAssignments() {
             const assignments = getAssignments();
             const staff = getStaff();
             const events = getEvents();
-            const html = `
+
+            document.getElementById("admin-content").innerHTML = `
                 <h3>Current Assignments</h3>
                 <table>
-                    <thead><tr><th>Event</th><th>Staff</th><th>Role</th></tr></thead>
+                    <thead>
+                        <tr>
+                            <th>Event</th>
+                            <th>Staff</th>
+                            <th>Role</th>
+                        </tr>
+                    </thead>
                     <tbody>
-                        ${assignments.map(a => {
-                            const event = events.find(e => e.id === a.event_id);
-                            const user = staff.find(s => s.id === a.user_id);
+                        ${assignments.map(item => {
+                            const event = events.find(e => e.id === item.event_id);
+                            const user = staff.find(s => s.id === item.user_id);
+
+                            const eventLabel = event
+                                ? `${new Date(event.date + "T00:00:00").toLocaleDateString("en-GB")} - ${event.venue_name}`
+                                : "";
+
                             return `
                                 <tr>
-                                    <td>${event ? `${new Date(event.date).toLocaleDateString()} - ${event.venue_name}` : ''}</td>
-                                    <td>${user ? user.full_name : ''}</td>
-                                    <td><span class="role-badge">${a.role}</span></td>
+                                    <td>${eventLabel}</td>
+                                    <td>${user ? user.full_name : ""}</td>
+                                    <td><span class="role-badge">${item.role}</span></td>
                                 </tr>
                             `;
-                        }).join('')}
+                        }).join("")}
                     </tbody>
                 </table>
-                <p style="margin-top: 15px;"><em>In a full version, you'd be able to assign staff here.</em></p>
+                <p style="margin-top: 15px;"><em>In a future version, staff can be assigned directly here.</em></p>
             `;
-            document.getElementById('admin-content').innerHTML = html;
         }
 
-        // Login/Logout
+        // ---------- AUTH ----------
         function login(email, password) {
             const staff = getStaff();
-            const user = staff.find(s => s.email === email && s.password === password);
-            if (user) {
-                currentUser = user;
-                localStorage.setItem('currentUser', JSON.stringify(user));
-                authSection.classList.add('hidden');
-                dashboardSection.classList.remove('hidden');
-                if (user.is_admin) adminLink.classList.remove('hidden');
-                else adminLink.classList.add('hidden');
-                renderDashboard();
-                showPage('dashboard');
-                updateNav();
-                return true;
-            }
-            return false;
+            const user = staff.find(person => person.email === email && person.password === password);
+
+            if (!user) return false;
+
+            currentUser = user;
+            localStorage.setItem("currentUser", JSON.stringify(user));
+
+            authSection.classList.add("hidden");
+            updateHeaderForAuth();
+            renderDashboard();
+            showPage("dashboard");
+
+            return true;
         }
 
         function logout() {
             currentUser = null;
-            localStorage.removeItem('currentUser');
-            authSection.classList.remove('hidden');
-            dashboardSection.classList.add('hidden');
-            eventsSection.classList.add('hidden');
-            assignmentsSection.classList.add('hidden');
-            adminSection.classList.add('hidden');
-            loginCard.classList.remove('hidden');
-            registerCard.classList.add('hidden');
-            document.getElementById('login-error').classList.add('hidden');
-            document.getElementById('register-error').classList.add('hidden');
-            updateNav();
+            localStorage.removeItem("currentUser");
+
+            authSection.classList.remove("hidden");
+            hideAllPages();
+            updateHeaderForAuth();
+
+            loginCard.classList.remove("hidden");
+            registerCard.classList.add("hidden");
+
+            document.getElementById("login-form").reset();
+            document.getElementById("register-form").reset();
+
+            document.getElementById("login-error").classList.add("hidden");
+            document.getElementById("register-error").classList.add("hidden");
         }
 
         function register(name, email, phone, password, roles) {
             const staff = getStaff();
-            if (staff.find(s => s.email === email)) return false;
+
+            if (staff.find(person => person.email.toLowerCase() === email.toLowerCase())) {
+                return false;
+            }
+
             const newUser = {
                 id: Date.now().toString(),
                 email,
@@ -661,109 +849,134 @@
                 roles,
                 is_admin: false
             };
+
             staff.push(newUser);
             saveStaff(staff);
             return true;
         }
 
-        // Event listeners
-        document.getElementById('login-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = document.getElementById('login-email').value;
-            const pwd = document.getElementById('login-password').value;
-            if (login(email, pwd)) {
-                // success
+        // ---------- EVENTS ----------
+        document.getElementById("login-form").addEventListener("submit", event => {
+            event.preventDefault();
+
+            const email = document.getElementById("login-email").value.trim();
+            const password = document.getElementById("login-password").value;
+
+            const success = login(email, password);
+
+            if (!success) {
+                const errorDiv = document.getElementById("login-error");
+                errorDiv.innerText = "Invalid email or password";
+                errorDiv.classList.remove("hidden");
             } else {
-                const errorDiv = document.getElementById('login-error');
-                errorDiv.innerText = 'Invalid email or password';
-                errorDiv.classList.remove('hidden');
+                document.getElementById("login-error").classList.add("hidden");
             }
         });
 
-        document.getElementById('register-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('reg-name').value;
-            const email = document.getElementById('reg-email').value;
-            const phone = document.getElementById('reg-phone').value;
-            const pwd = document.getElementById('reg-password').value;
-            const roles = Array.from(document.querySelectorAll('#register-form .role-group input:checked')).map(cb => cb.value);
-            if (register(name, email, phone, pwd, roles)) {
-                alert('Registration successful! Please log in.');
-                document.getElementById('show-login').click();
-            } else {
-                const errorDiv = document.getElementById('register-error');
-                errorDiv.innerText = 'Email already exists';
-                errorDiv.classList.remove('hidden');
+        document.getElementById("register-form").addEventListener("submit", event => {
+            event.preventDefault();
+
+            const name = document.getElementById("reg-name").value.trim();
+            const email = document.getElementById("reg-email").value.trim();
+            const phone = document.getElementById("reg-phone").value.trim();
+            const password = document.getElementById("reg-password").value;
+
+            const roles = Array.from(
+                document.querySelectorAll('#register-form .role-group input:checked')
+            ).map(checkbox => checkbox.value);
+
+            const success = register(name, email, phone, password, roles);
+
+            if (!success) {
+                const errorDiv = document.getElementById("register-error");
+                errorDiv.innerText = "Email already exists";
+                errorDiv.classList.remove("hidden");
+                return;
             }
+
+            alert("Registration successful. Please sign in.");
+            document.getElementById("register-error").classList.add("hidden");
+            registerCard.classList.add("hidden");
+            loginCard.classList.remove("hidden");
+            document.getElementById("register-form").reset();
         });
 
-        document.getElementById('show-register').addEventListener('click', (e) => {
-            e.preventDefault();
-            loginCard.classList.add('hidden');
-            registerCard.classList.remove('hidden');
+        document.getElementById("show-register").addEventListener("click", event => {
+            event.preventDefault();
+            loginCard.classList.add("hidden");
+            registerCard.classList.remove("hidden");
+            document.getElementById("login-error").classList.add("hidden");
         });
 
-        document.getElementById('show-login').addEventListener('click', (e) => {
-            e.preventDefault();
-            registerCard.classList.add('hidden');
-            loginCard.classList.remove('hidden');
+        document.getElementById("show-login").addEventListener("click", event => {
+            event.preventDefault();
+            registerCard.classList.add("hidden");
+            loginCard.classList.remove("hidden");
+            document.getElementById("register-error").classList.add("hidden");
         });
 
-        logoutLink.addEventListener('click', (e) => {
-            e.preventDefault();
+        logoutLink.addEventListener("click", event => {
+            event.preventDefault();
             logout();
         });
 
-        // Navigation links
-        document.querySelectorAll('.nav a[data-page]').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const page = link.getAttribute('data-page');
-                if (page === 'dashboard') showPage('dashboard');
-                if (page === 'events') {
+        document.querySelectorAll(".nav a[data-page]").forEach(link => {
+            link.addEventListener("click", event => {
+                event.preventDefault();
+
+                const page = link.getAttribute("data-page");
+
+                if (page === "dashboard") {
+                    renderDashboard();
+                    showPage("dashboard");
+                }
+
+                if (page === "events") {
                     renderEvents();
-                    showPage('events');
+                    showPage("events");
                 }
-                if (page === 'my-assignments') {
+
+                if (page === "assignments") {
                     renderMyAssignments();
-                    showPage('assignments');
+                    showPage("assignments");
                 }
-                if (page === 'admin') showPage('admin');
-                updateNav();
+
+                if (page === "admin" && currentUser?.is_admin) {
+                    renderAdminStaff();
+                    showPage("admin");
+                }
             });
         });
 
-        document.getElementById('goto-events').addEventListener('click', () => {
+        document.getElementById("goto-events").addEventListener("click", () => {
             renderEvents();
-            showPage('events');
-            updateNav();
+            showPage("events");
         });
-        document.getElementById('goto-assignments').addEventListener('click', () => {
+
+        document.getElementById("goto-assignments").addEventListener("click", () => {
             renderMyAssignments();
-            showPage('assignments');
-            updateNav();
+            showPage("assignments");
         });
 
-        // Admin buttons
-        document.getElementById('admin-staff-btn').addEventListener('click', renderAdminStaff);
-        document.getElementById('admin-events-btn').addEventListener('click', renderAdminEvents);
-        document.getElementById('admin-assignments-btn').addEventListener('click', renderAdminAssignments);
+        document.getElementById("admin-staff-btn").addEventListener("click", renderAdminStaff);
+        document.getElementById("admin-events-btn").addEventListener("click", renderAdminEvents);
+        document.getElementById("admin-assignments-btn").addEventListener("click", renderAdminAssignments);
 
-        // Initialization
+        // ---------- INIT ----------
         initData();
-        const savedUser = localStorage.getItem('currentUser');
+
+        const savedUser = localStorage.getItem("currentUser");
         if (savedUser) {
-            const user = JSON.parse(savedUser);
+            const parsedUser = JSON.parse(savedUser);
             const staff = getStaff();
-            const validUser = staff.find(s => s.id === user.id);
+            const validUser = staff.find(person => person.id === parsedUser.id);
+
             if (validUser) {
                 currentUser = validUser;
-                authSection.classList.add('hidden');
-                dashboardSection.classList.remove('hidden');
-                if (currentUser.is_admin) adminLink.classList.remove('hidden');
+                authSection.classList.add("hidden");
+                updateHeaderForAuth();
                 renderDashboard();
-                showPage('dashboard');
-                updateNav();
+                showPage("dashboard");
             } else {
                 logout();
             }
