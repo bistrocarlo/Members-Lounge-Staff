@@ -1,353 +1,834 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alora Macedon – Request for Tender</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            background: #e9ecef;
-            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
-            line-height: 1.5;
-            padding: 2rem 1rem;
-            color: #1e2a3a;
-        }
-        .tender-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1);
-            padding: 2rem 2rem 3rem;
-        }
-        h1, h2, h3 {
-            margin-top: 1.5em;
-            margin-bottom: 0.5em;
-            font-weight: 600;
-        }
-        h1 {
-            font-size: 1.9rem;
-            margin-top: 0;
-            color: #0b3b2f;
-            border-left: 5px solid #2c7a4d;
-            padding-left: 1rem;
-        }
-        h2 {
-            font-size: 1.5rem;
-            border-bottom: 2px solid #dee2e6;
-            padding-bottom: 0.3rem;
-        }
-        hr {
-            margin: 1.5rem 0;
-        }
-        .section {
-            margin: 2rem 0;
-        }
-        .sub-section {
-            margin: 1.2rem 0;
-        }
-        ul, .checklist {
-            margin: 0.75rem 0 0.75rem 1.5rem;
-        }
-        .checkbox-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin: 0.5rem 0 1rem;
-        }
-        .checkbox-group label {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            background: #f8f9fa;
-            padding: 0.3rem 0.8rem;
-            border-radius: 30px;
-            border: 1px solid #ced4da;
-        }
-        input[type="checkbox"], input[type="radio"] {
-            width: 1.1em;
-            height: 1.1em;
-        }
-        textarea, input[type="text"], input[type="email"] {
-            width: 100%;
-            padding: 0.6rem;
-            border: 1px solid #adb5bd;
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 0.9rem;
-            margin-top: 0.3rem;
-        }
-        textarea {
-            min-height: 80px;
-            resize: vertical;
-        }
-        .qa-block {
-            background: #fef9e6;
-            border-left: 4px solid #e9b741;
-            padding: 1rem 1.2rem;
-            margin: 1rem 0;
-            border-radius: 10px;
-        }
-        .declaration {
-            background: #f1f3f5;
-            padding: 1.2rem;
-            border-radius: 12px;
-            margin-top: 2rem;
-        }
-        .sign-line {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            margin-top: 1rem;
-        }
-        .sign-field {
-            flex: 1;
-            min-width: 180px;
-        }
-        button {
-            background: #2c7a4d;
-            color: white;
-            border: none;
-            padding: 0.8rem 1.8rem;
-            font-size: 1rem;
-            border-radius: 40px;
-            cursor: pointer;
-            font-weight: 600;
-            margin-top: 1.5rem;
-            transition: background 0.2s;
-        }
-        button:hover {
-            background: #1e5a3a;
-        }
-        .print-button {
-            background: #495057;
-            margin-right: 1rem;
-        }
-        .footer-note {
-            margin-top: 2rem;
-            font-size: 0.8rem;
-            text-align: center;
-            color: #6c757d;
-            border-top: 1px solid #dee2e6;
-            padding-top: 1.5rem;
-        }
-        @media (max-width: 700px) {
-            .tender-container {
-                padding: 1.2rem;
-            }
-        }
-        @media print {
-            body {
-                background: white;
-                padding: 0;
-            }
-            .tender-container {
-                box-shadow: none;
-                padding: 0;
-                max-width: 100%;
-            }
-            button {
-                display: none;
-            }
-            input, textarea {
-                border: 1px solid #000;
-                background: transparent;
-            }
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Members Lounge | Event Signature Selection</title>
+  <!-- Elegant fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --deep-charcoal: #1E1E1E;
+      --warm-gold: #C6A43F;
+      --soft-gold: rgba(198, 164, 63, 0.15);
+      --cream: #FAF7F2;
+      --pure-white: #FFFFFF;
+      --light-gray: #F0F0F0;
+      --muted-text: #6B6B6B;
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.12);
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --transition: all 0.2s ease;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--cream);
+      color: var(--deep-charcoal);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .gold {
+      color: var(--warm-gold);
+    }
+
+    header {
+      flex-shrink: 0;
+      background: var(--pure-white);
+      padding: 20px 20px;
+      text-align: center;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .brandline {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .logoWrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 20px;
+      background: var(--pure-white);
+      border-radius: 60px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .logoImg {
+      max-height: 60px;
+      width: auto;
+      display: block;
+    }
+
+    .logoFallback {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      font-size: 14px;
+      color: var(--deep-charcoal);
+    }
+
+    h1 {
+      margin: 10px 0 5px;
+      font-size: 2rem;
+      font-weight: 900;
+    }
+
+    .sub {
+      color: var(--muted-text);
+      font-size: 0.95rem;
+      font-weight: 300;
+    }
+
+    .tabs-wrap {
+      flex-shrink: 0;
+      background: rgba(255,255,255,0.95);
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+      padding: 12px 0;
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .tab {
+      cursor: pointer;
+      user-select: none;
+      padding: 8px 20px;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      background: transparent;
+      color: var(--muted-text);
+      border: 1px solid transparent;
+      transition: var(--transition);
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tab:hover {
+      color: var(--warm-gold);
+      background: var(--soft-gold);
+      border-color: var(--soft-gold);
+    }
+
+    .tab.active {
+      background: var(--warm-gold);
+      color: white;
+      border-color: var(--warm-gold);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .tab.nextTab {
+      background: var(--soft-gold);
+      color: var(--warm-gold);
+      border-color: var(--warm-gold);
+      font-weight: 700;
+    }
+
+    .tab.nextTab:hover {
+      background: var(--warm-gold);
+      color: white;
+    }
+
+    .page {
+      display: none;
+    }
+    .page.active {
+      display: block;
+    }
+
+    main {
+      flex: 1 1 auto;
+      overflow-y: auto;
+      padding: 20px;
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: var(--pure-white);
+      border: none;
+      border-radius: var(--radius-lg);
+      padding: 30px;
+      box-shadow: var(--shadow-md);
+      transition: var(--transition);
+      margin-bottom: 20px;
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-lg);
+    }
+
+    .card h2 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: var(--deep-charcoal);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hint {
+      color: var(--muted-text);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 920px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--muted-text);
+      margin-bottom: 6px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid #E5E5E5;
+      background: var(--pure-white);
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      transition: var(--transition);
+      margin-bottom: 20px;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--warm-gold);
+      box-shadow: 0 0 0 3px var(--soft-gold);
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-top: 25px;
+    }
+
+    .btn {
+      cursor: pointer;
+      border: none;
+      background: var(--pure-white);
+      color: var(--deep-charcoal);
+      padding: 10px 22px;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      border: 1px solid #E5E5E5;
+      min-width: 120px;
+    }
+
+    .btn:hover {
+      background: var(--soft-gold);
+      border-color: var(--warm-gold);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn.primary {
+      background: var(--warm-gold);
+      color: white;
+      border-color: var(--warm-gold);
+    }
+
+    .btn.primary:hover {
+      background: #b18f35;
+      border-color: #b18f35;
+    }
+
+    .btn.ghost {
+      background: transparent;
+      border: 1px solid var(--warm-gold);
+      color: var(--warm-gold);
+    }
+
+    .btn.ghost:hover {
+      background: var(--warm-gold);
+      color: white;
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 1rem;
+      margin: 20px 0;
+    }
+
+    .table td {
+      padding: 12px 0;
+      border-bottom: 1px solid #F0F0F0;
+    }
+
+    .table td:last-child {
+      text-align: right;
+      font-weight: 700;
+      color: var(--warm-gold);
+    }
+
+    .total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 20px;
+      background: var(--soft-gold);
+      border-radius: var(--radius-md);
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-top: 20px;
+    }
+
+    .total div:last-child {
+      color: var(--warm-gold);
+      font-size: 1.4rem;
+    }
+
+    .kpi {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 20px;
+      margin-top: 25px;
+    }
+
+    .kpi .box {
+      background: var(--pure-white);
+      border: 1px solid #F0F0F0;
+      border-radius: var(--radius-md);
+      padding: 15px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .kpi .box .label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--muted-text);
+      margin-bottom: 6px;
+    }
+
+    .kpi .box .value {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--deep-charcoal);
+    }
+
+    .course {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 2px dashed #F0F0F0;
+    }
+
+    .course h3 {
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .optionsGrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 15px;
+      margin: 15px 0;
+    }
+
+    .opt {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px;
+      background: var(--pure-white);
+      border: 1px solid #F0F0F0;
+      border-radius: var(--radius-md);
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .opt:hover {
+      border-color: var(--warm-gold);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .opt input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: var(--warm-gold);
+      flex-shrink: 0;
+    }
+
+    .optNum {
+      flex-shrink: 0;
+      width: 26px;
+      height: 26px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--soft-gold);
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--warm-gold);
+    }
+
+    .optLabel {
+      flex: 1;
+      font-weight: 600;
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    .hotTag {
+      display: inline-block;
+      margin-left: 8px;
+      padding: 2px 8px;
+      background: rgba(198, 164, 63, 0.15);
+      border-radius: 30px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--warm-gold);
+    }
+
+    .count {
+      font-size: 0.9rem;
+      color: var(--muted-text);
+      margin: 10px 0 5px;
+    }
+
+    .warnBox {
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: var(--radius-md);
+      background: #fff3e0;
+      border-left: 4px solid #f5a623;
+      color: #8a6d2b;
+      display: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .statusRow {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 20px 0;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      background: var(--soft-gold);
+      color: var(--warm-gold);
+    }
+
+    .badge.ok {
+      background: #e3f5e9;
+      color: #1e7b4c;
+    }
+
+    .badge.warn {
+      background: #fff3e0;
+      color: #b45b0a;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 40px;
+      background: var(--soft-gold);
+      color: var(--deep-charcoal);
+      font-size: 0.85rem;
+      margin: 0 6px 6px 0;
+      font-weight: 500;
+    }
+
+    .summary-section {
+      margin: 20px 0;
+    }
+
+    .summary-section h3 {
+      font-size: 1.2rem;
+      margin: 20px 0 10px;
+      color: var(--warm-gold);
+      border-bottom: 1px dashed #E5E5E5;
+      padding-bottom: 5px;
+    }
+
+    .summary-line {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.95rem;
+      padding: 8px 0;
+    }
+
+    .summary-line.total {
+      font-weight: 700;
+      border-top: 2px solid var(--warm-gold);
+      margin-top: 20px;
+      padding-top: 20px;
+      font-size: 1.2rem;
+    }
+
+    .summary-items {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0;
+    }
+
+    .summary-items li {
+      padding: 4px 0;
+      color: var(--muted-text);
+    }
+
+    #chips {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 15px 0;
+    }
+
+    footer {
+      flex-shrink: 0;
+      text-align: center;
+      padding: 15px 20px;
+      color: var(--muted-text);
+      font-size: 0.85rem;
+      border-top: 1px solid rgba(0,0,0,0.05);
+      background: var(--pure-white);
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 1.6rem; }
+      .tabs { overflow-x: auto; justify-content: flex-start; padding-bottom: 5px; }
+      .row { grid-template-columns: 1fr; gap: 10px; }
+      .card { padding: 20px; }
+      .btn { min-width: 100%; }
+      .optionsGrid { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      .tabs-wrap, .actions, .btn, footer { display: none !important; }
+      body { background: white; overflow: visible; }
+      main { overflow: visible; }
+      .card { box-shadow: none; border: 1px solid #ddd; }
+    }
+  </style>
 </head>
+
 <body>
-<div class="tender-container">
-    <h1>REQUEST FOR TENDER (RFT)<br>ALORA MACEDON – VENUE OPERATIONS & MANAGEMENT SERVICES</h1>
-    <p><strong>Issued by:</strong> Stephanie Reade, Owner<br>
-    <strong>Venue:</strong> Alora Macedon<br>
-    <strong>Date:</strong> <input type="text" placeholder="Enter date" style="width: auto; display: inline-block; width: 150px;"></p>
+  <header>
+    <div class="brandline">
+      <div class="logoWrap">
+        <img class="logoImg" id="brandLogo" src="members_lounge_logo.png" alt="Brand Logo"
+             onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='inline-flex';">
+        <span class="logoFallback" id="logoFallback" style="display:none;">
+          <i class="fas fa-crown" style="color: var(--warm-gold);"></i>
+          <span>THE MEMBERS LOUNGE</span>
+        </span>
+      </div>
+    </div>
+    <h1><span class="gold" id="brandTitle">Event Signature Selection</span></h1>
+    <div class="sub" id="brandSubtitle">Reggio Calabria Club, Parkville</div>
+  </header>
 
-    <!-- Section 1: Introduction -->
-    <div class="section">
-        <h2>1. INTRODUCTION</h2>
-        <p>Alora Macedon is a function centre with a beautiful event space, three guest accommodations, a pool, extensive grounds, and a separate ceremony shed located a distance from the main hall. We host weddings, corporate events, and private functions.</p>
-        <p>We are seeking a dedicated person or team to manage the day‑to‑day operations, maintenance, and event support. This is a critical role because we have a tight turnaround between events: guests check out at 10:00 am, and the next event arrives at 12:00 pm. We need a reliable, honest, and capable person who can either perform the work themselves or coordinate a team of subcontractors.</p>
-        <p>This document outlines our requirements. Please read it carefully and respond with your proposal, answering all questions in Section 6.</p>
+  <div class="tabs-wrap">
+    <div class="tabs" role="tablist">
+      <div class="tab active" data-page="quote"><i class="fas fa-file-invoice"></i> Quote</div>
+      <div class="tab" data-page="couple"><i class="fas fa-heart"></i> Couple</div>
+      <div class="tab" data-page="food"><i class="fas fa-utensils"></i> Food</div>
+      <div class="tab" data-page="drinks"><i class="fas fa-wine-glass-alt"></i> Drinks</div>
+      <div class="tab" data-page="summary"><i class="fas fa-clipboard-list"></i> Summary</div>
+      <div class="tab nextTab" id="nextTab">Next <i class="fas fa-arrow-right"></i></div>
     </div>
+  </div>
 
-    <!-- Section 2: Venue overview -->
-    <div class="section">
-        <h2>2. THE VENUE – QUICK OVERVIEW</h2>
-        <ul>
-            <li>Main function hall</li>
-            <li>Separate ceremony shed (located a distance from the main hall)</li>
-            <li>Three guest accommodations (each with bedrooms, bathrooms, living areas)</li>
-            <li>Outdoor pool</li>
-            <li>Gardens and grounds (including the area between the shed and main hall)</li>
-            <li>Kitchen facilities (used by caterers)</li>
-            <li>No commercial truck access for waste – bins must be moved by caddy to roadside</li>
-        </ul>
-    </div>
-
-    <!-- Section 3: Staffing models -->
-    <div class="section">
-        <h2>3. WHAT WE ARE LOOKING FOR</h2>
-        <p>We are open to different staffing models. You can propose:</p>
-        <div class="checkbox-group">
-            <label><input type="checkbox"> A single, multi‑skilled caretaker who lives on‑site (or nearby) and handles most tasks personally.</label>
-            <label><input type="checkbox"> A husband‑and‑wife or small team who together cover all services.</label>
-            <label><input type="checkbox"> A manager who coordinates a network of trusted subcontractors (cleaners, gardeners, waste removal, etc.).</label>
-            <label><input type="checkbox"> A hybrid: on‑site caretaker who does some tasks and subcontracts specialist work.</label>
-        </div>
-        <p>Whichever model you propose, we need one main contact person who takes responsibility for ensuring everything is done to our standards.</p>
-    </div>
-
-    <!-- Section 4: Scope of work (condensed for brevity; full content from original) -->
-    <div class="section">
-        <h2>4. SCOPE OF WORK – WHAT NEEDS TO BE DONE</h2>
-        <p>Below is the full list of services we require. In your proposal, tell us which services you will personally provide, and which (if any) you will subcontract.</p>
-        <!-- I'll include all service items to keep complete, but to save space I'll list them with brief bullets as in original tender -->
-        <div class="sub-section"><strong>A. CLEANING & TURNAROUND (Critical)</strong> – Clean 3 accommodations, main hall, ceremony shed within 10am‑12pm; simultaneous cleaning due to distance; handle sudden repairs.</div>
-        <div class="sub-section"><strong>B. WASTE & RECYCLING LOGISTICS</strong> – Manage caddy system; general waste, recycling, cardboard; roadside placement.</div>
-        <div class="sub-section"><strong>C. GARDENING & GROUNDS</strong> – Mowing, edging, weed control; pathways between shed and hall.</div>
-        <div class="sub-section"><strong>D. POOL MAINTENANCE</strong> – Chemical balance, cleaning, equipment checks.</div>
-        <div class="sub-section"><strong>E. EVENT SUPPORT</strong> – Open/close venue; bump‑in/out; during‑event support; coordinate suppliers.</div>
-        <div class="sub-section"><strong>F. HANDYMAN & MINOR REPAIRS</strong> – Small fixes; arrange specialists for larger issues.</div>
-        <div class="sub-section"><strong>G. COMPLIANCE & SAFETY</strong> – Test & tag; fire safety; emergency management (marshalling area, megaphone/walkie‑talkie, drills); non‑slip surfaces.</div>
-        <div class="sub-section"><strong>H. SUPPLIER INSURANCE & RECORD KEEPING</strong> – Collect public liability certificates; maintain per‑event file.</div>
-        <div class="sub-section"><strong>I. ACCESS & SECURITY</strong> – Manage remote disarm, pre‑access codes, fobs; on‑site supplier coordination.</div>
-        <div class="sub-section"><strong>J. KITCHEN & FOOD SAFETY</strong> – Ensure caterers follow food safety; integrate kitchen into emergency plans.</div>
-    </div>
-
-    <!-- Section 5: What to provide -->
-    <div class="section">
-        <h2>5. WHAT YOU NEED TO PROVIDE IN YOUR TENDER</h2>
-        <ol style="margin-left: 1.5rem;">
-            <li>Your preferred staffing model: <input type="text" placeholder="Describe or tick above" style="width: 300px;"></li>
-            <li>Description of how you will deliver services, especially across two buildings.</li>
-            <li>Relevant experience.</li>
-            <li>Availability (weekends, 10am‑12pm window).</li>
-            <li>Fee structure.</li>
-            <li>Answers to Section 6 questionnaire.</li>
-        </ol>
-        <textarea rows="3" placeholder="Use this space to describe your plan, experience, availability, and fee structure..."></textarea>
-    </div>
-
-    <!-- Section 6: Questionnaire -->
-    <div class="section">
-        <h2>6. APPLICANT QUESTIONNAIRE (MUST BE COMPLETED)</h2>
-        <div class="qa-block">
-            <p>Q1. How would you handle the 10:00 am – 12:00 pm turnover with three accommodations, main hall, and ceremony shed? Describe process, number of people, and how you handle last‑minute repairs.</p>
-            <textarea rows="3"></textarea>
-        </div>
-        <div class="qa-block">
-            <p>Q2. Waste trucks cannot access the venue. How would you manage waste, recycling, and cardboard after a large wedding using caddy system?</p>
-            <textarea rows="3"></textarea>
-        </div>
-        <div class="qa-block">
-            <p>Q3. Experience with emergency management? How would you keep Alora Macedon ready for an emergency (marshalling, alarms, megaphone/walkie‑talkie, drills) considering two buildings?</p>
-            <textarea rows="3"></textarea>
-        </div>
-        <div class="qa-block">
-            <p>Q4. How would you ensure every supplier has current public liability insurance? Describe your system for collecting and filing certificates.</p>
-            <textarea rows="3"></textarea>
-        </div>
-        <div class="qa-block">
-            <p>Q5. Manage remote disarm, pre‑access codes, and fobs across both buildings. How do you keep access secure while letting suppliers in?</p>
-            <textarea rows="3"></textarea>
-        </div>
-        <div class="qa-block">
-            <p>Q6. Approach to gardening and grounds? Do you have own equipment? How do you maintain pathways between shed and main hall?</p>
-            <textarea rows="3"></textarea>
-        </div>
-        <div class="qa-block">
-            <p>Q7. Handle unexpected maintenance issues (broken pipe, faulty lock) during event or before arrival, especially if issue is in one building while you're in another?</p>
-            <textarea rows="3"></textarea>
-        </div>
-        <div class="qa-block">
-            <p>Q8. Previous experience with function centres, weddings, or multiple‑building venues? Biggest challenge overcome?</p>
-            <textarea rows="3"></textarea>
-        </div>
-        <div class="qa-block">
-            <p>Q9. Availability for weekends and flexible hours? Any restrictions?</p>
-            <textarea rows="3"></textarea>
-        </div>
-        <div class="qa-block">
-            <p>Q10. Anything else you'd like us to know about your skills or work style?</p>
-            <textarea rows="3"></textarea>
-        </div>
-    </div>
-
-    <!-- Section 7: Submission -->
-    <div class="section">
-        <h2>7. HOW TO SUBMIT YOUR TENDER</h2>
-        <p>Please email your completed tender (including your proposal and answers to the questionnaire) to:</p>
-        <p><strong>Stephanie Reade</strong><br>
-        Email: <input type="email" placeholder="recipient email (optional)"> <br>
-        Phone: <input type="text" placeholder="Your phone"> <br>
-        Submission deadline: <input type="text" placeholder="DD/MM/YYYY"></p>
-    </div>
-
-    <!-- Section 8: Declaration -->
-    <div class="declaration">
-        <h2>8. DECLARATION</h2>
-        <p>By submitting this tender, I/we declare that the information provided is true and correct. I/we understand that Alora Macedon may verify references and insurance details.</p>
-        <div class="sign-line">
-            <div class="sign-field"><label>Name:</label><input type="text" placeholder="Full name"></div>
-            <div class="sign-field"><label>Signature:</label><input type="text" placeholder="Sign or type name"></div>
-            <div class="sign-field"><label>Date:</label><input type="text" placeholder="DD/MM/YYYY"></div>
-        </div>
-    </div>
-
-    <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-top: 2rem;">
-        <button class="print-button" onclick="window.print();">🖨️ Print / Save as PDF</button>
-        <button onclick="generateEmailSummary();">📧 Prepare for Email</button>
-    </div>
-    <div class="footer-note">
-        Alora Macedon – Request for Tender | Complete and return by deadline.
-    </div>
-</div>
+  <main>
+    <section class="page active" id="page-quote"><div class="grid"><div class="card"><h2><i class="fas fa-calculator gold"></i> Indicative Quote</h2><div class="hint">Room hire + food courses + drinks + extras</div><div class="row"><div><label>Adults</label><input id="adults" type="number" min="0" value="120"></div><div><label>Children (Under 12)</label><input id="children" type="number" min="0" value="20"></div></div><label>Room Hire (AUD)</label><input id="roomHire" type="number" min="0" step="50" value="0"><div class="row"><div><label>Dry Hire (AUD)</label><input id="dryHire" type="number" min="0" step="50" value="0"></div><div><label>Security (AUD)</label><input id="security" type="number" min="0" step="50" value="0"></div></div><table class="table"><tbody> <tr><td>Room hire</td><td id="qRoom">$0.00</td></tr><tr><td>Food (course-driven)</td><td id="qFood">$0.00</td></tr><tr><td>Drinks</td><td id="qDrinks">$0.00</td></tr><tr><td>Dry hire</td><td id="qDry">$0.00</td></tr><tr><td>Security</td><td id="qSec">$0.00</td></tr></tbody></table><div class="total"><div>Total Estimated Cost</div><div id="qTotal">$0.00</div></div><div class="actions"><button class="btn" id="resetAll"><i class="fas fa-undo-alt"></i> Reset</button><button class="btn" id="printQuote"><i class="fas fa-print"></i> Print</button><button class="btn primary" id="nextQ">Next <i class="fas fa-arrow-right"></i></button></div></div><div class="card"><h2><i class="fas fa-chart-pie gold"></i> Quick Snapshot</h2><div class="statusRow"><span class="badge" id="foodCompleteBadge"><i class="fas fa-utensils"></i> Menu: Custom</span><span class="badge" id="drinksCompleteBadge"><i class="fas fa-wine-glass-alt"></i> Drinks: Draft</span></div><div class="kpi"><div class="box"><div class="label">Adults</div><div class="value" id="kpiAdults">120</div></div><div class="box"><div class="label">Children</div><div class="value" id="kpiChildren">20</div></div><div class="box"><div class="label">Food subtotal</div><div class="value" id="kpiFood">$0.00</div></div><div class="box"><div class="label">Avg per guest</div><div class="value" id="kpiAvg">$0.00</div></div></div></div></div></section>
+    <section class="page" id="page-couple"><div class="grid"><div class="card"><h2><i class="fas fa-user-friends gold"></i> Couple Details</h2><label>Couple Name</label><input id="coupleName" placeholder="Laura & Daniel"><div class="row"><div><label>Date of Choice</label><input id="weddingDate" type="date"></div><div><label>Venue Space</label><select id="venueSpace"><option value="sala">Sala Reggio Ballroom</option><option value="members">Members Lounge Restaurant</option><option value="fior">FIOR Parkville</option><option value="alora">ALORA Macedon</option></select></div></div><label>Email</label><input id="email" type="email" placeholder="name@email.com"><label>Phone</label><input id="phone" type="tel" placeholder="04xx xxx xxx"><label>Notes / Requirements</label><textarea id="notes" placeholder="Dietary notes, timing, styling…"></textarea><div class="actions"><button class="btn ghost" id="backC"><i class="fas fa-arrow-left"></i> Back</button><button class="btn primary" id="nextC">Next <i class="fas fa-arrow-right"></i></button></div></div><div class="card"><h2><i class="fas fa-map-marker-alt gold"></i> Venue Profile</h2><div id="venueProfileText" class="hint">Select a venue – ALORA Macedon has a custom menu (no deep fryer).</div></div></div></section>
+    <section class="page" id="page-food"><div class="card"><h2><i class="fas fa-utensils gold"></i> Food Builder (Course-Driven)</h2><div class="hint">Each course adds its fixed price if ≥1 item selected.</div><div class="actions"><button class="btn" type="button" id="selectAllBtn"><i class="fas fa-check-double"></i> Select All (up to max)</button><button class="btn" type="button" id="deselectAllBtn"><i class="fas fa-times"></i> Deselect All</button></div><div class="course" data-course="canapes"><h3>Canapés <span class="badge">max 3</span></h3><div class="optionsGrid" id="list-canapes"></div><div class="count" id="count-canapes">0 selected</div><div class="warnBox" id="warn-canapes"></div></div><div class="course" data-course="antipasto"><h3>Antipasto Plates <span class="badge">max 2 hot, max 5 cold</span></h3><div class="optionsGrid" id="list-antipasto"></div><div class="count" id="count-antipasto">Hot: 0/2 · Cold: 0/5</div><div class="warnBox" id="warn-antipasto"></div></div><div class="course" data-course="pasta"><h3>Entrée / Pasta <span class="badge">max 2</span></h3><div class="optionsGrid" id="list-pasta"></div><div class="count" id="count-pasta">0 selected</div><div class="warnBox" id="warn-pasta"></div></div><div class="course" data-course="mains"><h3>Mains <span class="badge">max 2</span></h3><div class="optionsGrid" id="list-mains"></div><div class="count" id="count-mains">0 selected</div><div class="warnBox" id="warn-mains"></div></div><div class="course" data-course="dessert"><h3>Dessert <span class="badge">max 1</span></h3><div class="optionsGrid" id="list-dessert"></div><div class="count" id="count-dessert">0 selected</div><div class="warnBox" id="warn-dessert"></div></div><div class="course"><h3>Supper / Late Night</h3><div class="hint" id="supperHint">Included course</div><div class="count" id="supperItemDisplay">Pizza</div></div><div class="course"><h3 style="margin-top:20px;">Optional Add-on: Fruit Platter</h3><label style="display:flex; align-items:center; gap:10px;"><input id="fruitPlatter" type="checkbox"> Add Fruit Platter (per table)</label><div class="row"><div><label>Estimated Tables</label><input id="tables" type="number" min="0" step="1" value="10"></div><div><label>Fruit platter / table (AUD)</label><input id="fruitPerTable" type="number" readonly value="35"></div></div></div><div class="actions"><button class="btn ghost" id="backF2"><i class="fas fa-arrow-left"></i> Back</button><button class="btn primary" id="nextF2">Next <i class="fas fa-arrow-right"></i></button></div></div></section>
+    <section class="page" id="page-drinks"><div class="grid"><div class="card"><h2><i class="fas fa-wine-glass-alt gold"></i> Drinks</h2><label>Drinks Option</label><select id="drinkMode"><option value="bar">Bar Prices (no package)</option><option value="custom">Custom per Adult (set price)</option></select><div class="row" id="customDrinkRow" style="display:none"><div><label>Custom drink price per adult (AUD)</label><input id="customDrinkPrice" type="number" min="0" step="1" value="0"></div><div><label>Custom drink notes</label><input id="customDrinkNote" placeholder="e.g., premium package 4hrs"></div></div><div class="hint" id="drinkInfo"></div><div class="actions"><button class="btn ghost" id="backD"><i class="fas fa-arrow-left"></i> Back</button><button class="btn primary" id="nextD">Next <i class="fas fa-arrow-right"></i></button></div></div><div class="card"><h2><i class="fas fa-info-circle gold"></i> Status</h2><div class="statusRow"><span class="badge" id="drinksCompleteBadge2"><i class="fas fa-wine-glass-alt"></i> Drinks: Draft</span></div></div></div></section>
+    <section class="page" id="page-summary"><div class="grid"><div class="card"><h2><i class="fas fa-clipboard-check gold"></i> Final Summary</h2><div id="finalSummary"></div><div class="actions"><button class="btn" id="copySummary"><i class="fas fa-copy"></i> Copy</button><button class="btn" id="printSummary"><i class="fas fa-print"></i> Print</button></div><div class="actions"><button class="btn ghost" id="backS"><i class="fas fa-arrow-left"></i> Back</button><button class="btn primary" id="toQuote"><i class="fas fa-home"></i> Back to Quote</button></div></div><div class="card"><h2><i class="fas fa-tags gold"></i> Selected Items</h2><div id="chips"></div><div id="summaryCourseCounts"></div></div></div></section>
+  </main>
+  <footer id="brandFooter">Members Lounge | Reggio Calabria Club, Parkville</footer>
 
 <script>
-function generateEmailSummary() {
-    // Collect all textarea answers and key fields into a plain text summary
-    let summary = "ALORA MACEDON TENDER SUBMISSION\n";
-    summary += "--------------------------------\n\n";
+  (function(){
+    const $ = id => document.getElementById(id);
+    const escapeHtml = str => String(str||"").replace(/[&<>]/g, m => m==='&'?'&amp;':m==='<'?'&lt;':'&gt;');
+    
+    const VENUE_PROFILES = {
+      sala: { label:"Sala Reggio Ballroom", logo:"members_lounge_logo.png", subtitle:"Reggio Calabria Club, Parkville", footer:"Members Lounge | Reggio Calabria Club, Parkville", defaults:{roomHire:0,dryHire:0,security:0} },
+      members: { label:"Members Lounge Restaurant", logo:"members_lounge_logo.png", subtitle:"Reggio Calabria Club, Parkville", footer:"Members Lounge | Reggio Calabria Club, Parkville", defaults:{roomHire:0,dryHire:0,security:0} },
+      fior: { label:"FIOR Parkville", logo:"fior.png", subtitle:"FIOR, Parkville", footer:"FIOR | Parkville", defaults:{roomHire:0,dryHire:0,security:0} },
+      alora: { label:"ALORA Macedon", logo:"alora.png", subtitle:"ALORA, Macedon", footer:"ALORA | Macedon", defaults:{roomHire:0,dryHire:0,security:0} }
+    };
 
-    // Get main text fields
-    const dateInput = document.querySelector('.tender-container input[placeholder="Enter date"]');
-    if (dateInput && dateInput.value) summary += "Date: " + dateInput.value + "\n\n";
+    const BASE_MENU = {
+      canapes: ["Arancini","Focaccia fingers","Prawn spring rolls","Parmigiano bites","Caprese empanadas","Croquettes"],
+      antipasto: ["Bruschettta di pomodoro","Salumi selection","Feta & Kefalograviera","Tiropita","Trio of dips with pita","Warm marinated olives","Eggplant parmigiana","Bocconcini & ricotta","Calamari fritti","Meatballs in sugo","Cevapi","Italian pork sausages"],
+      pasta: ["Pasta al Ragú (three meats, tomato)","Gnocchi Pesto (basil, parmesan & nut-free)","Casarecce Amatriciana (guanciale & pecorino, tomato)","Pasta Napoli (tomato & basil)"],
+      mains: ["Chargrilled chicken breast with a chimichurri dressing","Italian herb crumbed barramundi fillet","Lamb shank with white wine and tomato","Braised beef short ribs in a red wine jus","Bondiola, pork fillet with a salmoriglio sauce","Stuffed pepper with seasonal vegetables and cauliflower steak"],
+      dessert: ["Sharing assorted desserts (mini cannoli & baklava)","Tiramisu & vanilla cheese cake (alternating)","Gelato dessert (cassata, tartufo, baci)"]
+    };
+    
+    const ALORA_MENU = {
+      canapes: BASE_MENU.canapes.map(i => i==="Arancini"?"Prosciutto-wrapped melon":i==="Prawn spring rolls"?"Caprese skewers":i),
+      antipasto: (() => {
+        const base = [...BASE_MENU.antipasto];
+        const idx = base.indexOf("Eggplant parmigiana");
+        if (idx !== -1) base.splice(idx, 1, "Caprese salad, buffalo mozzarella with heirloom tomatoes and basil pesto");
+        return base;
+      })(),
+      pasta: ["Baked gnocchi", "Spinach and ricotta ravioli"],
+      mains: [...BASE_MENU.mains],
+      dessert: [...BASE_MENU.dessert]
+    };
+    
+    const HOT_ANTIPASTO = {
+      "Calamari fritti": true,
+      "Chargrilled prawns": true,
+      "Cevapi": true,
+      "Meatballs in sugo": true,
+      "Italian pork sausages": true
+    };
+    const COURSE_PRICE = { canapes:12, antipasto:28, pasta:15, mains:34, dessert:10 };
+    const COURSE_MAX = { canapes:3, antipasto:7, pasta:2, mains:2, dessert:1 };
 
-    const modelDesc = document.querySelector('.section ol li input[type="text"]');
-    if (modelDesc && modelDesc.value) summary += "Staffing model: " + modelDesc.value + "\n\n";
+    let currentVenue = "members";
+    function getMenu() { return currentVenue === "alora" ? ALORA_MENU : BASE_MENU; }
+    function getSupperItem() { return currentVenue === "alora" ? "Mini Italian porchetta roll panini" : "Pizza"; }
 
-    const planTextarea = document.querySelector('.section textarea[placeholder*="plan"]');
-    if (planTextarea && planTextarea.value) summary += "Your plan / experience / fee structure:\n" + planTextarea.value + "\n\n";
+    function updateSupperDisplay() {
+      const supperDisplay = document.getElementById("supperItemDisplay");
+      if (supperDisplay) supperDisplay.textContent = getSupperItem();
+    }
 
-    // Questionnaire answers
-    const qBlocks = document.querySelectorAll('.qa-block');
-    let qNum = 1;
-    qBlocks.forEach(block => {
-        const textarea = block.querySelector('textarea');
-        if (textarea && textarea.value.trim() !== "") {
-            summary += `Q${qNum}: ${textarea.value.trim()}\n\n`;
-        }
-        qNum++;
+    function buildFoodLists(){
+      const menu = getMenu();
+      for(let c of ['canapes','antipasto','pasta','mains','dessert']){
+        const container = document.getElementById(`list-${c}`);
+        if(!container) continue;
+        container.innerHTML = '';
+        menu[c].forEach((item,idx)=>{
+          const isHot = (c==='antipasto' && HOT_ANTIPASTO[item]);
+          const div = document.createElement('div'); div.className='opt';
+          div.innerHTML = `<input type="checkbox" data-course="${c}" value="${escapeHtml(item)}" id="cb-${c}-${idx}"><span class="optNum">${idx+1}</span><label for="cb-${c}-${idx}" class="optLabel">${escapeHtml(item)}${isHot?'<span class="hotTag">HOT</span>':''}</label>`;
+          container.appendChild(div);
+        });
+      }
+      attachLimitEvents();
+      enforceAntipastoLimit();
+      ['canapes','pasta','mains','dessert'].forEach(c => enforceCourseLimit(c));
+      updateSupperDisplay();
+      renderAll();
+    }
+
+    function attachLimitEvents(){
+      document.querySelectorAll('input[type="checkbox"][data-course]').forEach(cb => {
+        cb.removeEventListener('change', handleCourseChange);
+        cb.addEventListener('change', handleCourseChange);
+      });
+    }
+    function handleCourseChange(e){ const c = e.target.dataset.course; if(c==='antipasto') enforceAntipastoLimit(); else enforceCourseLimit(c); renderAll(); }
+    function enforceCourseLimit(course){
+      if(course==='antipasto') return;
+      const max = COURSE_MAX[course];
+      const checked = Array.from(document.querySelectorAll(`input[data-course="${course}"]:checked`));
+      if(checked.length > max) checked[max].checked = false;
+      const cnt = document.querySelectorAll(`input[data-course="${course}"]:checked`).length;
+      const cntSpan = document.getElementById(`count-${course}`);
+      if(cntSpan) cntSpan.textContent = `${cnt} selected (max ${max})`;
+      const warn = document.getElementById(`warn-${course}`);
+      if(warn) warn.style.display = cnt >= max ? 'block' : 'none';
+    }
+    function enforceAntipastoLimit(){
+      const hot = Array.from(document.querySelectorAll('input[data-course="antipasto"]:checked')).filter(cb => HOT_ANTIPASTO[cb.value]);
+      const cold = Array.from(document.querySelectorAll('input[data-course="antipasto"]:checked')).filter(cb => !HOT_ANTIPASTO[cb.value]);
+      if(hot.length>2) hot[2].checked = false;
+      if(cold.length>5) cold[5].checked = false;
+      const newHot = Array.from(document.querySelectorAll('input[data-course="antipasto"]:checked')).filter(cb => HOT_ANTIPASTO[cb.value]);
+      const newCold = Array.from(document.querySelectorAll('input[data-course="antipasto"]:checked')).filter(cb => !HOT_ANTIPASTO[cb.value]);
+      const countSpan = document.getElementById('count-antipasto');
+      if(countSpan) countSpan.textContent = `Hot: ${newHot.length}/2 · Cold: ${newCold.length}/5`;
+      const warn = document.getElementById('warn-antipasto');
+      if(warn) warn.style.display = (newHot.length===2 || newCold.length===5) ? 'block' : 'none';
+    }
+    function getSelections(){ let sel={canapes:[],antipasto:[],pasta:[],mains:[],dessert:[]}; document.querySelectorAll('input[type="checkbox"][data-course]:checked').forEach(cb=>sel[cb.dataset.course].push(cb.value)); return sel; }
+    function calculateFood(){
+      const adults = Number($('adults').value||0), children = Number($('children').value||0);
+      const sel = getSelections();
+      let perAdult = 0;
+      if(sel.canapes.length) perAdult += COURSE_PRICE.canapes;
+      if(sel.antipasto.length) perAdult += COURSE_PRICE.antipasto;
+      if(sel.pasta.length) perAdult += COURSE_PRICE.pasta;
+      if(sel.mains.length) perAdult += COURSE_PRICE.mains;
+      if(sel.dessert.length) perAdult += COURSE_PRICE.dessert;
+      let total = adults * perAdult + children * perAdult * 0.3;
+      if($('fruitPlatter')?.checked) total += (Number($('tables').value||0) * 35);
+      return total;
+    }
+    function calculateDrinks(){
+      const adults = Number($('adults').value||0);
+      if($('drinkMode').value === 'custom') return adults * Number($('customDrinkPrice').value||0);
+      return 0;
+    }
+    function renderAll(){
+      const adults = Number($('adults').value||0), children = Number($('children').value||0);
+      const room = Number($('roomHire').value||0), dry = Number($('dryHire').value||0), sec = Number($('security').value||0);
+      const food = calculateFood(), drinks = calculateDrinks(), total = room+dry+sec+food+drinks;
+      $('qRoom').textContent = `$${room.toLocaleString('en-AU')}`; $('qDry').textContent = `$${dry.toLocaleString('en-AU')}`; $('qSec').textContent = `$${sec.toLocaleString('en-AU')}`;
+      $('qFood').textContent = `$${food.toLocaleString('en-AU')}`; $('qDrinks').textContent = `$${drinks.toLocaleString('en-AU')}`; $('qTotal').textContent = `$${total.toLocaleString('en-AU')}`;
+      $('kpiAdults').textContent = adults; $('kpiChildren').textContent = children; $('kpiFood').textContent = `$${food.toLocaleString('en-AU')}`;
+      const avg = (adults+children) ? total/(adults+children) : 0; $('kpiAvg').textContent = `$${avg.toLocaleString('en-AU')}`;
+      const hasFood = Object.values(getSelections()).some(a=>a.length); $('foodCompleteBadge').innerHTML = `<i class="fas fa-utensils"></i> ${hasFood ? 'Menu Ready' : 'Menu Empty'}`;
+      $('foodCompleteBadge').className = `badge ${hasFood?'ok':'warn'}`;
+      const drinkMode = $('drinkMode').value; const drinkStatus = drinkMode==='bar' ? 'Bar Pricing' : 'Custom Drinks';
+      $('drinksCompleteBadge').innerHTML = `<i class="fas fa-wine-glass-alt"></i> ${drinkStatus}`; $('drinksCompleteBadge').className = `badge ${drinkMode==='bar'?'warn':'ok'}`;
+      if($('drinksCompleteBadge2')) { $('drinksCompleteBadge2').innerHTML = `<i class="fas fa-wine-glass-alt"></i> ${drinkStatus}`; $('drinksCompleteBadge2').className = `badge ${drinkMode==='bar'?'warn':'ok'}`; }
+      const sel = getSelections(); const couple = $('coupleName').value.trim()||'Event', date = $('weddingDate').value||'Not set', venueSel = $('venueSpace');
+      const venueName = venueSel.options[venueSel.selectedIndex]?.text;
+      let foodHtml = ''; for(let c of ['canapes','antipasto','pasta','mains','dessert']){ if(sel[c].length) foodHtml += `<li><strong>${c.charAt(0).toUpperCase()+c.slice(1)}:</strong> ${sel[c].map(escapeHtml).join(', ')}</li>`; }
+      const supperItem = getSupperItem();
+      foodHtml += `<li><strong>Supper / Late Night:</strong> ${supperItem}</li>`;
+      if($('fruitPlatter')?.checked) foodHtml += `<li><strong>Fruit platter:</strong> ${$('tables').value} tables x $35 = ${(Number($('tables').value||0)*35).toLocaleString('en-AU',{style:'currency',currency:'AUD'})}</li>`;
+      let drinkDetail = drinkMode==='bar' ? 'Bar prices (no package cost)' : `Custom package: $${Number($('customDrinkPrice').value||0).toLocaleString('en-AU')}/adult × ${adults} = ${(Number($('customDrinkPrice').value||0)*adults).toLocaleString('en-AU',{style:'currency',currency:'AUD'})} ${$('customDrinkNote').value ? `(${escapeHtml($('customDrinkNote').value)})`:''}`;
+      $('finalSummary').innerHTML = `<div><div class="summary-line"><span>Event:</span><span>${escapeHtml(couple)}</span></div><div class="summary-line"><span>Date:</span><span>${escapeHtml(date)}</span></div><div class="summary-line"><span>Venue:</span><span>${escapeHtml(venueName)}</span></div><div class="summary-line"><span>Guests:</span><span>${adults} adults, ${children} children</span></div></div><div><h3>🍽️ Food</h3><ul class="summary-items">${foodHtml}</ul><div class="summary-line"><span>Food subtotal:</span><span>${(food).toLocaleString('en-AU',{style:'currency',currency:'AUD'})}</span></div></div><div><h3>🥂 Drinks</h3><div class="summary-line"><span>Mode:</span><span>${drinkDetail}</span></div><div class="summary-line"><span>Drinks total:</span><span>${(drinks).toLocaleString('en-AU',{style:'currency',currency:'AUD'})}</span></div></div><div><h3>🏛️ Other costs</h3><div class="summary-line"><span>Room hire:</span><span>${(room).toLocaleString('en-AU',{style:'currency',currency:'AUD'})}</span></div><div class="summary-line"><span>Dry hire:</span><span>${(dry).toLocaleString('en-AU',{style:'currency',currency:'AUD'})}</span></div><div class="summary-line"><span>Security:</span><span>${(sec).toLocaleString('en-AU',{style:'currency',currency:'AUD'})}</span></div></div><div class="summary-line total"><span>Grand total</span><span>${(total).toLocaleString('en-AU',{style:'currency',currency:'AUD'})}</span></div>`;
+      $('chips').innerHTML = ''; Object.values(sel).flat().forEach(i=>{ let span=document.createElement('span'); span.className='pill'; span.textContent=i; $('chips').appendChild(span); });
+      const supperChip = document.createElement('span'); supperChip.className='pill'; supperChip.textContent = supperItem; $('chips').appendChild(supperChip);
+      if($('fruitPlatter')?.checked){ let span=document.createElement('span'); span.className='pill'; span.textContent=`Fruit platter (${$('tables').value} tables)`; $('chips').appendChild(span); }
+      let cntStr = ''; for(let c of ['canapes','antipasto','pasta','mains','dessert']){ if(c==='antipasto'){ const hot = sel.antipasto.filter(i=>HOT_ANTIPASTO[i]).length; const cold = sel.antipasto.length-hot; cntStr += `Antipasto: ${hot} hot, ${cold} cold · `; } else cntStr += `${c}: ${sel[c].length} · `; }
+      cntStr += `Supper: ${supperItem}`;
+      $('summaryCourseCounts').textContent = cntStr;
+    }
+    function applyVenueProfile(venueKey){
+      currentVenue = venueKey;
+      const p = VENUE_PROFILES[venueKey] || VENUE_PROFILES.members;
+      $('brandSubtitle').textContent = p.subtitle; $('brandFooter').textContent = p.footer;
+      const img = $('brandLogo'); img.style.display='block'; if($('logoFallback')) $('logoFallback').style.display='none';
+      img.onerror = function(){ if(img.src!==p.logo && !img.src.includes('members_lounge_logo.png')){ img.src='members_lounge_logo.png'; return; } img.style.display='none'; if($('logoFallback')) $('logoFallback').style.display='inline-flex'; };
+      img.src = p.logo;
+      if(Number($('roomHire').value)===0) $('roomHire').value = p.defaults.roomHire;
+      if(Number($('dryHire').value)===0) $('dryHire').value = p.defaults.dryHire;
+      if(Number($('security').value)===0) $('security').value = p.defaults.security;
+      const profileDiv = $('venueProfileText');
+      if(venueKey==='alora') profileDiv.innerHTML = `<strong>ALORA Macedon</strong> — custom menu: antipasto features Caprese salad, pasta options are Baked gnocchi and Spinach & ricotta ravioli, supper is Mini Italian porchetta roll panini. No deep fryer.`;
+      else profileDiv.innerHTML = `<strong>${p.label}</strong> — standard menu (supper: Pizza). Branding updated.`;
+      buildFoodLists();
+      renderAll();
+    }
+    function resetAll(){
+      if(!confirm('Reset all selections and settings?')) return;
+      document.querySelectorAll('input[type="checkbox"][data-course]').forEach(cb=>cb.checked=false);
+      $('adults').value=120; $('children').value=20; $('roomHire').value=0; $('dryHire').value=0; $('security').value=0; $('tables').value=10; $('fruitPlatter').checked=false;
+      $('drinkMode').value='bar'; $('customDrinkPrice').value=0; $('customDrinkNote').value=''; $('coupleName').value=''; $('weddingDate').value=''; $('email').value=''; $('phone').value=''; $('notes').value='';
+      $('venueSpace').value='members'; applyVenueProfile('members');
+      updateDrinkUI(); renderAll();
+    }
+    function updateDrinkUI(){ const mode = $('drinkMode').value; $('customDrinkRow').style.display = mode==='custom' ? 'grid' : 'none'; $('drinkInfo').textContent = mode==='bar' ? 'Bar pricing: drinks = $0 (indicative).' : 'Custom price added per adult.'; renderAll(); }
+    function nextPage(){ const pages=['quote','couple','food','drinks','summary']; let cur = document.querySelector('.page.active')?.id.replace('page-','')||'quote'; let idx = pages.indexOf(cur); setActivePage(pages[(idx+1)%pages.length]); }
+    function prevPage(){ const pages=['quote','couple','food','drinks','summary']; let cur = document.querySelector('.page.active')?.id.replace('page-','')||'quote'; let idx = pages.indexOf(cur); setActivePage(pages[(idx-1+pages.length)%pages.length]); }
+    function setActivePage(pageId){ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active')); document.getElementById(`page-${pageId}`).classList.add('active'); document.querySelectorAll('.tab[data-page]').forEach(t=>{ t.classList.toggle('active',t.dataset.page===pageId); t.setAttribute('aria-selected',t.dataset.page===pageId?'true':'false'); }); document.querySelector('main').scrollTop=0; renderAll(); }
+    document.querySelectorAll('.tab[data-page]').forEach(t=>t.addEventListener('click',()=>setActivePage(t.dataset.page)));
+    $('nextTab').addEventListener('click',nextPage); $('nextQ').addEventListener('click',nextPage); $('backC').addEventListener('click',prevPage); $('nextC').addEventListener('click',nextPage);
+    $('backF2').addEventListener('click',prevPage); $('nextF2').addEventListener('click',nextPage); $('backD').addEventListener('click',prevPage); $('nextD').addEventListener('click',nextPage);
+    $('backS').addEventListener('click',prevPage); $('toQuote').addEventListener('click',()=>setActivePage('quote'));
+    $('resetAll').addEventListener('click',resetAll); $('printQuote').addEventListener('click',()=>window.print()); $('printSummary').addEventListener('click',()=>window.print());
+    $('copySummary').addEventListener('click',async()=>{ try{ await navigator.clipboard.writeText($('finalSummary').innerText); alert('Summary copied'); }catch(e){ alert('Copy failed'); } });
+    $('drinkMode').addEventListener('change',updateDrinkUI);
+    $('venueSpace').addEventListener('change',()=>applyVenueProfile($('venueSpace').value));
+    document.querySelectorAll('input,select,textarea').forEach(el=>el.addEventListener('input',renderAll));
+    document.querySelectorAll('input,select,textarea').forEach(el=>el.addEventListener('change',renderAll));
+    $('#selectAllBtn').addEventListener('click',()=>{
+      document.querySelectorAll('input[type="checkbox"][data-course]').forEach(cb=>cb.checked=false);
+      for(let c of ['canapes','pasta','mains','dessert']){ let items = document.querySelectorAll(`input[data-course="${c}"]`); for(let i=0;i<Math.min(items.length, COURSE_MAX[c]); i++) items[i].checked=true; enforceCourseLimit(c); }
+      let hot = Array.from(document.querySelectorAll('input[data-course="antipasto"]')).filter(cb=>HOT_ANTIPASTO[cb.value]); hot.slice(0,2).forEach(cb=>cb.checked=true);
+      let cold = Array.from(document.querySelectorAll('input[data-course="antipasto"]')).filter(cb=>!HOT_ANTIPASTO[cb.value]); cold.slice(0,5).forEach(cb=>cb.checked=true);
+      enforceAntipastoLimit(); renderAll();
     });
-
-    // Declaration fields
-    const nameField = document.querySelector('.sign-field input[placeholder="Full name"]');
-    const sigField = document.querySelector('.sign-field input[placeholder="Sign or type name"]');
-    const decDateField = document.querySelector('.sign-field input[placeholder="DD/MM/YYYY"]');
-    if (nameField && nameField.value) summary += "Name: " + nameField.value + "\n";
-    if (sigField && sigField.value) summary += "Signature: " + sigField.value + "\n";
-    if (decDateField && decDateField.value) summary += "Date: " + decDateField.value + "\n";
-
-    // Show summary in a modal or alert
-    const emailBody = encodeURIComponent(summary);
-    window.location.href = "mailto:?subject=Alora Macedon Tender Submission&body=" + emailBody;
-}
+    $('#deselectAllBtn').addEventListener('click',()=>{ document.querySelectorAll('input[type="checkbox"][data-course]').forEach(cb=>cb.checked=false); ['canapes','antipasto','pasta','mains','dessert'].forEach(c=>c==='antipasto'?enforceAntipastoLimit():enforceCourseLimit(c)); renderAll(); });
+    applyVenueProfile('members'); updateDrinkUI();
+  })();
 </script>
 </body>
 </html>
