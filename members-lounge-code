@@ -3,1705 +3,976 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Member's Lounge Staff Manager – Complete Source Code</title>
+    <title>Member's Lounge – Staff Availability</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            background: #0a0a0a;
-            color: #e0e0e0;
-            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
-            line-height: 1.6;
-            padding: 20px;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        h1 {
-            color: #d4af37;
-            border-bottom: 2px solid #d4af37;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            font-size: 2.5em;
-        }
-        h2 {
-            color: #d4af37;
-            margin: 30px 0 10px;
-            font-size: 1.8em;
-        }
-        .file-header {
-            background: #1e1e1e;
-            padding: 10px 15px;
-            margin: 30px 0 5px 0;
-            border-left: 5px solid #d4af37;
-            font-weight: bold;
-            color: #ffffff;
-            font-size: 1.3em;
-            border-radius: 0 5px 5px 0;
-        }
-        pre {
-            background: #1e1e1e;
-            border: 1px solid #333;
-            padding: 15px;
-            overflow-x: auto;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            margin: 0 0 30px 0;
-            color: #d4d4d4;
-            border-radius: 5px;
-            font-size: 14px;
-            tab-size: 2;
-        }
-        .note {
-            background: #1e1e1e;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-            border: 1px solid #d4af37;
-            color: #f0f0f0;
-        }
-        .note strong {
-            color: #d4af37;
-        }
-        hr {
-            border: 1px solid #333;
-            margin: 40px 0;
-        }
-        .structure {
-            background: #1e1e1e;
-            padding: 15px;
-            border-radius: 5px;
-            font-family: monospace;
-            border: 1px solid #444;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #f5f5f5; color: #1e1e1e; font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif; line-height: 1.6; padding: 20px; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        .app-header { background: white; border-bottom: 3px solid #D4AF37; padding: 15px 20px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .logo { display: flex; align-items: center; gap: 15px; }
+        .logo-icon { background: #D4AF37; color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 28px; }
+        .logo h1 { color: #1e1e1e; font-size: 1.8rem; letter-spacing: 1px; }
+        .tagline { color: #666; font-size: 0.9rem; }
+        .tabs { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 10px; }
+        .tab-btn { background: #f0f0f0; border: none; padding: 10px 20px; cursor: pointer; color: #1e1e1e; border-radius: 8px 8px 0 0; transition: background 0.3s; font-weight: 500; }
+        .tab-btn.active { background: #D4AF37; color: white; }
+        .tab-pane { display: none; }
+        .tab-pane.active { display: block; }
+        .card { background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; border: 1px solid #e0e0e0; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .card h2, .card h3 { color: #D4AF37; margin-bottom: 15px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; color: #555; font-weight: 500; }
+        input, select, button { padding: 10px; background: #fff; border: 1px solid #ccc; border-radius: 6px; color: #1e1e1e; font-size: 14px; width: 100%; }
+        button { background: #D4AF37; color: white; border: none; cursor: pointer; font-weight: bold; width: auto; }
+        button:hover { background: #b58f2a; }
+        .date-list { max-height: 500px; overflow-y: auto; margin-top: 15px; border: 1px solid #e0e0e0; border-radius: 8px; }
+        .date-item { display: flex; align-items: center; padding: 10px; border-bottom: 1px solid #eee; flex-wrap: wrap; gap: 8px; }
+        .date-item .event-info { flex: 2; min-width: 180px; }
+        .date-item .slots-info { font-size: 0.8rem; color: #D4AF37; background: #faf0e0; padding: 2px 8px; border-radius: 12px; display: inline-block; }
+        .date-item input { margin-right: 10px; transform: scale(1.2); width: auto; }
+        .employee-list { display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 20px; }
+        .employee-card { background: #fafafa; padding: 12px; border-radius: 8px; border: 1px solid #e0e0e0; min-width: 280px; }
+        .employee-card .name { font-weight: bold; color: #1e1e1e; font-size: 1.1em; }
+        .employee-card .code { font-family: monospace; background: #eee; padding: 2px 4px; border-radius: 4px; margin-left: 8px; }
+        .employee-card .sections { font-size: 0.8rem; color: #666; margin: 5px 0; }
+        .employee-card button { background: #ff4444; color: white; padding: 4px 8px; font-size: 12px; margin-top: 5px; margin-right: 5px; width: auto; }
+        .employee-card button.edit-btn { background: #2196f3; }
+        .employee-card button.generate-code-btn { background: #D4AF37; }
+        table { width: 100%; border-collapse: collapse; font-size: 13px; background: white; }
+        th, td { padding: 8px; text-align: left; border-bottom: 1px solid #eee; }
+        th { color: #D4AF37; background: #fafafa; position: sticky; top: 0; }
+        .available-yes { background: #D4AF37; color: white; padding: 2px 6px; border-radius: 4px; display: inline-block; font-weight: bold; }
+        .available-no { background: #f0f0f0; color: #999; padding: 2px 6px; border-radius: 4px; display: inline-block; }
+        .section-filter { margin-bottom: 15px; display: flex; gap: 10px; flex-wrap: wrap; }
+        .filter-btn { background: #f0f0f0; padding: 5px 12px; border-radius: 20px; cursor: pointer; border: none; color: #333; }
+        .filter-btn.active { background: #D4AF37; color: white; }
+        .success-msg, .error-msg { padding: 10px; border-radius: 6px; margin-bottom: 15px; }
+        .success-msg { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+        .error-msg { background: #ffebee; color: #c62828; border: 1px solid #ffcdd2; }
+        .hidden { display: none; }
+        .scrollable-table { overflow-x: auto; }
+        .staff-info { background: #fafafa; padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #e0e0e0; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 1000; justify-content: center; align-items: center; }
+        .modal-content { background: white; border-radius: 12px; padding: 25px; width: 90%; max-width: 700px; max-height: 90vh; overflow-y: auto; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .modal-header h3 { margin: 0; color: #D4AF37; }
+        .close-modal { cursor: pointer; font-size: 24px; font-weight: bold; color: #aaa; }
+        .close-modal:hover { color: black; }
+        .code-input-group { display: flex; gap: 8px; align-items: center; }
+        .code-input-group input { flex: 2; }
+        .code-input-group button { flex: 0; white-space: nowrap; }
+        .employee-code-list { margin-top: 20px; }
+        .employee-code-list textarea { width: 100%; height: 200px; font-family: monospace; background: #fafafa; border: 1px solid #ccc; padding: 8px; border-radius: 6px; }
+        .preassign-list { margin-top: 15px; border: 1px solid #eee; border-radius: 8px; max-height: 200px; overflow-y: auto; }
+        .preassign-item { display: flex; justify-content: space-between; align-items: center; padding: 6px 10px; border-bottom: 1px solid #eee; }
+        .capacity-row { display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 15px; }
+        .capacity-field { flex: 1; min-width: 80px; }
+        .capacity-field label { font-size: 0.8rem; }
+        .capacity-field input { padding: 6px; }
+        .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #2e7d32; color: white; padding: 14px 24px; border-radius: 50px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); font-weight: bold; z-index: 9999; display: none; }
+        .sync-status { font-size: 0.8rem; color: #666; margin-top: 5px; }
+        @media (max-width: 768px) {
+            .date-item { flex-direction: column; align-items: flex-start; }
+            .app-header { flex-direction: column; gap: 10px; }
+            .logo h1 { font-size: 1.4rem; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Member's Lounge Staff Manager – Complete Source Code</h1>
-        
-        <div class="note">
-            <strong>How to use this file:</strong> 
-            <ul style="margin-top:10px; margin-left:20px;">
-                <li>Each section below contains a file path (e.g., <code>frontend/package.json</code>) and the full source code.</li>
-                <li>Copy the code from each box and create the corresponding file in your project folder.</li>
-                <li>Place your Member's Lounge logo as <code>frontend/public/logo.png</code>.</li>
-                <li>After creating all files, upload the folder to GitHub and deploy to Vercel.</li>
-            </ul>
+<div class="container">
+    <div class="app-header">
+        <div class="logo">
+            <div class="logo-icon">ML</div>
+            <h1>Member's Lounge</h1>
         </div>
-
-        <h2>Project Structure</h2>
-        <div class="structure">
-<pre>
-members-lounge-staff-app/
-├── README.md
-├── frontend/
-│   ├── public/
-│   │   └── logo.png
-│   ├── src/
-│   │   ├── main.tsx
-│   │   ├── vite-env.d.ts
-│   │   ├── App.tsx
-│   │   ├── theme/
-│   │   │   └── theme.ts
-│   │   ├── contexts/
-│   │   │   └── AuthContext.tsx
-│   │   ├── services/
-│   │   │   └── api.ts
-│   │   ├── components/
-│   │   │   └── ProtectedRoute.tsx
-│   │   └── pages/
-│   │       ├── Login.tsx
-│   │       ├── Register.tsx
-│   │       ├── Dashboard.tsx
-│   │       ├── Events.tsx
-│   │       ├── MyAssignments.tsx
-│   │       └── admin/
-│   │           ├── AdminDashboard.tsx
-│   │           ├── StaffManagement.tsx
-│   │           ├── EventManagement.tsx
-│   │           └── AssignmentHub.tsx
-│   ├── index.html
-│   ├── package.json
-│   ├── tsconfig.json
-│   ├── tsconfig.node.json
-│   └── vite.config.ts
-├── backend/
-│   ├── src/
-│   │   ├── index.ts
-│   │   ├── db.ts
-│   │   ├── middleware/
-│   │   │   └── auth.ts
-│   │   └── routes/
-│   │       ├── auth.ts
-│   │       ├── users.ts
-│   │       ├── events.ts
-│   │       ├── availability.ts
-│   │       └── assignments.ts
-│   ├── .env.example
-│   ├── package.json
-│   └── tsconfig.json
-└── database/
-    ├── schema.sql
-    └── seed.sql
-</pre>
-        </div>
-
-        <hr />
-
-        <!-- ==================== README.md ==================== -->
-        <div class="file-header">README.md</div>
-        <pre>
-# Member's Lounge Staff Manager
-
-A private web application for staff scheduling at the Member's Lounge.
-
-## Tech Stack
-- Frontend: React + TypeScript + Vite + Material‑UI (black/white/gold theme)
-- Backend: Node.js + Express + TypeScript + PostgreSQL
-- Hosting: Vercel (frontend) + Render (backend) recommended
-
-## Features
-- Staff registration with name, email, phone, and role selection (Kitchen, Floor, Bar, Cleaner, Setup)
-- Staff can mark availability for each of the 44+ events
-- Admin dashboard to manage staff, events, and assignments
-- Conflict‑free assignment (no double‑booking)
-- Export rosters as PDF (to be implemented in Phase 2)
-
-## Setup Instructions
-
-### Prerequisites
-- Node.js 18+
-- PostgreSQL database (local or cloud, e.g., Render, Supabase)
-
-### Backend
-1. Navigate to `backend/`
-2. Copy `.env.example` to `.env` and fill in your database URL and JWT secret.
-3. Run `npm install`
-4. Run `npm run dev` for development, or `npm run build && npm start` for production.
-5. The API will be available at `http://localhost:5000`
-
-### Frontend
-1. Navigate to `frontend/`
-2. Create a `.env` file with `VITE_API_BASE_URL=http://localhost:5000/api` (adjust for production).
-3. Run `npm install`
-4. Run `npm run dev`
-5. The app will be available at `http://localhost:5173`
-
-### Database
-- Run the SQL in `database/schema.sql` to create tables.
-- Optionally run `database/seed.sql` to insert the 44 events.
-
-## Deployment
-- Frontend: Push to GitHub, connect to Vercel.
-- Backend: Deploy on Render or similar, set environment variables.
-- Update frontend `.env` with production API URL.
-
-## License
-Private – for Member's Lounge use only.
-        </pre>
-
-        <!-- ==================== frontend/package.json ==================== -->
-        <div class="file-header">frontend/package.json</div>
-        <pre>
-{
-  "name": "members-lounge-frontend",
-  "private": true,
-  "version": "0.1.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "@emotion/react": "^11.11.0",
-    "@emotion/styled": "^11.11.0",
-    "@mui/material": "^5.14.0",
-    "axios": "^1.4.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.14.0"
-  },
-  "devDependencies": {
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0",
-    "@vitejs/plugin-react": "^4.0.0",
-    "typescript": "^5.0.0",
-    "vite": "^4.0.0"
-  }
-}
-        </pre>
-
-        <!-- ==================== frontend/tsconfig.json ==================== -->
-        <div class="file-header">frontend/tsconfig.json</div>
-        <pre>
-{
-  "compilerOptions": {
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "skipLibCheck": true,
-    "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
-  },
-  "include": ["src"],
-  "references": [{ "path": "./tsconfig.node.json" }]
-}
-        </pre>
-
-        <!-- ==================== frontend/tsconfig.node.json ==================== -->
-        <div class="file-header">frontend/tsconfig.node.json</div>
-        <pre>
-{
-  "compilerOptions": {
-    "composite": true,
-    "skipLibCheck": true,
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "allowSyntheticDefaultImports": true
-  },
-  "include": ["vite.config.ts"]
-}
-        </pre>
-
-        <!-- ==================== frontend/vite.config.ts ==================== -->
-        <div class="file-header">frontend/vite.config.ts</div>
-        <pre>
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-
-export default defineConfig({
-  plugins: [react()],
-});
-        </pre>
-
-        <!-- ==================== frontend/index.html ==================== -->
-        <div class="file-header">frontend/index.html</div>
-        <pre>
-&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-  &lt;head&gt;
-    &lt;meta charset="UTF-8" /&gt;
-    &lt;link rel="icon" type="image/png" href="/logo.png" /&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
-    &lt;title&gt;Member's Lounge Staff&lt;/title&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;div id="root"&gt;&lt;/div&gt;
-    &lt;script type="module" src="/src/main.tsx"&gt;&lt;/script&gt;
-  &lt;/body&gt;
-&lt;/html&gt;
-        </pre>
-
-        <!-- ==================== frontend/src/main.tsx ==================== -->
-        <div class="file-header">frontend/src/main.tsx</div>
-        <pre>
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import App from './App';
-import theme from './theme/theme';
-
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  &lt;React.StrictMode&gt;
-    &lt;ThemeProvider theme={theme}&gt;
-      &lt;CssBaseline /&gt;
-      &lt;App /&gt;
-    &lt;/ThemeProvider&gt;
-  &lt;/React.StrictMode&gt;
-);
-        </pre>
-
-        <!-- ==================== frontend/src/vite-env.d.ts ==================== -->
-        <div class="file-header">frontend/src/vite-env.d.ts</div>
-        <pre>
-/// &lt;reference types="vite/client" /&gt;
-        </pre>
-
-        <!-- ==================== frontend/src/theme/theme.ts ==================== -->
-        <div class="file-header">frontend/src/theme/theme.ts</div>
-        <pre>
-import { createTheme } from '@mui/material/styles';
-
-const theme = createTheme({
-  palette: {
-    mode: 'dark',
-    primary: { main: '#D4AF37' },
-    secondary: { main: '#FFFFFF' },
-    background: {
-      default: '#000000',
-      paper: '#1E1E1E',
-    },
-    text: {
-      primary: '#FFFFFF',
-      secondary: '#B0B0B0',
-    },
-  },
-  typography: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-    h4: { color: '#D4AF37', fontWeight: 600 },
-  },
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          borderRadius: 8,
-          textTransform: 'none',
-          fontWeight: 600,
-        },
-        containedPrimary: {
-          backgroundColor: '#D4AF37',
-          color: '#000000',
-          '&:hover': { backgroundColor: '#C6A22E' },
-        },
-      },
-    },
-    MuiAppBar: {
-      styleOverrides: {
-        root: {
-          backgroundColor: '#000000',
-          borderBottom: '2px solid #D4AF37',
-        },
-      },
-    },
-  },
-});
-
-export default theme;
-        </pre>
-
-        <!-- ==================== frontend/src/contexts/AuthContext.tsx ==================== -->
-        <div class="file-header">frontend/src/contexts/AuthContext.tsx</div>
-        <pre>
-import React, { createContext, useState, useContext, useEffect } from 'react';
-import api from '../services/api';
-
-interface User {
-  id: string;
-  email: string;
-  full_name: string;
-  phone?: string;
-  roles: string[];
-  is_admin: boolean;
-}
-
-interface AuthContextType {
-  user: User | null;
-  token: string | null;
-  login: (email: string, password: string) => Promise&lt;void&gt;;
-  logout: () =&gt; void;
-  loading: boolean;
-}
-
-const AuthContext = createContext&lt;AuthContextType | undefined&gt;(undefined);
-
-export const AuthProvider: React.FC&lt;{ children: React.ReactNode }&gt; = ({ children }) =&gt; {
-  const [user, setUser] = useState&lt;User | null&gt;(null);
-  const [token, setToken] = useState&lt;string | null&gt;(localStorage.getItem('token'));
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() =&gt; {
-    if (token) {
-      api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-      api.get('/auth/me')
-        .then(res =&gt; setUser(res.data))
-        .catch(() =&gt; logout())
-        .finally(() =&gt; setLoading(false));
-    } else {
-      setLoading(false);
-    }
-  }, [token]);
-
-  const login = async (email: string, password: string) =&gt; {
-    const res = await api.post('/auth/login', { email, password });
-    const { token, user } = res.data;
-    localStorage.setItem('token', token);
-    api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-    setToken(token);
-    setUser(user);
-  };
-
-  const logout = () =&gt; {
-    localStorage.removeItem('token');
-    delete api.defaults.headers.common['Authorization'];
-    setToken(null);
-    setUser(null);
-  };
-
-  return (
-    &lt;AuthContext.Provider value={{ user, token, login, logout, loading }}&gt;
-      {children}
-    &lt;/AuthContext.Provider&gt;
-  );
-};
-
-export const useAuth = () =&gt; {
-  const context = useContext(AuthContext);
-  if (!context) throw new Error('useAuth must be used within AuthProvider');
-  return context;
-};
-        </pre>
-
-        <!-- ==================== frontend/src/services/api.ts ==================== -->
-        <div class="file-header">frontend/src/services/api.ts</div>
-        <pre>
-import axios from 'axios';
-
-const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api',
-});
-
-api.interceptors.request.use((config) =&gt; {
-  const token = localStorage.getItem('token');
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
-});
-
-export default api;
-        </pre>
-
-        <!-- ==================== frontend/src/components/ProtectedRoute.tsx ==================== -->
-        <div class="file-header">frontend/src/components/ProtectedRoute.tsx</div>
-        <pre>
-import React from 'react';
-import { Navigate } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
-import { CircularProgress, Box } from '@mui/material';
-
-interface ProtectedRouteProps {
-  children: React.ReactNode;
-  adminOnly?: boolean;
-}
-
-const ProtectedRoute: React.FC&lt;ProtectedRouteProps&gt; = ({ children, adminOnly }) =&gt; {
-  const { user, loading } = useAuth();
-
-  if (loading) {
-    return (
-      &lt;Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}&gt;
-        &lt;CircularProgress /&gt;
-      &lt;/Box&gt;
-    );
-  }
-
-  if (!user) return &lt;Navigate to="/login" replace /&gt;;
-  if (adminOnly && !user.is_admin) return &lt;Navigate to="/dashboard" replace /&gt;;
-  return &lt;&gt;{children}&lt;/&gt;;
-};
-
-export default ProtectedRoute;
-        </pre>
-
-        <!-- ==================== frontend/src/App.tsx ==================== -->
-        <div class="file-header">frontend/src/App.tsx</div>
-        <pre>
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider } from './contexts/AuthContext';
-import ProtectedRoute from './components/ProtectedRoute';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Dashboard from './pages/Dashboard';
-import Events from './pages/Events';
-import MyAssignments from './pages/MyAssignments';
-import AdminDashboard from './pages/admin/AdminDashboard';
-import StaffManagement from './pages/admin/StaffManagement';
-import EventManagement from './pages/admin/EventManagement';
-import AssignmentHub from './pages/admin/AssignmentHub';
-
-function App() {
-  return (
-    &lt;BrowserRouter&gt;
-      &lt;AuthProvider&gt;
-        &lt;Routes&gt;
-          &lt;Route path="/login" element={&lt;Login /&gt;} /&gt;
-          &lt;Route path="/register" element={&lt;Register /&gt;} /&gt;
-          &lt;Route
-            path="/dashboard"
-            element={
-              &lt;ProtectedRoute&gt;
-                &lt;Dashboard /&gt;
-              &lt;/ProtectedRoute&gt;
-            }
-          /&gt;
-          &lt;Route
-            path="/events"
-            element={
-              &lt;ProtectedRoute&gt;
-                &lt;Events /&gt;
-              &lt;/ProtectedRoute&gt;
-            }
-          /&gt;
-          &lt;Route
-            path="/my-assignments"
-            element={
-              &lt;ProtectedRoute&gt;
-                &lt;MyAssignments /&gt;
-              &lt;/ProtectedRoute&gt;
-            }
-          /&gt;
-          {/* Admin routes */}
-          &lt;Route
-            path="/admin"
-            element={
-              &lt;ProtectedRoute adminOnly&gt;
-                &lt;AdminDashboard /&gt;
-              &lt;/ProtectedRoute&gt;
-            }
-          /&gt;
-          &lt;Route
-            path="/admin/staff"
-            element={
-              &lt;ProtectedRoute adminOnly&gt;
-                &lt;StaffManagement /&gt;
-              &lt;/ProtectedRoute&gt;
-            }
-          /&gt;
-          &lt;Route
-            path="/admin/events"
-            element={
-              &lt;ProtectedRoute adminOnly&gt;
-                &lt;EventManagement /&gt;
-              &lt;/ProtectedRoute&gt;
-            }
-          /&gt;
-          &lt;Route
-            path="/admin/assignments/:eventId"
-            element={
-              &lt;ProtectedRoute adminOnly&gt;
-                &lt;AssignmentHub /&gt;
-              &lt;/ProtectedRoute&gt;
-            }
-          /&gt;
-          &lt;Route path="/" element={&lt;Navigate to="/dashboard" /&gt;} /&gt;
-        &lt;/Routes&gt;
-      &lt;/AuthProvider&gt;
-    &lt;/BrowserRouter&gt;
-  );
-}
-
-export default App;
-        </pre>
-
-        <!-- ==================== frontend/src/pages/Login.tsx ==================== -->
-        <div class="file-header">frontend/src/pages/Login.tsx</div>
-        <pre>
-import React, { useState } from 'react';
-import { Container, Box, TextField, Button, Typography, Paper, Alert } from '@mui/material';
-import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
-
-const Login: React.FC = () =&gt; {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const { login } = useAuth();
-  const navigate = useNavigate();
-
-  const handleSubmit = async (e: React.FormEvent) =&gt; {
-    e.preventDefault();
-    try {
-      await login(email, password);
-      navigate('/dashboard');
-    } catch (err) {
-      setError('Invalid email or password');
-    }
-  };
-
-  return (
-    &lt;Container component="main" maxWidth="xs"&gt;
-      &lt;Box sx={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}&gt;
-        &lt;Paper elevation={3} sx={{ p: 4, width: '100%' }}&gt;
-          &lt;Box sx={{ textAlign: 'center', mb: 3 }}&gt;
-            &lt;img src="/logo.png" alt="Member's Lounge" height="60" /&gt;
-            &lt;Typography variant="h4" sx={{ mt: 2 }}&gt;Staff Login&lt;/Typography&gt;
-          &lt;/Box&gt;
-          {error && &lt;Alert severity="error" sx={{ mb: 2 }}&gt;{error}&lt;/Alert&gt;}
-          &lt;form onSubmit={handleSubmit}&gt;
-            &lt;TextField margin="normal" required fullWidth label="Email Address" autoComplete="email" autoFocus value={email} onChange={(e) =&gt; setEmail(e.target.value)} /&gt;
-            &lt;TextField margin="normal" required fullWidth label="Password" type="password" autoComplete="current-password" value={password} onChange={(e) =&gt; setPassword(e.target.value)} /&gt;
-            &lt;Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}&gt;Sign In&lt;/Button&gt;
-            &lt;Typography variant="body2" align="center"&gt;
-              New staff? &lt;Link to="/register"&gt;Create an account&lt;/Link&gt;
-            &lt;/Typography&gt;
-          &lt;/form&gt;
-        &lt;/Paper&gt;
-      &lt;/Box&gt;
-    &lt;/Container&gt;
-  );
-};
-
-export default Login;
-        </pre>
-
-        <!-- ==================== frontend/src/pages/Register.tsx ==================== -->
-        <div class="file-header">frontend/src/pages/Register.tsx</div>
-        <pre>
-import React, { useState } from 'react';
-import { Container, Box, TextField, Button, Typography, Paper, Alert, FormControl, FormLabel, FormGroup, FormControlLabel, Checkbox } from '@mui/material';
-import { useNavigate, Link } from 'react-router-dom';
-import api from '../services/api';
-
-const Register: React.FC = () =&gt; {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [fullName, setFullName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [roles, setRoles] = useState({
-    kitchen: false,
-    floor: false,
-    bar: false,
-    cleaner: false,
-    setup: false,
-  });
-  const [error, setError] = useState('');
-  const navigate = useNavigate();
-
-  const handleRoleChange = (e: React.ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {
-    setRoles({ ...roles, [e.target.name]: e.target.checked });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) =&gt; {
-    e.preventDefault();
-    const selectedRoles = Object.entries(roles)
-      .filter(([, v]) =&gt; v)
-      .map(([k]) =&gt; k);
-    try {
-      await api.post('/auth/register', {
-        email,
-        password,
-        full_name: fullName,
-        phone,
-        roles: selectedRoles,
-      });
-      navigate('/login', { state: { message: 'Registration successful! Please log in.' } });
-    } catch (err) {
-      setError('Registration failed. Email may already be in use.');
-    }
-  };
-
-  return (
-    &lt;Container component="main" maxWidth="sm"&gt;
-      &lt;Box sx={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', py: 4 }}&gt;
-        &lt;Paper elevation={3} sx={{ p: 4, width: '100%' }}&gt;
-          &lt;Box sx={{ textAlign: 'center', mb: 3 }}&gt;
-            &lt;img src="/logo.png" alt="Member's Lounge" height="60" /&gt;
-            &lt;Typography variant="h4" sx={{ mt: 2 }}&gt;Staff Registration&lt;/Typography&gt;
-          &lt;/Box&gt;
-          {error && &lt;Alert severity="error" sx={{ mb: 2 }}&gt;{error}&lt;/Alert&gt;}
-          &lt;form onSubmit={handleSubmit}&gt;
-            &lt;TextField margin="normal" required fullWidth label="Full Name" autoFocus value={fullName} onChange={(e) =&gt; setFullName(e.target.value)} /&gt;
-            &lt;TextField margin="normal" required fullWidth label="Email Address" type="email" value={email} onChange={(e) =&gt; setEmail(e.target.value)} /&gt;
-            &lt;TextField margin="normal" fullWidth label="Phone Number" value={phone} onChange={(e) =&gt; setPhone(e.target.value)} placeholder="(optional)" /&gt;
-            &lt;TextField margin="normal" required fullWidth label="Password" type="password" value={password} onChange={(e) =&gt; setPassword(e.target.value)} /&gt;
-            &lt;FormControl component="fieldset" sx={{ mt: 2 }}&gt;
-              &lt;FormLabel component="legend"&gt;Roles you can perform&lt;/FormLabel&gt;
-              &lt;FormGroup row&gt;
-                &lt;FormControlLabel control={&lt;Checkbox checked={roles.kitchen} onChange={handleRoleChange} name="kitchen" /&gt;} label="Kitchen" /&gt;
-                &lt;FormControlLabel control={&lt;Checkbox checked={roles.floor} onChange={handleRoleChange} name="floor" /&gt;} label="Floor" /&gt;
-                &lt;FormControlLabel control={&lt;Checkbox checked={roles.bar} onChange={handleRoleChange} name="bar" /&gt;} label="Bar" /&gt;
-                &lt;FormControlLabel control={&lt;Checkbox checked={roles.cleaner} onChange={handleRoleChange} name="cleaner" /&gt;} label="Cleaner" /&gt;
-                &lt;FormControlLabel control={&lt;Checkbox checked={roles.setup} onChange={handleRoleChange} name="setup" /&gt;} label="Setup Crew" /&gt;
-              &lt;/FormGroup&gt;
-            &lt;/FormControl&gt;
-            &lt;Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}&gt;Register&lt;/Button&gt;
-            &lt;Typography variant="body2" align="center"&gt;
-              Already have an account? &lt;Link to="/login"&gt;Sign in&lt;/Link&gt;
-            &lt;/Typography&gt;
-          &lt;/form&gt;
-        &lt;/Paper&gt;
-      &lt;/Box&gt;
-    &lt;/Container&gt;
-  );
-};
-
-export default Register;
-        </pre>
-
-        <!-- ==================== frontend/src/pages/Dashboard.tsx ==================== -->
-        <div class="file-header">frontend/src/pages/Dashboard.tsx</div>
-        <pre>
-import React from 'react';
-import { Container, Typography, Box, Button, Paper, Grid } from '@mui/material';
-import { Link } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
-
-const Dashboard: React.FC = () =&gt; {
-  const { user } = useAuth();
-  return (
-    &lt;Container&gt;
-      &lt;Box sx={{ mt: 4 }}&gt;
-        &lt;Typography variant="h4" gutterBottom&gt;
-          Welcome, {user?.full_name}
-        &lt;/Typography&gt;
-        &lt;Grid container spacing={3}&gt;
-          &lt;Grid item xs={12} md={4}&gt;
-            &lt;Paper sx={{ p: 3, textAlign: 'center' }}&gt;
-              &lt;Typography variant="h6"&gt;Events&lt;/Typography&gt;
-              &lt;Button component={Link} to="/events" variant="contained" sx={{ mt: 2 }}&gt;
-                View & Set Availability
-              &lt;/Button&gt;
-            &lt;/Paper&gt;
-          &lt;/Grid&gt;
-          &lt;Grid item xs={12} md={4}&gt;
-            &lt;Paper sx={{ p: 3, textAlign: 'center' }}&gt;
-              &lt;Typography variant="h6"&gt;My Assignments&lt;/Typography&gt;
-              &lt;Button component={Link} to="/my-assignments" variant="contained" sx={{ mt: 2 }}&gt;
-                View
-              &lt;/Button&gt;
-            &lt;/Paper&gt;
-          &lt;/Grid&gt;
-          {user?.is_admin && (
-            &lt;Grid item xs={12} md={4}&gt;
-              &lt;Paper sx={{ p: 3, textAlign: 'center' }}&gt;
-                &lt;Typography variant="h6"&gt;Admin&lt;/Typography&gt;
-                &lt;Button component={Link} to="/admin" variant="contained" sx={{ mt: 2 }}&gt;
-                  Dashboard
-                &lt;/Button&gt;
-              &lt;/Paper&gt;
-            &lt;/Grid&gt;
-          )}
-        &lt;/Grid&gt;
-      &lt;/Box&gt;
-    &lt;/Container&gt;
-  );
-};
-
-export default Dashboard;
-        </pre>
-
-        <!-- ==================== frontend/src/pages/Events.tsx ==================== -->
-        <div class="file-header">frontend/src/pages/Events.tsx</div>
-        <pre>
-import React, { useEffect, useState } from 'react';
-import { Container, Typography, List, ListItem, ListItemText, Switch, CircularProgress, Box, Alert } from '@mui/material';
-import api from '../services/api';
-
-interface Event {
-  id: string;
-  date: string;
-  venue_name: string;
-}
-
-const Events: React.FC = () =&gt; {
-  const [events, setEvents] = useState&lt;Event[]&gt;([]);
-  const [availability, setAvailability] = useState&lt;Record&lt;string, boolean&gt;&gt;({});
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-
-  useEffect(() =&gt; {
-    const fetchData = async () =&gt; {
-      try {
-        const [eventsRes, availRes] = await Promise.all([
-          api.get('/events'),
-          api.get('/availability'),
-        ]);
-        setEvents(eventsRes.data);
-        const availMap: Record&lt;string, boolean&gt; = {};
-        availRes.data.forEach((a: any) =&gt; {
-          availMap[a.event_id] = a.is_available;
-        });
-        setAvailability(availMap);
-      } catch (err) {
-        setError('Failed to load events');
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
-
-  const handleToggle = async (eventId: string, checked: boolean) =&gt; {
-    setAvailability(prev =&gt; ({ ...prev, [eventId]: checked }));
-    try {
-      await api.put('/availability', { eventId, isAvailable: checked });
-    } catch (err) {
-      setError('Failed to update availability');
-      setAvailability(prev =&gt; ({ ...prev, [eventId]: !checked }));
-    }
-  };
-
-  if (loading) return &lt;CircularProgress sx={{ display: 'block', mx: 'auto', mt: 4 }} /&gt;;
-
-  return (
-    &lt;Container&gt;
-      &lt;Typography variant="h4" gutterBottom&gt;Upcoming Events&lt;/Typography&gt;
-      {error && &lt;Alert severity="error" sx={{ mb: 2 }}&gt;{error}&lt;/Alert&gt;}
-      &lt;List&gt;
-        {events.map((event) =&gt; (
-          &lt;ListItem
-            key={event.id}
-            secondaryAction={
-              &lt;Switch
-                edge="end"
-                checked={availability[event.id] || false}
-                onChange={(e) =&gt; handleToggle(event.id, e.target.checked)}
-                color="primary"
-              /&gt;
-            }
-          &gt;
-            &lt;ListItemText
-              primary={`${new Date(event.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })} — ${event.venue_name}`}
-            /&gt;
-          &lt;/ListItem&gt;
-        ))}
-      &lt;/List&gt;
-    &lt;/Container&gt;
-  );
-};
-
-export default Events;
-        </pre>
-
-        <!-- ==================== frontend/src/pages/MyAssignments.tsx ==================== -->
-        <div class="file-header">frontend/src/pages/MyAssignments.tsx</div>
-        <pre>
-import React, { useEffect, useState } from 'react';
-import { Container, Typography, List, ListItem, ListItemText, CircularProgress, Alert } from '@mui/material';
-import api from '../services/api';
-
-interface Assignment {
-  event_id: string;
-  event_date: string;
-  venue_name: string;
-  role: string;
-}
-
-const MyAssignments: React.FC = () =&gt; {
-  const [assignments, setAssignments] = useState&lt;Assignment[]&gt;([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-
-  useEffect(() =&gt; {
-    api.get('/assignments/me')
-      .then(res =&gt; setAssignments(res.data))
-      .catch(() =&gt; setError('Failed to load assignments'))
-      .finally(() =&gt; setLoading(false));
-  }, []);
-
-  if (loading) return &lt;CircularProgress sx={{ display: 'block', mx: 'auto', mt: 4 }} /&gt;;
-
-  return (
-    &lt;Container&gt;
-      &lt;Typography variant="h4" gutterBottom&gt;My Assignments&lt;/Typography&gt;
-      {error && &lt;Alert severity="error"&gt;{error}&lt;/Alert&gt;}
-      {assignments.length === 0 ? (
-        &lt;Typography&gt;You have no assignments yet.&lt;/Typography&gt;
-      ) : (
-        &lt;List&gt;
-          {assignments.map((a) =&gt; (
-            &lt;ListItem key={a.event_id}&gt;
-              &lt;ListItemText
-                primary={`${new Date(a.event_date).toLocaleDateString()} — ${a.venue_name}`}
-                secondary={`Role: ${a.role}`}
-              /&gt;
-            &lt;/ListItem&gt;
-          ))}
-        &lt;/List&gt;
-      )}
-    &lt;/Container&gt;
-  );
-};
-
-export default MyAssignments;
-        </pre>
-
-        <!-- ==================== frontend/src/pages/admin/AdminDashboard.tsx ==================== -->
-        <div class="file-header">frontend/src/pages/admin/AdminDashboard.tsx</div>
-        <pre>
-import React from 'react';
-import { Container, Typography, Grid, Paper, Button } from '@mui/material';
-import { Link } from 'react-router-dom';
-
-const AdminDashboard: React.FC = () =&gt; {
-  return (
-    &lt;Container&gt;
-      &lt;Typography variant="h4" gutterBottom&gt;Admin Dashboard&lt;/Typography&gt;
-      &lt;Grid container spacing={3}&gt;
-        &lt;Grid item xs={12} md={4}&gt;
-          &lt;Paper sx={{ p: 3, textAlign: 'center' }}&gt;
-            &lt;Typography variant="h6"&gt;Staff Management&lt;/Typography&gt;
-            &lt;Button component={Link} to="/admin/staff" variant="contained" sx={{ mt: 2 }}&gt;
-              Manage Staff
-            &lt;/Button&gt;
-          &lt;/Paper&gt;
-        &lt;/Grid&gt;
-        &lt;Grid item xs={12} md={4}&gt;
-          &lt;Paper sx={{ p: 3, textAlign: 'center' }}&gt;
-            &lt;Typography variant="h6"&gt;Event Management&lt;/Typography&gt;
-            &lt;Button component={Link} to="/admin/events" variant="contained" sx={{ mt: 2 }}&gt;
-              Manage Events
-            &lt;/Button&gt;
-          &lt;/Paper&gt;
-        &lt;/Grid&gt;
-        &lt;Grid item xs={12} md={4}&gt;
-          &lt;Paper sx={{ p: 3, textAlign: 'center' }}&gt;
-            &lt;Typography variant="h6"&gt;Assignments&lt;/Typography&gt;
-            &lt;Button component={Link} to="/admin/events" variant="contained" sx={{ mt: 2 }}&gt;
-              Go to Events
-            &lt;/Button&gt;
-          &lt;/Paper&gt;
-        &lt;/Grid&gt;
-      &lt;/Grid&gt;
-    &lt;/Container&gt;
-  );
-};
-
-export default AdminDashboard;
-        </pre>
-
-        <!-- ==================== frontend/src/pages/admin/StaffManagement.tsx ==================== -->
-        <div class="file-header">frontend/src/pages/admin/StaffManagement.tsx</div>
-        <pre>
-import React, { useEffect, useState } from 'react';
-import { Container, Typography, Table, TableHead, TableRow, TableCell, TableBody, Paper, CircularProgress, Alert } from '@mui/material';
-import api from '../../services/api';
-
-interface Staff {
-  id: string;
-  full_name: string;
-  email: string;
-  phone: string | null;
-  roles: string[];
-  is_active: boolean;
-}
-
-const StaffManagement: React.FC = () =&gt; {
-  const [staff, setStaff] = useState&lt;Staff[]&gt;([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-
-  useEffect(() =&gt; {
-    api.get('/users')
-      .then(res =&gt; setStaff(res.data))
-      .catch(() =&gt; setError('Failed to load staff'))
-      .finally(() =&gt; setLoading(false));
-  }, []);
-
-  if (loading) return &lt;CircularProgress sx={{ display: 'block', mx: 'auto', mt: 4 }} /&gt;;
-
-  return (
-    &lt;Container&gt;
-      &lt;Typography variant="h4" gutterBottom&gt;Staff Management&lt;/Typography&gt;
-      {error && &lt;Alert severity="error"&gt;{error}&lt;/Alert&gt;}
-      &lt;Paper&gt;
-        &lt;Table&gt;
-          &lt;TableHead&gt;
-            &lt;TableRow&gt;
-              &lt;TableCell&gt;Name&lt;/TableCell&gt;
-              &lt;TableCell&gt;Email&lt;/TableCell&gt;
-              &lt;TableCell&gt;Phone&lt;/TableCell&gt;
-              &lt;TableCell&gt;Roles&lt;/TableCell&gt;
-              &lt;TableCell&gt;Status&lt;/TableCell&gt;
-            &lt;/TableRow&gt;
-          &lt;/TableHead&gt;
-          &lt;TableBody&gt;
-            {staff.map((person) =&gt; (
-              &lt;TableRow key={person.id}&gt;
-                &lt;TableCell&gt;{person.full_name}&lt;/TableCell&gt;
-                &lt;TableCell&gt;{person.email}&lt;/TableCell&gt;
-                &lt;TableCell&gt;{person.phone || '—'}&lt;/TableCell&gt;
-                &lt;TableCell&gt;{person.roles.join(', ')}&lt;/TableCell&gt;
-                &lt;TableCell&gt;{person.is_active ? 'Active' : 'Inactive'}&lt;/TableCell&gt;
-              &lt;/TableRow&gt;
-            ))}
-          &lt;/TableBody&gt;
-        &lt;/Table&gt;
-      &lt;/Paper&gt;
-    &lt;/Container&gt;
-  );
-};
-
-export default StaffManagement;
-        </pre>
-
-        <!-- ==================== frontend/src/pages/admin/EventManagement.tsx ==================== -->
-        <div class="file-header">frontend/src/pages/admin/EventManagement.tsx</div>
-        <pre>
-import React, { useEffect, useState } from 'react';
-import { Container, Typography, List, ListItem, ListItemText, Button, Paper, CircularProgress, Alert } from '@mui/material';
-import { Link } from 'react-router-dom';
-import api from '../../services/api';
-
-interface Event {
-  id: string;
-  date: string;
-  venue_name: string;
-}
-
-const EventManagement: React.FC = () =&gt; {
-  const [events, setEvents] = useState&lt;Event[]&gt;([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-
-  useEffect(() =&gt; {
-    api.get('/events')
-      .then(res =&gt; setEvents(res.data))
-      .catch(() =&gt; setError('Failed to load events'))
-      .finally(() =&gt; setLoading(false));
-  }, []);
-
-  if (loading) return &lt;CircularProgress sx={{ display: 'block', mx: 'auto', mt: 4 }} /&gt;;
-
-  return (
-    &lt;Container&gt;
-      &lt;Typography variant="h4" gutterBottom&gt;Event Management&lt;/Typography&gt;
-      {error && &lt;Alert severity="error"&gt;{error}&lt;/Alert&gt;}
-      &lt;Button variant="contained" sx={{ mb: 2 }}&gt;Add New Event&lt;/Button&gt;
-      &lt;Paper&gt;
-        &lt;List&gt;
-          {events.map((event) =&gt; (
-            &lt;ListItem key={event.id} divider&gt;
-              &lt;ListItemText
-                primary={`${new Date(event.date).toLocaleDateString()} — ${event.venue_name}`}
-              /&gt;
-              &lt;Button component={Link} to={`/admin/assignments/${event.id}`} variant="outlined" size="small"&gt;
-                Assign Staff
-              &lt;/Button&gt;
-            &lt;/ListItem&gt;
-          ))}
-        &lt;/List&gt;
-      &lt;/Paper&gt;
-    &lt;/Container&gt;
-  );
-};
-
-export default EventManagement;
-        </pre>
-
-        <!-- ==================== frontend/src/pages/admin/AssignmentHub.tsx ==================== -->
-        <div class="file-header">frontend/src/pages/admin/AssignmentHub.tsx</div>
-        <pre>
-import React from 'react';
-import { Container, Typography } from '@mui/material';
-import { useParams } from 'react-router-dom';
-
-const AssignmentHub: React.FC = () =&gt; {
-  const { eventId } = useParams();
-  return (
-    &lt;Container&gt;
-      &lt;Typography variant="h4" gutterBottom&gt;Assign Staff for Event&lt;/Typography&gt;
-      &lt;Typography&gt;Event ID: {eventId}&lt;/Typography&gt;
-      &lt;Typography&gt;This page will display available staff grouped by role and allow assignments. To be implemented in Phase 2.&lt;/Typography&gt;
-    &lt;/Container&gt;
-  );
-};
-
-export default AssignmentHub;
-        </pre>
-
-        <!-- ==================== backend/package.json ==================== -->
-        <div class="file-header">backend/package.json</div>
-        <pre>
-{
-  "name": "members-lounge-backend",
-  "version": "1.0.0",
-  "description": "",
-  "main": "dist/index.js",
-  "scripts": {
-    "dev": "nodemon src/index.ts",
-    "build": "tsc",
-    "start": "node dist/index.js"
-  },
-  "dependencies": {
-    "bcrypt": "^5.1.0",
-    "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "jsonwebtoken": "^9.0.1",
-    "pg": "^8.11.0"
-  },
-  "devDependencies": {
-    "@types/bcrypt": "^5.0.0",
-    "@types/cors": "^2.8.13",
-    "@types/express": "^4.17.17",
-    "@types/jsonwebtoken": "^9.0.2",
-    "@types/node": "^20.3.1",
-    "@types/pg": "^8.10.2",
-    "nodemon": "^2.0.22",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.1.3"
-  }
-}
-        </pre>
-
-        <!-- ==================== backend/tsconfig.json ==================== -->
-        <div class="file-header">backend/tsconfig.json</div>
-        <pre>
-{
-  "compilerOptions": {
-    "target": "ES2020",
-    "module": "commonjs",
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
-  },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules"]
-}
-        </pre>
-
-        <!-- ==================== backend/.env.example ==================== -->
-        <div class="file-header">backend/.env.example</div>
-        <pre>
-PORT=5000
-DATABASE_URL=postgresql://user:password@localhost:5432/members_lounge
-JWT_SECRET=your_super_secret_key_change_me
-FRONTEND_URL=http://localhost:5173
-        </pre>
-
-        <!-- ==================== backend/src/index.ts ==================== -->
-        <div class="file-header">backend/src/index.ts</div>
-        <pre>
-import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import authRoutes from './routes/auth';
-import userRoutes from './routes/users';
-import eventRoutes from './routes/events';
-import availabilityRoutes from './routes/availability';
-import assignmentRoutes from './routes/assignments';
-
-dotenv.config();
-
-const app = express();
-app.use(cors({ origin: process.env.FRONTEND_URL || 'http://localhost:5173' }));
-app.use(express.json());
-
-app.use('/api/auth', authRoutes);
-app.use('/api/users', userRoutes);
-app.use('/api/events', eventRoutes);
-app.use('/api/availability', availabilityRoutes);
-app.use('/api/assignments', assignmentRoutes);
-
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-        </pre>
-
-        <!-- ==================== backend/src/db.ts ==================== -->
-        <div class="file-header">backend/src/db.ts</div>
-        <pre>
-import { Pool } from 'pg';
-import dotenv from 'dotenv';
-
-dotenv.config();
-
-export const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-});
-
-export const query = (text: string, params?: any[]) => pool.query(text, params);
-        </pre>
-
-        <!-- ==================== backend/src/middleware/auth.ts ==================== -->
-        <div class="file-header">backend/src/middleware/auth.ts</div>
-        <pre>
-import { Request, Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
-
-export interface AuthRequest extends Request {
-  user?: any;
-}
-
-export const authenticate = (req: AuthRequest, res: Response, next: NextFunction) => {
-  const authHeader = req.headers.authorization;
-  if (!authHeader) return res.status(401).json({ message: 'No token provided' });
-
-  const token = authHeader.split(' ')[1];
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET!);
-    req.user = decoded;
-    next();
-  } catch {
-    res.status(401).json({ message: 'Invalid token' });
-  }
-};
-
-export const requireAdmin = (req: AuthRequest, res: Response, next: NextFunction) => {
-  if (!req.user?.is_admin) {
-    return res.status(403).json({ message: 'Forbidden' });
-  }
-  next();
-};
-        </pre>
-
-        <!-- ==================== backend/src/routes/auth.ts ==================== -->
-        <div class="file-header">backend/src/routes/auth.ts</div>
-        <pre>
-import { Router } from 'express';
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-import { query } from '../db';
-import { authenticate, AuthRequest } from '../middleware/auth';
-
-const router = Router();
-
-router.post('/register', async (req, res) => {
-  const { email, password, full_name, phone, roles } = req.body;
-  const hashedPassword = await bcrypt.hash(password, 10);
-  try {
-    const result = await query(
-      `INSERT INTO users (email, password_hash, full_name, phone, roles)
-       VALUES ($1, $2, $3, $4, $5) RETURNING id, email, full_name, phone, roles, is_admin`,
-      [email, hashedPassword, full_name, phone, roles]
-    );
-    res.status(201).json(result.rows[0]);
-  } catch (err: any) {
-    if (err.code === '23505') {
-      return res.status(400).json({ message: 'Email already exists' });
-    }
-    console.error(err);
-    res.status(500).json({ message: 'Server error' });
-  }
-});
-
-router.post('/login', async (req, res) => {
-  const { email, password } = req.body;
-  const result = await query('SELECT * FROM users WHERE email = $1', [email]);
-  const user = result.rows[0];
-  if (!user) return res.status(401).json({ message: 'Invalid credentials' });
-
-  const valid = await bcrypt.compare(password, user.password_hash);
-  if (!valid) return res.status(401).json({ message: 'Invalid credentials' });
-
-  const token = jwt.sign(
-    { id: user.id, email: user.email, is_admin: user.is_admin },
-    process.env.JWT_SECRET!,
-    { expiresIn: '7d' }
-  );
-
-  res.json({
-    token,
-    user: {
-      id: user.id,
-      email: user.email,
-      full_name: user.full_name,
-      phone: user.phone,
-      roles: user.roles,
-      is_admin: user.is_admin,
-    },
-  });
-});
-
-router.get('/me', authenticate, async (req: AuthRequest, res) => {
-  const result = await query(
-    'SELECT id, email, full_name, phone, roles, is_admin FROM users WHERE id = $1',
-    [req.user.id]
-  );
-  res.json(result.rows[0]);
-});
-
-export default router;
-        </pre>
-
-        <!-- ==================== backend/src/routes/users.ts ==================== -->
-        <div class="file-header">backend/src/routes/users.ts</div>
-        <pre>
-import { Router } from 'express';
-import { query } from '../db';
-import { authenticate, requireAdmin, AuthRequest } from '../middleware/auth';
-
-const router = Router();
-
-// Get all users (admin only)
-router.get('/', authenticate, requireAdmin, async (req, res) => {
-  const result = await query(
-    'SELECT id, email, full_name, phone, roles, is_active, is_admin FROM users ORDER BY full_name'
-  );
-  res.json(result.rows);
-});
-
-// Get single user (admin or self)
-router.get('/:id', authenticate, async (req: AuthRequest, res) => {
-  if (!req.user.is_admin && req.user.id !== req.params.id) {
-    return res.status(403).json({ message: 'Forbidden' });
-  }
-  const result = await query(
-    'SELECT id, email, full_name, phone, roles, is_active, is_admin FROM users WHERE id = $1',
-    [req.params.id]
-  );
-  if (result.rows.length === 0) return res.status(404).json({ message: 'User not found' });
-  res.json(result.rows[0]);
-});
-
-// Update user (admin or self)
-router.put('/:id', authenticate, async (req: AuthRequest, res) => {
-  if (!req.user.is_admin && req.user.id !== req.params.id) {
-    return res.status(403).json({ message: 'Forbidden' });
-  }
-  const { full_name, phone, roles } = req.body;
-  try {
-    const result = await query(
-      'UPDATE users SET full_name = $1, phone = $2, roles = $3 WHERE id = $4 RETURNING id, email, full_name, phone, roles, is_admin',
-      [full_name, phone, roles, req.params.id]
-    );
-    res.json(result.rows[0]);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server error' });
-  }
-});
-
-// Deactivate/activate (admin only)
-router.patch('/:id/toggle-active', authenticate, requireAdmin, async (req, res) => {
-  const user = await query('SELECT is_active FROM users WHERE id = $1', [req.params.id]);
-  if (user.rows.length === 0) return res.status(404).json({ message: 'User not found' });
-  const newStatus = !user.rows[0].is_active;
-  await query('UPDATE users SET is_active = $1 WHERE id = $2', [newStatus, req.params.id]);
-  res.json({ message: `User ${newStatus ? 'activated' : 'deactivated'}` });
-});
-
-export default router;
-        </pre>
-
-        <!-- ==================== backend/src/routes/events.ts ==================== -->
-        <div class="file-header">backend/src/routes/events.ts</div>
-        <pre>
-import { Router } from 'express';
-import { query } from '../db';
-import { authenticate, requireAdmin } from '../middleware/auth';
-
-const router = Router();
-
-// Get all events (staff and admin)
-router.get('/', authenticate, async (req, res) => {
-  const result = await query('SELECT * FROM events ORDER BY date ASC');
-  res.json(result.rows);
-});
-
-// Get single event
-router.get('/:id', authenticate, async (req, res) => {
-  const result = await query('SELECT * FROM events WHERE id = $1', [req.params.id]);
-  if (result.rows.length === 0) return res.status(404).json({ message: 'Event not found' });
-  res.json(result.rows[0]);
-});
-
-// Create new event (admin only)
-router.post('/', authenticate, requireAdmin, async (req, res) => {
-  const { date, venue_name, notes } = req.body;
-  try {
-    const result = await query(
-      'INSERT INTO events (date, venue_name, notes) VALUES ($1, $2, $3) RETURNING *',
-      [date, venue_name, notes]
-    );
-    res.status(201).json(result.rows[0]);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server error' });
-  }
-});
-
-// Update event (admin only)
-router.put('/:id', authenticate, requireAdmin, async (req, res) => {
-  const { date, venue_name, notes } = req.body;
-  try {
-    const result = await query(
-      'UPDATE events SET date = $1, venue_name = $2, notes = $3 WHERE id = $4 RETURNING *',
-      [date, venue_name, notes, req.params.id]
-    );
-    if (result.rows.length === 0) return res.status(404).json({ message: 'Event not found' });
-    res.json(result.rows[0]);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server error' });
-  }
-});
-
-// Delete event (admin only)
-router.delete('/:id', authenticate, requireAdmin, async (req, res) => {
-  const result = await query('DELETE FROM events WHERE id = $1 RETURNING id', [req.params.id]);
-  if (result.rows.length === 0) return res.status(404).json({ message: 'Event not found' });
-  res.json({ message: 'Event deleted' });
-});
-
-export default router;
-        </pre>
-
-        <!-- ==================== backend/src/routes/availability.ts ==================== -->
-        <div class="file-header">backend/src/routes/availability.ts</div>
-        <pre>
-import { Router } from 'express';
-import { query } from '../db';
-import { authenticate, AuthRequest } from '../middleware/auth';
-
-const router = Router();
-
-// Get current user's availability for all events
-router.get('/', authenticate, async (req: AuthRequest, res) => {
-  const result = await query(
-    'SELECT event_id, is_available FROM availability WHERE user_id = $1',
-    [req.user.id]
-  );
-  res.json(result.rows);
-});
-
-// Update availability for a specific event
-router.put('/', authenticate, async (req: AuthRequest, res) => {
-  const { eventId, isAvailable } = req.body;
-  try {
-    await query(
-      `INSERT INTO availability (user_id, event_id, is_available)
-       VALUES ($1, $2, $3)
-       ON CONFLICT (user_id, event_id)
-       DO UPDATE SET is_available = EXCLUDED.is_available, updated_at = NOW()`,
-      [req.user.id, eventId, isAvailable]
-    );
-    res.json({ message: 'Availability updated' });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Server error' });
-  }
-});
-
-// Bulk update availability (optional)
-router.post('/bulk', authenticate, async (req: AuthRequest, res) => {
-  const { availability } = req.body; // array of { eventId, isAvailable }
-  const client = await query('BEGIN');
-  try {
-    for (const a of availability) {
-      await query(
-        `INSERT INTO availability (user_id, event_id, is_available)
-         VALUES ($1, $2, $3)
-         ON CONFLICT (user_id, event_id)
-         DO UPDATE SET is_available = EXCLUDED.is_available, updated_at = NOW()`,
-        [req.user.id, a.eventId, a.isAvailable]
-      );
-    }
-    await query('COMMIT');
-    res.json({ message: 'Availability updated' });
-  } catch (err) {
-    await query('ROLLBACK');
-    console.error(err);
-    res.status(500).json({ message: 'Server error' });
-  }
-});
-
-export default router;
-        </pre>
-
-        <!-- ==================== backend/src/routes/assignments.ts ==================== -->
-        <div class="file-header">backend/src/routes/assignments.ts</div>
-        <pre>
-import { Router } from 'express';
-import { query } from '../db';
-import { authenticate, requireAdmin, AuthRequest } from '../middleware/auth';
-
-const router = Router();
-
-// Get assignments for current user (staff view)
-router.get('/me', authenticate, async (req: AuthRequest, res) => {
-  const result = await query(
-    `SELECT a.event_id, e.date as event_date, e.venue_name, a.role
-     FROM assignments a
-     JOIN events e ON a.event_id = e.id
-     WHERE a.user_id = $1
-     ORDER BY e.date`,
-    [req.user.id]
-  );
-  res.json(result.rows);
-});
-
-// Get all assignments for an event (admin only)
-router.get('/event/:eventId', authenticate, requireAdmin, async (req, res) => {
-  const result = await query(
-    `SELECT a.user_id, u.full_name, u.roles, a.role
-     FROM assignments a
-     JOIN users u ON a.user_id = u.id
-     WHERE a.event_id = $1`,
-    [req.params.eventId]
-  );
-  res.json(result.rows);
-});
-
-// Create assignment (admin only) – includes conflict check
-router.post('/', authenticate, requireAdmin, async (req, res) => {
-  const { eventId, userId, role } = req.body;
-
-  // Check if user is already assigned to another event on the same day
-  const conflictCheck = await query(
-    `SELECT e.date FROM events e
-     JOIN assignments a ON e.id = a.event_id
-     WHERE a.user_id = $1 AND e.id != $2 AND e.date = (
-       SELECT date FROM events WHERE id = $2
-     )`,
-    [userId, eventId]
-  );
-
-  if (conflictCheck.rows.length > 0) {
-    return res.status(409).json({ message: 'User already assigned to another event on this date' });
-  }
-
-  try {
-    const result = await query(
-      'INSERT INTO assignments (event_id, user_id, role) VALUES ($1, $2, $3) RETURNING *',
-      [eventId, userId, role]
-    );
-    res.status(201).json(result.rows[0]);
-  } catch (err: any) {
-    if (err.code === '23505') {
-      return res.status(409).json({ message: 'User already assigned to this event' });
-    }
-    console.error(err);
-    res.status(500).json({ message: 'Server error' });
-  }
-});
-
-// Remove assignment (admin only)
-router.delete('/:id', authenticate, requireAdmin, async (req, res) => {
-  const result = await query('DELETE FROM assignments WHERE id = $1 RETURNING id', [req.params.id]);
-  if (result.rows.length === 0) return res.status(404).json({ message: 'Assignment not found' });
-  res.json({ message: 'Assignment removed' });
-});
-
-export default router;
-        </pre>
-
-        <!-- ==================== database/schema.sql ==================== -->
-        <div class="file-header">database/schema.sql</div>
-        <pre>
--- Users table
-CREATE TABLE users (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  email TEXT UNIQUE NOT NULL,
-  password_hash TEXT NOT NULL,
-  full_name TEXT NOT NULL,
-  phone TEXT,
-  roles TEXT[] NOT NULL,
-  is_active BOOLEAN DEFAULT true,
-  is_admin BOOLEAN DEFAULT false,
-  created_at TIMESTAMPTZ DEFAULT NOW()
-);
-
--- Events table
-CREATE TABLE events (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  date DATE NOT NULL,
-  venue_name TEXT NOT NULL,
-  notes TEXT,
-  created_at TIMESTAMPTZ DEFAULT NOW()
-);
-
--- Availability table
-CREATE TABLE availability (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-  event_id UUID NOT NULL REFERENCES events(id) ON DELETE CASCADE,
-  is_available BOOLEAN NOT NULL DEFAULT false,
-  updated_at TIMESTAMPTZ DEFAULT NOW(),
-  UNIQUE(user_id, event_id)
-);
-
--- Assignments table
-CREATE TABLE assignments (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  event_id UUID NOT NULL REFERENCES events(id) ON DELETE CASCADE,
-  user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-  role TEXT NOT NULL CHECK (role IN ('kitchen', 'floor', 'bar', 'cleaner', 'setup')),
-  assigned_at TIMESTAMPTZ DEFAULT NOW(),
-  UNIQUE(event_id, user_id)
-);
-
--- Indexes for performance
-CREATE INDEX idx_availability_user ON availability(user_id);
-CREATE INDEX idx_availability_event ON availability(event_id);
-CREATE INDEX idx_assignments_event ON assignments(event_id);
-CREATE INDEX idx_assignments_user ON assignments(user_id);
-        </pre>
-
-        <!-- ==================== database/seed.sql ==================== -->
-        <div class="file-header">database/seed.sql</div>
-        <pre>
--- Insert the 44 events
-INSERT INTO events (date, venue_name) VALUES
-('2026-03-28', 'Sala Reggio Ballroom'),
-('2026-04-18', 'Fior Events'),
-('2026-05-09', 'Fior Events'),
-('2026-05-17', 'Sala Reggio Ballroom'),
-('2026-05-22', 'Sala Reggio Ballroom'),
-('2026-05-23', 'Sala Reggio Ballroom'),
-('2026-05-24', 'Sala Reggio Ballroom'),
-('2026-05-29', 'Sala Reggio Ballroom'),
-('2026-05-30', 'Sala Reggio Ballroom'),
-('2026-05-31', 'Sala Reggio Ballroom'),
-('2026-06-07', 'Sala Reggio Ballroom'),
-('2026-06-07', 'Fior Events'),
-('2026-06-12', 'Sala Reggio Ballroom'),
-('2026-06-13', 'Sala Reggio Ballroom'),
-('2026-06-20', 'Sala Reggio Ballroom'),
-('2026-06-21', 'Sala Reggio Ballroom'),
-('2026-07-19', 'Sala Reggio Ballroom'),
-('2026-07-25', 'Sala Reggio Ballroom'),
-('2026-07-25', 'Fior Events'),
-('2026-07-26', 'Sala Reggio Ballroom'),
-('2026-08-01', 'Sala Reggio Ballroom'),
-('2026-08-02', 'Sala Reggio Ballroom'),
-('2026-08-08', 'Sala Reggio Ballroom'),
-('2026-08-15', 'Sala Reggio Ballroom'),
-('2026-08-16', 'Fior Events'),
-('2026-08-22', 'Sala Reggio Ballroom'),
-('2026-08-23', 'Sala Reggio Ballroom'),
-('2026-08-30', 'Sala Reggio Ballroom'),
-('2026-09-13', 'Sala Reggio Ballroom'),
-('2026-09-13', 'Fior Events'),
-('2026-09-18', 'Sala Reggio Ballroom'),
-('2026-09-20', 'Fior Events'),
-('2026-10-03', 'Fior Events'),
-('2026-10-17', 'Sala Reggio Ballroom'),
-('2026-11-13', 'Sala Reggio Ballroom'),
-('2026-11-21', 'Sala Reggio Ballroom'),
-('2026-12-11', 'Fior Events'),
-('2026-12-12', 'Fior Events'),
-('2026-12-14', 'Sala Reggio Ballroom'),
-('2026-12-15', 'Sala Reggio Ballroom'),
-('2026-12-17', 'Sala Reggio Ballroom'),
-('2027-02-27', 'Fior Events'),
-('2027-02-28', 'Fior Events'),
-('2027-03-27', 'Fior Events');
-
--- Create an initial admin user (password: "admin123" – change immediately!)
-INSERT INTO users (email, password_hash, full_name, phone, roles, is_admin)
-VALUES (
-  'admin@memberslounge.com',
-  '$2b$10$YxL6Iv0s8N5vZw5k9X9JzO1yX8YqX8YqX8YqX8YqX8YqX8YqX8Yq', -- bcrypt hash for "admin123"
-  'Admin User',
-  '',
-  ARRAY[]::TEXT[],
-  true
-);
-        </pre>
-
-        <hr />
-        <div class="note">
-            <strong>All files have been displayed.</strong><br>
-            <ol style="margin-top:10px;">
-                <li>Create the folder structure on your computer as shown above.</li>
-                <li>Copy each code block into the corresponding file.</li>
-                <li>Place your Member's Lounge logo in <code>frontend/public/logo.png</code>.</li>
-                <li>Push the entire folder to a new GitHub repository.</li>
-                <li>Deploy the frontend on Vercel (point to the <code>frontend</code> folder).</li>
-                <li>For the backend, you'll need to deploy separately (Render, etc.) and set up PostgreSQL.</li>
-            </ol>
-            <p>If you need further assistance, just ask!</p>
+        <div class="tagline">Staff Availability System – Live Cloud Sync</div>
+    </div>
+
+    <div class="tabs" id="tab-bar">
+        <button class="tab-btn" data-tab="staff">Staff Availability</button>
+        <button class="tab-btn" data-tab="admin">Admin Panel</button>
+        <button class="tab-btn" data-tab="availability">Availability Matrix</button>
+    </div>
+
+    <!-- Staff Panel -->
+    <div id="staff-pane" class="tab-pane active">
+        <div class="card">
+            <h2>Enter Your Employee Code</h2>
+            <div id="staff-message" class="hidden"></div>
+            <div class="form-group">
+                <label>Employee Code</label>
+                <input type="text" id="employee-code" placeholder="e.g., CARLO6">
+                <button id="load-employee" style="margin-top: 10px;">Load My Details</button>
+            </div>
+            <div id="staff-details" class="hidden">
+                <div class="staff-info">
+                    <div><strong>Name:</strong> <span id="display-name"></span></div>
+                    <div><strong>Section:</strong> <span id="display-section"></span></div>
+                </div>
+                <div class="form-group">
+                    <label>Select Dates You Can Work</label>
+                    <div id="dates-container" class="date-list"></div>
+                </div>
+                <button id="submit-availability">Save My Availability</button>
+            </div>
         </div>
     </div>
+
+    <!-- Admin Panel -->
+    <div id="admin-pane" class="tab-pane">
+        <div class="card">
+            <h2>Manage Employees</h2>
+            <div id="employee-list" class="employee-list"></div>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px;">
+                <div style="flex: 2;">
+                    <label>Employee Name</label>
+                    <input type="text" id="new-employee-name" placeholder="Name">
+                </div>
+                <div style="flex: 1;">
+                    <label>Section</label>
+                    <select id="new-employee-section">
+                        <option value="kitchen">Kitchen</option>
+                        <option value="floor">Floor</option>
+                        <option value="bar">Bar</option>
+                        <option value="cleaner">Cleaner</option>
+                        <option value="setup">Setup</option>
+                        <option value="manager">Manager (unlimited)</option>
+                    </select>
+                </div>
+                <div style="flex: 2;">
+                    <label>Employee Code (optional)</label>
+                    <div class="code-input-group">
+                        <input type="text" id="new-employee-code" placeholder="Auto-generate">
+                        <button id="generate-random-code" type="button">Generate Random</button>
+                    </div>
+                </div>
+                <button id="add-employee" style="align-self: flex-end;">Add Employee</button>
+            </div>
+        </div>
+        <div class="card">
+            <h2>Employee Code List</h2>
+            <button id="show-code-list">Show Employee Code List</button>
+            <div id="code-list-container" class="hidden employee-code-list">
+                <textarea id="code-list-textarea" readonly></textarea>
+                <button id="copy-code-list" style="margin-top: 10px;">Copy to Clipboard</button>
+            </div>
+        </div>
+        <div class="card">
+            <h2>Manage Events</h2>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px;">
+                <input type="date" id="new-event-date" placeholder="YYYY-MM-DD">
+                <input type="text" id="new-event-venue" placeholder="Venue name" style="flex:2;">
+                <button id="add-event">Add Event</button>
+            </div>
+            <div id="event-list" style="margin-top: 10px; max-height: 400px; overflow-y: auto;"></div>
+        </div>
+        <div class="card">
+            <h2>Cloud Sync & Export</h2>
+            <button id="sync-now">Sync Now (Refresh from Cloud)</button>
+            <button id="export-csv" style="margin-left: 10px;">Export to Excel (CSV)</button>
+            <button id="export-codes" style="margin-left: 10px;">Export Employee Codes (CSV)</button>
+            <div id="sync-status" class="sync-status"></div>
+            <div id="save-status" class="hidden success-msg" style="margin-top: 10px;"></div>
+        </div>
+        <div class="card">
+            <h2>Danger Zone</h2>
+            <button id="clear-all-data" style="background:#ff4444;">Reset to Default (Clear All Data)</button>
+        </div>
+    </div>
+
+    <!-- Availability Matrix -->
+    <div id="availability-pane" class="tab-pane">
+        <div class="card">
+            <h2>Availability by Section & Event</h2>
+            <div class="section-filter" id="section-filters">
+                <button class="filter-btn active" data-section="all">All Sections</button>
+                <button class="filter-btn" data-section="kitchen">Kitchen</button>
+                <button class="filter-btn" data-section="floor">Floor</button>
+                <button class="filter-btn" data-section="bar">Bar</button>
+                <button class="filter-btn" data-section="cleaner">Cleaner</button>
+                <button class="filter-btn" data-section="setup">Setup</button>
+                <button class="filter-btn" data-section="manager">Manager</button>
+            </div>
+            <div class="scrollable-table" id="availability-matrix"></div>
+            <div class="sync-status" id="matrix-sync-status"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Employee Modal -->
+<div id="editModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Edit Employee</h3>
+            <span class="close-modal">&times;</span>
+        </div>
+        <div id="edit-error" class="error-msg hidden" style="margin-bottom: 15px;"></div>
+        <div class="form-group">
+            <label>Employee Name</label>
+            <input type="text" id="edit-emp-name">
+        </div>
+        <div class="form-group">
+            <label>Section</label>
+            <select id="edit-emp-section">
+                <option value="kitchen">Kitchen</option>
+                <option value="floor">Floor</option>
+                <option value="bar">Bar</option>
+                <option value="cleaner">Cleaner</option>
+                <option value="setup">Setup</option>
+                <option value="manager">Manager (unlimited)</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Employee Code</label>
+            <div class="code-input-group">
+                <input type="text" id="edit-emp-code">
+                <button id="edit-generate-random" type="button">Generate Random</button>
+            </div>
+        </div>
+        <button id="save-edit">Save Changes</button>
+    </div>
+</div>
+
+<!-- Event Settings Modal -->
+<div id="eventSettingsModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 id="eventSettingsTitle">Event Settings</h3>
+            <span class="close-modal" id="closeEventSettings">&times;</span>
+        </div>
+        <div id="eventSettingsContent"></div>
+        <div style="margin-top: 20px; display: flex; justify-content: flex-end;">
+            <button id="saveEventSettings">Save Changes</button>
+        </div>
+    </div>
+</div>
+
+<div id="toast" class="toast">✓ Saved permanently!</div>
+
+<script>
+// ================== CLOUD CONFIGURATION ==================
+// *** REPLACE THESE WITH YOUR JSONBIN.IO CREDENTIALS ***
+const JSONBIN_BIN_ID = 'YOUR_BIN_ID';      // e.g., '5f9a8e7b1a1b2c3d4e5f6g7h'
+const JSONBIN_API_KEY = 'YOUR_API_KEY';    // your master key
+
+const API_BASE = `https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`;
+
+// ---------- GLOBAL ----------
+let employees = [];
+let submissions = {};
+let events = [];
+let eventSettings = {};
+
+const MANAGER_PASSWORD = 'ML2026';
+let managerAuthenticated = sessionStorage.getItem('managerAuthenticated') === 'true';
+
+const DEFAULT_CAPACITIES = {
+    kitchen: 4,
+    floor: 8,
+    bar: 1,
+    cleaner: 9999,
+    setup: 9999,
+    manager: 9999
+};
+
+// ---------- DEFAULT DATA (hardcoded) ----------
+const defaultEvents = [
+    { id: '1', date: '2026-03-28', venue: 'Sala Reggio Ballroom' },
+    { id: '2', date: '2026-04-18', venue: 'Fior Events' },
+    { id: '3', date: '2026-05-09', venue: 'Fior Events' },
+    { id: '4', date: '2026-05-17', venue: 'Sala Reggio Ballroom' },
+    { id: '5', date: '2026-05-22', venue: 'Sala Reggio Ballroom' },
+    { id: '6', date: '2026-05-23', venue: 'Sala Reggio Ballroom' },
+    { id: '7', date: '2026-05-24', venue: 'Sala Reggio Ballroom' },
+    { id: '8', date: '2026-05-29', venue: 'Sala Reggio Ballroom' },
+    { id: '9', date: '2026-05-30', venue: 'Sala Reggio Ballroom' },
+    { id: '10', date: '2026-05-31', venue: 'Sala Reggio Ballroom' },
+    { id: '11', date: '2026-06-07', venue: 'Sala Reggio Ballroom' },
+    { id: '12', date: '2026-06-07', venue: 'Fior Events' },
+    { id: '13', date: '2026-06-12', venue: 'Sala Reggio Ballroom' },
+    { id: '14', date: '2026-06-13', venue: 'Sala Reggio Ballroom' },
+    { id: '15', date: '2026-06-20', venue: 'Sala Reggio Ballroom' },
+    { id: '16', date: '2026-06-21', venue: 'Sala Reggio Ballroom' },
+    { id: '17', date: '2026-07-19', venue: 'Sala Reggio Ballroom' },
+    { id: '18', date: '2026-07-25', venue: 'Sala Reggio Ballroom' },
+    { id: '19', date: '2026-07-25', venue: 'Fior Events' },
+    { id: '20', date: '2026-07-26', venue: 'Sala Reggio Ballroom' },
+    { id: '21', date: '2026-08-01', venue: 'Sala Reggio Ballroom' },
+    { id: '22', date: '2026-08-02', venue: 'Sala Reggio Ballroom' },
+    { id: '23', date: '2026-08-08', venue: 'Sala Reggio Ballroom' },
+    { id: '24', date: '2026-08-15', venue: 'Sala Reggio Ballroom' },
+    { id: '25', date: '2026-08-16', venue: 'Fior Events' },
+    { id: '26', date: '2026-08-22', venue: 'Sala Reggio Ballroom' },
+    { id: '27', date: '2026-08-23', venue: 'Sala Reggio Ballroom' },
+    { id: '28', date: '2026-08-30', venue: 'Sala Reggio Ballroom' },
+    { id: '29', date: '2026-09-13', venue: 'Sala Reggio Ballroom' },
+    { id: '30', date: '2026-09-13', venue: 'Fior Events' },
+    { id: '31', date: '2026-09-18', venue: 'Sala Reggio Ballroom' },
+    { id: '32', date: '2026-09-20', venue: 'Fior Events' },
+    { id: '33', date: '2026-10-03', venue: 'Fior Events' },
+    { id: '34', date: '2026-10-17', venue: 'Sala Reggio Ballroom' },
+    { id: '35', date: '2026-11-13', venue: 'Sala Reggio Ballroom' },
+    { id: '36', date: '2026-11-21', venue: 'Sala Reggio Ballroom' },
+    { id: '37', date: '2026-12-11', venue: 'Fior Events' },
+    { id: '38', date: '2026-12-12', venue: 'Fior Events' },
+    { id: '39', date: '2026-12-14', venue: 'Sala Reggio Ballroom' },
+    { id: '40', date: '2026-12-15', venue: 'Sala Reggio Ballroom' },
+    { id: '41', date: '2026-12-17', venue: 'Sala Reggio Ballroom' },
+    { id: '42', date: '2027-02-27', venue: 'Fior Events' },
+    { id: '43', date: '2027-02-28', venue: 'Fior Events' },
+    { id: '44', date: '2027-03-27', venue: 'Fior Events' }
+];
+
+const defaultEmployeesRaw = [
+    { name: "Carlo Pavia", section: "manager", code: "CARLO6" },
+    { name: "Michelle Pavia", section: "manager", code: "MICHE0" },
+    { name: "Rohitha Rawan", section: "kitchen", code: "ROHIT9" },
+    { name: "Nam Lai", section: "kitchen", code: "NAMLA7" },
+    { name: "Franco Schiavo", section: "kitchen", code: "FRANC3" },
+    { name: "Stevan Brankovic", section: "kitchen", code: "STEVAN" },
+    { name: "Peter Tricarico", section: "floor", code: "PETER8" },
+    { name: "Claudio Bottigliero", section: "bar", code: "CLAUDI" },
+    { name: "Remzi Asllanaj", section: "bar", code: "REMZIA" },
+    { name: "Gerry Gupip", section: "kitchen", code: "GERRY9" },
+    { name: "Costa Vlahos", section: "floor", code: "COSTA1" },
+    { name: "Raffaele Martino", section: "bar", code: "RAFFAE" },
+    { name: "Cathy Pelli", section: "kitchen", code: "CATHY3" },
+    { name: "David Pasqualone", section: "floor", code: "DAVID4" },
+    { name: "Louis Pasqualone", section: "floor", code: "LOUIS6" },
+    { name: "Giulia Montorro", section: "kitchen", code: "GIULIA" },
+    { name: "Rocco Cirelli", section: "floor", code: "ROCCO2" },
+    { name: "Kim Lai", section: "kitchen", code: "KIMLAI" },
+    { name: "Bianca Pavia", section: "manager", code: "BIANCA" },
+    { name: "Julian Poloni", section: "floor", code: "JULIAN" },
+    { name: "Vin Lai", section: "floor", code: "VINLAI" },
+    { name: "Nathan Trimboli", section: "floor", code: "NATHAN" },
+    { name: "Dean Margellis", section: "floor", code: "DEANMA" },
+    { name: "Aidan Trimboli", section: "floor", code: "AIDANT" },
+    { name: "Jaimee Lidell", section: "floor", code: "JAIMEE" },
+    { name: "Monique Elasmar", section: "floor", code: "MONIQU" },
+    { name: "Luka Tigani", section: "floor", code: "LUKATI" },
+    { name: "Walter Testa", section: "setup", code: "WALTER" },
+    { name: "Carl Testa", section: "setup", code: "CARLTE" },
+    { name: "Jack Testa", section: "floor", code: "JACKTE" },
+    { name: "Massimo Interlandi", section: "floor", code: "MASSIM" },
+    { name: "Olivier Leone", section: "floor", code: "OLIVIE" },
+    { name: "Laura Pavia", section: "manager", code: "LAURAP" },
+    { name: "Isabella Pavia", section: "manager", code: "ISABEL" },
+    { name: "Alessio Interlandi", section: "floor", code: "ALESSI" },
+    { name: "Charlie Pavia", section: "floor", code: "CHARLI" },
+    { name: "Luccio Tonno", section: "kitchen", code: "LUCCIO" },
+    { name: "Jacob Doubleday", section: "floor", code: "JACOB0" }
+];
+
+// ---------- HELPERS ----------
+function formatDate(dateStr) {
+    return new Date(dateStr).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+}
+
+function generateRandomCode() {
+    const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789';
+    let result = '';
+    for (let i = 0; i < 6; i++) result += chars.charAt(Math.floor(Math.random() * chars.length));
+    return result;
+}
+
+function escapeHtml(str) {
+    return str.replace(/[&<>]/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[m] || m));
+}
+
+function showToast() {
+    const toast = document.getElementById('toast');
+    toast.style.display = 'block';
+    setTimeout(() => toast.style.display = 'none', 2000);
+}
+
+function showMessage(containerId, text, type) {
+    const c = document.getElementById(containerId);
+    if (!c) return;
+    c.textContent = text;
+    c.className = type === 'success' ? 'success-msg' : 'error-msg';
+    c.classList.remove('hidden');
+    setTimeout(() => c.classList.add('hidden'), 3000);
+}
+
+// ---------- CLOUD SYNC ----------
+async function loadFromCloud() {
+    if (!JSONBIN_BIN_ID || JSONBIN_BIN_ID === 'YOUR_BIN_ID') {
+        console.warn('JSONBin not configured. Using local storage only.');
+        return false;
+    }
+    try {
+        const response = await fetch(API_BASE, {
+            headers: { 'X-Master-Key': JSONBIN_API_KEY }
+        });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+        const cloudData = data.record;
+        if (cloudData.employees) employees = cloudData.employees;
+        if (cloudData.submissions) submissions = cloudData.submissions;
+        if (cloudData.events) events = cloudData.events;
+        if (cloudData.eventSettings) eventSettings = cloudData.eventSettings;
+        sortEvents();
+        document.getElementById('sync-status').innerHTML = '✓ Synced with cloud';
+        return true;
+    } catch (err) {
+        console.error('Cloud load failed:', err);
+        document.getElementById('sync-status').innerHTML = '⚠ Cloud sync error';
+        return false;
+    }
+}
+
+async function saveToCloud() {
+    if (!JSONBIN_BIN_ID || JSONBIN_BIN_ID === 'YOUR_BIN_ID') return false;
+    const data = { employees, submissions, events, eventSettings };
+    try {
+        const response = await fetch(API_BASE, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Master-Key': JSONBIN_API_KEY
+            },
+            body: JSON.stringify(data)
+        });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        document.getElementById('sync-status').innerHTML = '✓ Synced with cloud';
+        return true;
+    } catch (err) {
+        console.error('Cloud save failed:', err);
+        document.getElementById('sync-status').innerHTML = '⚠ Cloud sync error';
+        return false;
+    }
+}
+
+// ---------- LOCAL DATA (defaults) ----------
+function loadLocalDefault() {
+    let baseId = 1742740000000;
+    employees = [];
+    for (let i = 0; i < defaultEmployeesRaw.length; i++) {
+        const emp = defaultEmployeesRaw[i];
+        employees.push({
+            id: baseId + i + 1,
+            empCode: emp.code,
+            name: emp.name,
+            section: emp.section
+        });
+    }
+    submissions = {};
+    events = [...defaultEvents];
+    sortEvents();
+    eventSettings = {};
+}
+
+async function initData() {
+    const cloudLoaded = await loadFromCloud();
+    if (!cloudLoaded) {
+        loadLocalDefault();
+        await saveToCloud();
+    }
+    sortEvents();
+}
+
+function sortEvents() {
+    events.sort((a, b) => new Date(a.date) - new Date(b.date));
+}
+
+// ---------- CAPACITY HELPERS ----------
+function getCapacityForEvent(eventId, section) {
+    const s = eventSettings[eventId];
+    if (s && s.capacities && s.capacities[section] !== undefined) return s.capacities[section];
+    return DEFAULT_CAPACITIES[section];
+}
+
+function getPreAssignedCount(eventId, section) {
+    const s = eventSettings[eventId];
+    if (!s || !s.preAssignments) return 0;
+    return s.preAssignments.filter(pid => employees.find(e => e.id == pid)?.section === section).length;
+}
+
+function getSelfAssignedCount(eventId, section) {
+    let count = 0;
+    for (let empId in submissions) {
+        const emp = employees.find(e => e.id == empId);
+        if (emp && emp.section === section && submissions[empId].includes(eventId)) count++;
+    }
+    return count;
+}
+
+function remainingSlots(eventId, section) {
+    const cap = getCapacityForEvent(eventId, section);
+    const pre = getPreAssignedCount(eventId, section);
+    const self = getSelfAssignedCount(eventId, section);
+    return cap - pre - self;
+}
+
+function isEmployeePreAssigned(empId, eventId) {
+    const s = eventSettings[eventId];
+    return s && s.preAssignments && s.preAssignments.includes(empId);
+}
+
+// ---------- RENDER DATES (staff) ----------
+let currentEmployeeId = null;
+async function renderDates() {
+    const container = document.getElementById('dates-container');
+    if (!container || !currentEmployeeId) return;
+    const emp = employees.find(e => e.id === currentEmployeeId);
+    if (!emp) return;
+    const section = emp.section;
+    container.innerHTML = '';
+    for (const event of events) {
+        const remaining = remainingSlots(event.id, section);
+        const isCurrentlyAvailable = (submissions[currentEmployeeId] || []).includes(event.id);
+        const isPre = isEmployeePreAssigned(currentEmployeeId, event.id);
+        const isChecked = isPre || isCurrentlyAvailable;
+        const isDisabled = isPre || (remaining <= 0 && !isCurrentlyAvailable);
+        const slotsInfo = isPre ? ' (You are pre-assigned)' : ` slots left: ${remaining}`;
+        const div = document.createElement('div');
+        div.className = 'date-item';
+        div.innerHTML = `
+            <div class="event-info">
+                <strong>${formatDate(event.date)}</strong><br>
+                ${event.venue}
+            </div>
+            <div class="slots-info">
+                ${section.charAt(0).toUpperCase() + section.slice(1)}${slotsInfo}
+            </div>
+            <label>
+                <input type="checkbox" data-id="${event.id}" ${isChecked ? 'checked' : ''} ${isDisabled ? 'disabled' : ''}>
+                Available
+            </label>
+        `;
+        container.appendChild(div);
+    }
+}
+
+// ---------- SUBMIT AVAILABILITY (cloud) ----------
+async function submitAvailability() {
+    if (!currentEmployeeId) {
+        showMessage('staff-message', 'Please load your employee details first.', 'error');
+        return;
+    }
+    const checkboxes = document.querySelectorAll('#dates-container input[type="checkbox"]');
+    const selected = [];
+    checkboxes.forEach(cb => { if (cb.checked) selected.push(cb.getAttribute('data-id')); });
+
+    const emp = employees.find(e => e.id === currentEmployeeId);
+    const section = emp.section;
+
+    for (let eventId of selected) {
+        if (isEmployeePreAssigned(currentEmployeeId, eventId)) continue;
+        const remaining = remainingSlots(eventId, section);
+        const already = (submissions[currentEmployeeId] || []).includes(eventId);
+        if (!already && remaining <= 0) {
+            showMessage('staff-message', `Cannot add ${section} for ${events.find(e=>e.id===eventId)?.venue}: capacity full.`, 'error');
+            return;
+        }
+    }
+
+    submissions[currentEmployeeId] = selected;
+    await saveToCloud();
+    showToast();
+    showMessage('staff-message', `Availability saved for ${emp.name}. Thank you!`, 'success');
+    renderDates();
+    if (managerAuthenticated) {
+        renderAvailabilityMatrix(document.querySelector('.filter-btn.active')?.dataset.section || 'all');
+    }
+}
+
+// ---------- ADMIN FUNCTIONS ----------
+async function addEvent(date, venue) {
+    if (!date || !venue) { alert('Enter both'); return false; }
+    if (events.some(e => e.date === date && e.venue === venue)) { alert('Event exists'); return false; }
+    const newId = Date.now().toString();
+    events.push({ id: newId, date, venue });
+    sortEvents();
+    await saveToCloud();
+    refreshAllViews();
+    return true;
+}
+
+async function deleteEvent(eventId) {
+    if (confirm('Delete this event?')) {
+        events = events.filter(e => e.id !== eventId);
+        for (let empId in submissions) submissions[empId] = submissions[empId].filter(eid => eid !== eventId);
+        delete eventSettings[eventId];
+        await saveToCloud();
+        refreshAllViews();
+    }
+}
+
+function refreshAllViews() {
+    if (managerAuthenticated) {
+        renderAdminEmployees();
+        renderAdminEventsList();
+        renderAvailabilityMatrix(document.querySelector('.filter-btn.active')?.dataset.section || 'all');
+    }
+    if (currentEmployeeId) renderDates();
+}
+
+function renderAdminEventsList() {
+    const container = document.getElementById('event-list');
+    container.innerHTML = '';
+    events.forEach(event => {
+        const div = document.createElement('div');
+        div.style.display = 'flex';
+        div.style.justifyContent = 'space-between';
+        div.style.alignItems = 'center';
+        div.style.padding = '8px';
+        div.style.borderBottom = '1px solid #eee';
+        div.innerHTML = `
+            <span>${formatDate(event.date)} – ${event.venue}</span>
+            <div>
+                <button class="edit-event-settings" data-id="${event.id}" style="background:#2196f3;">Edit</button>
+                <button class="delete-event" data-id="${event.id}" style="background:#ff4444;">Delete</button>
+            </div>
+        `;
+        container.appendChild(div);
+    });
+    document.querySelectorAll('.delete-event').forEach(btn => btn.addEventListener('click', () => deleteEvent(btn.getAttribute('data-id'))));
+    document.querySelectorAll('.edit-event-settings').forEach(btn => btn.addEventListener('click', () => openEventSettingsModal(btn.getAttribute('data-id'))));
+}
+
+// Event settings modal
+let currentEventIdForSettings = null;
+function openEventSettingsModal(eventId) {
+    currentEventIdForSettings = eventId;
+    const event = events.find(e => e.id === eventId);
+    document.getElementById('eventSettingsTitle').innerText = `Settings for ${formatDate(event.date)} – ${event.venue}`;
+    const container = document.getElementById('eventSettingsContent');
+    const settings = eventSettings[eventId] || { capacities: {}, preAssignments: [] };
+
+    let capsHtml = '<div class="capacity-row">';
+    const sections = ['kitchen','floor','bar','cleaner','setup','manager'];
+    for (const sec of sections) {
+        const val = settings.capacities[sec] !== undefined ? settings.capacities[sec] : DEFAULT_CAPACITIES[sec];
+        capsHtml += `<div class="capacity-field"><label>${sec}</label><input type="number" id="cap-${sec}" value="${val}" min="0"></div>`;
+    }
+    capsHtml += '</div>';
+
+    const employeesBySection = {};
+    employees.forEach(e => {
+        if (!employeesBySection[e.section]) employeesBySection[e.section] = [];
+        employeesBySection[e.section].push(e);
+    });
+
+    let preHtml = '<h4>Pre-assign Staff</h4>';
+    for (const sec of sections) {
+        const emps = employeesBySection[sec] || [];
+        if (emps.length === 0) continue;
+        preHtml += `<div><strong>${sec}</strong></div><div class="preassign-list">`;
+        for (const emp of emps) {
+            const checked = settings.preAssignments?.includes(emp.id);
+            preHtml += `<div class="preassign-item"><label>${emp.name} (${emp.empCode})</label><input type="checkbox" class="preassign-checkbox" data-id="${emp.id}" ${checked ? 'checked' : ''}></div>`;
+        }
+        preHtml += '</div>';
+    }
+
+    container.innerHTML = capsHtml + preHtml;
+    document.getElementById('eventSettingsModal').style.display = 'flex';
+}
+
+async function saveEventSettings() {
+    if (!currentEventIdForSettings) return;
+    const capacities = {};
+    const sections = ['kitchen','floor','bar','cleaner','setup','manager'];
+    for (const sec of sections) {
+        const input = document.getElementById(`cap-${sec}`);
+        if (input) capacities[sec] = parseInt(input.value,10);
+    }
+    const preAssignments = [];
+    document.querySelectorAll('.preassign-checkbox:checked').forEach(cb => preAssignments.push(parseInt(cb.getAttribute('data-id'))));
+    eventSettings[currentEventIdForSettings] = { capacities, preAssignments };
+    await saveToCloud();
+    showToast();
+    closeEventSettingsModal();
+    refreshAllViews();
+}
+
+function closeEventSettingsModal() {
+    document.getElementById('eventSettingsModal').style.display = 'none';
+    currentEventIdForSettings = null;
+}
+
+// Employee management
+let editingEmployeeId = null;
+function openEditModal(empId) {
+    const emp = employees.find(e => e.id === empId);
+    if (!emp) return;
+    editingEmployeeId = empId;
+    document.getElementById('edit-emp-name').value = emp.name;
+    document.getElementById('edit-emp-section').value = emp.section;
+    document.getElementById('edit-emp-code').value = emp.empCode;
+    document.getElementById('edit-error').classList.add('hidden');
+    document.getElementById('editModal').style.display = 'flex';
+}
+function closeEditModal() { document.getElementById('editModal').style.display = 'none'; editingEmployeeId = null; }
+async function saveEdit() {
+    const newName = document.getElementById('edit-emp-name').value.trim();
+    const newSection = document.getElementById('edit-emp-section').value;
+    const newCode = document.getElementById('edit-emp-code').value.trim();
+    if (!newName || !newCode) { showEditError('Name and code required'); return; }
+    if (employees.some(e => e.id !== editingEmployeeId && e.empCode === newCode)) { showEditError('Code already exists'); return; }
+    const idx = employees.findIndex(e => e.id === editingEmployeeId);
+    if (idx !== -1) {
+        employees[idx].name = newName;
+        employees[idx].section = newSection;
+        employees[idx].empCode = newCode;
+        await saveToCloud();
+        closeEditModal();
+        refreshAllViews();
+    }
+}
+function showEditError(msg) {
+    const errDiv = document.getElementById('edit-error');
+    errDiv.textContent = msg;
+    errDiv.classList.remove('hidden');
+}
+
+function renderAdminEmployees() {
+    const container = document.getElementById('employee-list');
+    container.innerHTML = '';
+    employees.forEach(emp => {
+        const card = document.createElement('div');
+        card.className = 'employee-card';
+        card.innerHTML = `
+            <div class="name">${escapeHtml(emp.name)} <span class="code">${emp.empCode}</span></div>
+            <div class="sections">Section: ${emp.section}</div>
+            <div>
+                <button class="edit-btn" data-id="${emp.id}">Edit</button>
+                <button class="generate-code-btn" data-id="${emp.id}">Regenerate Code</button>
+                <button class="remove-emp" data-id="${emp.id}">Remove</button>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+    document.querySelectorAll('.edit-btn').forEach(btn => btn.addEventListener('click', () => openEditModal(parseInt(btn.getAttribute('data-id')))));
+    document.querySelectorAll('.generate-code-btn').forEach(btn => btn.addEventListener('click', async () => {
+        const id = parseInt(btn.getAttribute('data-id'));
+        const emp = employees.find(e => e.id === id);
+        if (emp) { emp.empCode = generateRandomCode(); await saveToCloud(); renderAdminEmployees(); }
+    }));
+    document.querySelectorAll('.remove-emp').forEach(btn => btn.addEventListener('click', async () => {
+        const id = parseInt(btn.getAttribute('data-id'));
+        if (confirm('Remove employee?')) {
+            employees = employees.filter(e => e.id !== id);
+            delete submissions[id];
+            for (let evId in eventSettings) {
+                if (eventSettings[evId].preAssignments) eventSettings[evId].preAssignments = eventSettings[evId].preAssignments.filter(pid => pid !== id);
+            }
+            await saveToCloud();
+            renderAdminEmployees();
+            refreshAllViews();
+        }
+    }));
+}
+
+// Availability Matrix
+async function renderAvailabilityMatrix(sectionFilter = 'all') {
+    const container = document.getElementById('availability-matrix');
+    const statusSpan = document.getElementById('matrix-sync-status');
+    if (statusSpan) statusSpan.innerText = 'Loading latest data...';
+    await loadFromCloud();  // force fresh data
+    if (statusSpan) statusSpan.innerText = '';
+
+    let filtered = sectionFilter === 'all' ? employees : employees.filter(e => e.section === sectionFilter);
+    if (filtered.length === 0) { container.innerHTML = '<p>No employees in this section.</p>'; return; }
+
+    let html = '<table style="min-width:600px;"><thead><th>Event</th>';
+    filtered.forEach(emp => html += `<th>${escapeHtml(emp.name)}<br><small>${emp.empCode}</small></th>`);
+    html += '</thead><tbody>';
+    for (const event of events) {
+        html += ` tr<td><strong>${formatDate(event.date)}<br>${event.venue}</strong>`;
+        for (const emp of filtered) {
+            const available = (submissions[emp.id] || []).includes(event.id) || isEmployeePreAssigned(emp.id, event.id);
+            html += `<td style="text-align:center;">${available ? '<span class="available-yes">✓</span>' : '<span class="available-no">✗</span>'}`;
+        }
+        html += '  ';
+    }
+    html += '</tbody>  </div>';
+
+    // Summary
+    const sections = ['kitchen','floor','bar','cleaner','setup','manager'];
+    html += '<div style="margin-top:30px;"><h3>Summary by Section</h3>';
+    for (const sec of sections) {
+        const secEmps = employees.filter(e => e.section === sec);
+        if (secEmps.length === 0) continue;
+        html += `<h4>${sec}</h4>   <thead><th>Event</th><th>Assigned / Capacity</th><th>Remaining</th>   </thead><tbody>`;
+        for (const event of events) {
+            const pre = getPreAssignedCount(event.id, sec);
+            const self = getSelfAssignedCount(event.id, sec);
+            const total = pre + self;
+            const cap = getCapacityForEvent(event.id, sec);
+            const rem = cap - total;
+            html += `   <td><strong>${formatDate(event.date)}<br>${event.venue}</strong>   <td>${total} / ${cap}   <td style="color:#D4AF37;">${rem < 0 ? 0 : rem} left  `;
+        }
+        html += '</tbody>  ';
+    }
+    html += '</div>';
+    container.innerHTML = html;
+}
+
+async function addEmployee() {
+    const name = document.getElementById('new-employee-name').value.trim();
+    const section = document.getElementById('new-employee-section').value;
+    let code = document.getElementById('new-employee-code').value.trim();
+    if (!name) { alert('Enter name'); return; }
+    if (!code) code = generateRandomCode();
+    if (employees.some(e => e.empCode === code)) { alert('Code exists'); return; }
+    const newId = Date.now();
+    employees.push({ id: newId, empCode: code, name, section });
+    await saveToCloud();
+    document.getElementById('new-employee-name').value = '';
+    document.getElementById('new-employee-code').value = '';
+    renderAdminEmployees();
+    refreshAllViews();
+    showToast();
+}
+
+function exportCSV() {
+    let csv = 'Employee Code,Name,Section,Event Date,Venue,Available\n';
+    for (const emp of employees) {
+        const av = submissions[emp.id] || [];
+        for (const ev of events) {
+            const yes = av.includes(ev.id) || isEmployeePreAssigned(emp.id, ev.id);
+            csv += `"${emp.empCode}","${emp.name}","${emp.section}","${formatDate(ev.date)}","${ev.venue}",${yes ? 'Yes' : 'No'}\n`;
+        }
+    }
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'staff-availability.csv';
+    a.click();
+    URL.revokeObjectURL(a.href);
+}
+
+function exportEmployeeCodes() {
+    let csv = 'Name,Code,Section\n';
+    employees.forEach(emp => csv += `"${emp.name}","${emp.empCode}","${emp.section}"\n`);
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'employee-codes.csv';
+    a.click();
+}
+
+function showCodeList() {
+    const container = document.getElementById('code-list-container');
+    const ta = document.getElementById('code-list-textarea');
+    let text = '';
+    employees.forEach(emp => text += `${emp.name} – ${emp.empCode} – ${emp.section}\n`);
+    ta.value = text;
+    container.classList.remove('hidden');
+}
+
+function copyCodeList() {
+    const ta = document.getElementById('code-list-textarea');
+    ta.select();
+    document.execCommand('copy');
+    alert('Copied!');
+}
+
+async function clearAllData() {
+    if (confirm('Reset all data? This will delete all employees, events, submissions.')) {
+        loadLocalDefault();
+        await saveToCloud();
+        location.reload();
+    }
+}
+
+async function syncNow() {
+    await loadFromCloud();
+    refreshAllViews();
+    showMessage('save-status', 'Synced from cloud', 'success');
+}
+
+function switchTab(tabId) {
+    if ((tabId === 'admin' || tabId === 'availability') && !managerAuthenticated) {
+        const pwd = prompt('Manager password:');
+        if (pwd === MANAGER_PASSWORD) {
+            managerAuthenticated = true;
+            sessionStorage.setItem('managerAuthenticated', 'true');
+        } else { alert('Wrong password'); return; }
+    }
+    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(tabId + '-pane').classList.add('active');
+    document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+    if (tabId === 'admin') {
+        renderAdminEmployees();
+        renderAdminEventsList();
+    } else if (tabId === 'availability') {
+        renderAvailabilityMatrix('all');
+    }
+}
+
+function initFilters() {
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderAvailabilityMatrix(btn.dataset.section);
+        });
+    });
+}
+
+function loadEmployeeByCode() {
+    const code = document.getElementById('employee-code').value.trim().toUpperCase();
+    if (!code) { alert('Enter code'); return; }
+    const emp = employees.find(e => e.empCode === code);
+    if (!emp) { alert('Code not found'); return; }
+    currentEmployeeId = emp.id;
+    document.getElementById('display-name').innerText = emp.name;
+    document.getElementById('display-section').innerText = emp.section;
+    document.getElementById('staff-details').classList.remove('hidden');
+    renderDates();
+}
+
+async function init() {
+    await initData();
+    initFilters();
+
+    // Modals
+    document.querySelectorAll('.close-modal').forEach(c => c.addEventListener('click', () => {
+        document.getElementById('editModal').style.display = 'none';
+        document.getElementById('eventSettingsModal').style.display = 'none';
+    }));
+
+    document.getElementById('save-edit').addEventListener('click', saveEdit);
+    document.getElementById('edit-generate-random').addEventListener('click', () => {
+        document.getElementById('edit-emp-code').value = generateRandomCode();
+    });
+    document.getElementById('generate-random-code').addEventListener('click', () => {
+        document.getElementById('new-employee-code').value = generateRandomCode();
+    });
+    document.getElementById('saveEventSettings').addEventListener('click', saveEventSettings);
+
+    document.getElementById('load-employee').addEventListener('click', loadEmployeeByCode);
+    document.getElementById('submit-availability').addEventListener('click', submitAvailability);
+    document.getElementById('add-employee').addEventListener('click', addEmployee);
+    document.getElementById('add-event').addEventListener('click', async () => {
+        const date = document.getElementById('new-event-date').value;
+        const venue = document.getElementById('new-event-venue').value.trim();
+        if (await addEvent(date, venue)) {
+            document.getElementById('new-event-date').value = '';
+            document.getElementById('new-event-venue').value = '';
+        }
+    });
+    document.getElementById('export-csv').addEventListener('click', exportCSV);
+    document.getElementById('export-codes').addEventListener('click', exportEmployeeCodes);
+    document.getElementById('show-code-list').addEventListener('click', showCodeList);
+    document.getElementById('copy-code-list').addEventListener('click', copyCodeList);
+    document.getElementById('clear-all-data').addEventListener('click', clearAllData);
+    document.getElementById('sync-now').addEventListener('click', syncNow);
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => switchTab(btn.getAttribute('data-tab')));
+    });
+
+    // Preload matrix if manager already logged in
+    if (managerAuthenticated) renderAvailabilityMatrix('all');
+}
+
+init();
+</script>
 </body>
 </html>
